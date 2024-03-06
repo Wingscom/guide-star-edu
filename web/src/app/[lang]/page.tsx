@@ -8,9 +8,6 @@ export default async function Home({
   const loc = await getLocale(lang);
   return (
     <div className="flex flex-col">
-      <h1>
-        {loc.title}: {lang}
-      </h1>
     </div>
   );
 }

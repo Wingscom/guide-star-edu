@@ -1,7 +1,9 @@
-import { Language } from "./app/[lang]/locales"
+import { Language } from "./app/[lang]/locales";
 
 export const getAppLinks = (lang: Language) => {
   return {
-    home: () => `/${lang}`
-  }
-}
+    home: () => `/${lang}`,
+    contact: () => `/${lang}/contact-us`,
+    search: () => `/${lang}/search`,
+  };
+};

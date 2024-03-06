@@ -1,4 +1,8 @@
-import { Language, getLocale } from "./locales";
+"use client";
+
+import Header from "@/components/ui/Header/Header";
+import { Language } from "./locales";
+import { AppShell } from "@mantine/core";
 
 export default async function RootLayout({
   children,
@@ -7,26 +11,10 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: Language };
 }>) {
-  const locale = getLocale(lang);
   return (
-    <>
-      <nav>
-        <ul>
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a href="#">Services</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
-          </li>
-        </ul>
-      </nav>
-      {children}
-    </>
+    <AppShell header={{ height: 60 }}>
+      <Header lang={lang} />
+      <AppShell.Main>{children}</AppShell.Main>
+    </AppShell>
   );
 }
