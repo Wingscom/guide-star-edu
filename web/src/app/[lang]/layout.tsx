@@ -1,8 +1,5 @@
-"use client";
-
-import Header from "@/components/ui/Header/Header";
+import AppShell from "@/components/ui/AppShell/AppShell";
 import { Language } from "./locales";
-import { AppShell } from "@mantine/core";
 
 export default async function RootLayout({
   children,
@@ -11,10 +8,5 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: Language };
 }>) {
-  return (
-    <AppShell header={{ height: 60 }}>
-      <Header lang={lang} />
-      <AppShell.Main>{children}</AppShell.Main>
-    </AppShell>
-  );
+  return <AppShell lang={lang}>{children}</AppShell>;
 }
