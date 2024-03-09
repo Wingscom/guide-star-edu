@@ -1,5 +1,8 @@
 {
   "contactPage": {
+    "actions": {
+      "submit": "Submit"
+    },
     "labels": {
       "address": "Address",
       "contactMessage": "Tell us about it",
@@ -7,6 +10,10 @@
       "facebook": "Facebook",
       "fullName": "Full name",
       "phoneNumber": "Phone number"
+    },
+    "messages": {
+      "emailInvalid": "Email is invalid",
+      "emailRequired": "Email is required"
     },
     "title": "Contact info"
   },

@@ -1,5 +1,8 @@
 {
   "contactPage": {
+    "actions": {
+      "submit": "Gửi"
+    },
     "labels": {
       "address": "Địa chỉ",
       "contactMessage": "Lời nhắn",
@@ -7,6 +10,10 @@
       "facebook": "Facebook",
       "fullName": "Họ và tên",
       "phoneNumber": "Số điện thoại"
+    },
+    "messages": {
+      "emailInvalid": "Vui lòng nhập email",
+      "emailRequired": "Email không hợp lệ"
     },
     "title": "Thông tin liên lạc"
   },
