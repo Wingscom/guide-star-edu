@@ -1,4 +1,15 @@
 {
+  "contactPage": {
+    "labels": {
+      "address": "Address",
+      "contactMessage": "Tell us about it",
+      "email": "Email",
+      "facebook": "Facebook",
+      "fullName": "Full name",
+      "phoneNumber": "Phone number"
+    },
+    "title": "Contact info"
+  },
   "header": {
     "labels": {
       "contact": "Contact us",

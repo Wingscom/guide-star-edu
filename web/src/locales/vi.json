@@ -1,4 +1,15 @@
 {
+  "contactPage": {
+    "labels": {
+      "address": "Địa chỉ",
+      "contactMessage": "Lời nhắn",
+      "email": "Email",
+      "facebook": "Facebook",
+      "fullName": "Họ và tên",
+      "phoneNumber": "Số điện thoại"
+    },
+    "title": "Thông tin liên lạc"
+  },
   "header": {
     "labels": {
       "contact": "Liên lạc",
