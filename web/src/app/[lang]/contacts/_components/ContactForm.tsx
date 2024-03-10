@@ -28,19 +28,25 @@ export type ContactFormType = {
 export function ContactForm({ contactPageContent, locale }: ContactFormProps) {
   const {
     register,
+    handleSubmit: handleFormSubmit,
     formState: { errors },
-  } = useForm<ContactFormType>();
+  } = useForm<ContactFormType>({ mode: "onBlur" });
   const pageLocale = locale.contactPage;
   const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
+
+  const handleSubmit = handleFormSubmit((formValues) => {
+    console.log("Submit form")
+    // TODO: implement
+  });
 
   return (
     <Flex direction="column">
       <Title size="5rem">{contactPageContent.contactFormTitle}</Title>
-      <Space h="sm" />
+      <Space h="lg" />
       {contactPageContent.contactFormSubtitle && (
         <>
           <Text>{contactPageContent.contactFormSubtitle}</Text>
-          <Space h="md" />
+          <Space h="lg" />
         </>
       )}
       <TextInput
@@ -80,7 +86,9 @@ export function ContactForm({ contactPageContent, locale }: ContactFormProps) {
         className="w-full"
       />
       <Space h="lg" />
-      <Button fullWidth>{pageLocale.actions.submit}</Button>
+      <Button fullWidth onClick={handleSubmit}>
+        {pageLocale.actions.submit}
+      </Button>
     </Flex>
   );
 }
