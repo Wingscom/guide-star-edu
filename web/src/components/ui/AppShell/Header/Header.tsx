@@ -53,30 +53,30 @@ export default async function Header({ lang }: HeaderProps) {
           <Image src="/logo-white.png" alt="logo" width={83} height={50} />
           <Group gap={5} visibleFrom="sm">
             {items.map((item) => {
-              // if (item.menu) {
-              //   return (
-              //     <Menu
-              //       key={item.link}
-              //       trigger="hover"
-              //       transitionProps={{ exitDuration: 0 }}
-              //       withinPortal
-              //     >
-              //       <Menu.Target>
-              //         <Center className={classes.link}>
-              //           <span className={classes.linkLabel}>{item.label}</span>
-              //           <IconChevronDown size="0.9rem" stroke={1.5} />
-              //         </Center>
-              //       </Menu.Target>
-              //       <Menu.Dropdown>
-              //         {item.menu.map((menuItem) => (
-              //           <Link key={menuItem.link} href={menuItem.link}>
-              //             <Menu.Item>{menuItem.label}</Menu.Item>
-              //           </Link>
-              //         ))}
-              //       </Menu.Dropdown>
-              //     </Menu>
-              //   );
-              // }
+              if (item.menu) {
+                return (
+                  <Menu
+                    key={item.link}
+                    trigger="hover"
+                    transitionProps={{ exitDuration: 0 }}
+                    withinPortal
+                  >
+                    <Menu.Target>
+                      <Center className={classes.link}>
+                        <span className={classes.linkLabel}>{item.label}</span>
+                        <IconChevronDown size="0.9rem" stroke={1.5} />
+                      </Center>
+                    </Menu.Target>
+                    <Menu.Dropdown>
+                      {item.menu.map((menuItem) => (
+                        <Link key={menuItem.link} href={menuItem.link}>
+                          <Menu.Item>{menuItem.label}</Menu.Item>
+                        </Link>
+                      ))}
+                    </Menu.Dropdown>
+                  </Menu>
+                );
+              }
               return (
                 <Link key={item.link} href={item.link} className={classes.link}>
                   {item.label}

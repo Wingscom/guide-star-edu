@@ -13,7 +13,7 @@ export type AppShellProps = {
 
 export default function AppShell({ lang, children }: AppShellProps) {
   return (
-    <MantineAppShell header={{ height: 60 }}>
+    <MantineAppShell header={{ height: 60 }} footer={{ height: 100 }}>
       <Header lang={lang} />
       <MantineAppShell.Main>{children}</MantineAppShell.Main>
       <Footer />
