@@ -1,10 +1,10 @@
 import { Language, getLocale } from "@/app/[lang]/locales";
 import { getAppLinks } from "@/links";
 import { AppShell, Center, Container, Group, Menu } from "@mantine/core";
-import { MantineLogo } from "@mantinex/mantine-logo";
 import { IconChevronDown } from "@tabler/icons-react";
 import Link from "next/link";
 import classes from "./Header.module.css";
+import Image from "next/image";
 
 export type HeaderProps = {
   lang: Language;
@@ -24,15 +24,19 @@ export default async function Header({ lang }: HeaderProps) {
     },
     {
       link: "#",
-      label: locale.header.labels.itemWithMenu,
-      links: [
+      label: locale.header.labels.blogs,
+      menu: [
         {
-          link: "#1",
-          label: locale.header.labels.menu1,
+          link: links.news(),
+          label: locale.header.labels.news,
         },
         {
-          link: "#2",
-          label: locale.header.labels.menu2,
+          link: links.events(),
+          label: locale.header.labels.events,
+        },
+        {
+          link: links.scholarships(),
+          label: locale.header.labels.scholarships,
         },
       ],
     },
@@ -46,33 +50,33 @@ export default async function Header({ lang }: HeaderProps) {
     <AppShell.Header>
       <Container size="lg">
         <div className={classes.inner}>
-          <MantineLogo size={28} />
+          <Image src="/logo-white.png" alt="logo" width={83} height={50} />
           <Group gap={5} visibleFrom="sm">
             {items.map((item) => {
-              if (item.links) {
-                return (
-                  <Menu
-                    key={item.link}
-                    trigger="hover"
-                    transitionProps={{ exitDuration: 0 }}
-                    withinPortal
-                  >
-                    <Menu.Target>
-                      <Center className={classes.link}>
-                        <span className={classes.linkLabel}>{item.label}</span>
-                        <IconChevronDown size="0.9rem" stroke={1.5} />
-                      </Center>
-                    </Menu.Target>
-                    <Menu.Dropdown>
-                      {item.links.map((menuItem) => (
-                        <Link key={menuItem.link} href={menuItem.link}>
-                          <Menu.Item>{menuItem.label}</Menu.Item>
-                        </Link>
-                      ))}
-                    </Menu.Dropdown>
-                  </Menu>
-                );
-              }
+              // if (item.menu) {
+              //   return (
+              //     <Menu
+              //       key={item.link}
+              //       trigger="hover"
+              //       transitionProps={{ exitDuration: 0 }}
+              //       withinPortal
+              //     >
+              //       <Menu.Target>
+              //         <Center className={classes.link}>
+              //           <span className={classes.linkLabel}>{item.label}</span>
+              //           <IconChevronDown size="0.9rem" stroke={1.5} />
+              //         </Center>
+              //       </Menu.Target>
+              //       <Menu.Dropdown>
+              //         {item.menu.map((menuItem) => (
+              //           <Link key={menuItem.link} href={menuItem.link}>
+              //             <Menu.Item>{menuItem.label}</Menu.Item>
+              //           </Link>
+              //         ))}
+              //       </Menu.Dropdown>
+              //     </Menu>
+              //   );
+              // }
               return (
                 <Link key={item.link} href={item.link} className={classes.link}>
                   {item.label}

@@ -12,18 +12,19 @@
       "phoneNumber": "Số điện thoại"
     },
     "messages": {
-      "emailInvalid": "Vui lòng nhập email",
-      "emailRequired": "Email không hợp lệ"
+      "emailInvalid": "Email không hợp lệ",
+      "emailRequired": "Vui lòng nhập email"
     },
     "title": "Thông tin liên lạc"
   },
   "header": {
     "labels": {
+      "blogs": "Bài viết",
       "contact": "Liên lạc",
+      "events": "Sự kiện",
       "home": "Trang chủ",
-      "itemWithMenu": "Item with menu",
-      "menu1": "Menu 1",
-      "menu2": "Menu 2",
+      "news": "Tin tức",
+      "scholarships": "Học bổng",
       "search": "Tìm kiếm"
     }
   }

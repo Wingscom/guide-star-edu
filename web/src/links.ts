@@ -5,5 +5,8 @@ export const getAppLinks = (lang: Language) => {
     home: () => `/${lang}`,
     contact: () => `/${lang}/contacts`,
     search: () => `/${lang}/search`,
+    news: () => `/${lang}/blogs/news`,
+    events: () => `/${lang}/blogs/events`,
+    scholarships: () => `/${lang}/blogs/scholarships`
   };
 };

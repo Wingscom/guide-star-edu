@@ -19,11 +19,12 @@
   },
   "header": {
     "labels": {
+      "blogs": "Blogs",
       "contact": "Contact us",
+      "events": "Events",
       "home": "Home",
-      "itemWithMenu": "Item with menu",
-      "menu1": "Menu 1",
-      "menu2": "Menu 2",
+      "news": "News",
+      "scholarships": "Scholarships",
       "search": "Search"
     }
   }
