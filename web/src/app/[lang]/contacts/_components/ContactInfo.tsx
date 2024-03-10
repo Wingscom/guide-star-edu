@@ -19,32 +19,28 @@ export async function ContactInfo({
       {contactPageContent.address && (
         <>
           <Text c="dimmed">{locale.contactPage.labels.address}</Text>
-          <Text>{renderContentfulDocument(contactPageContent.address)}</Text>
+          {renderContentfulDocument(contactPageContent.address)}
           <Space h="lg" />
         </>
       )}
       {contactPageContent.email && (
         <>
           <Text c="dimmed">{locale.contactPage.labels.email}</Text>
-          <Text>{renderContentfulDocument(contactPageContent.email)}</Text>
+          {renderContentfulDocument(contactPageContent.email)}
           <Space h="lg" />
         </>
       )}
       {contactPageContent.phoneNumber && (
         <>
           <Text c="dimmed">{locale.contactPage.labels.phoneNumber}</Text>
-          <Text>
-            {renderContentfulDocument(contactPageContent.phoneNumber)}
-          </Text>
+          {renderContentfulDocument(contactPageContent.phoneNumber)}
           <Space h="lg" />
         </>
       )}
       {contactPageContent.facebook && (
         <>
           <Text c="dimmed">{locale.contactPage.labels.facebook}</Text>
-          <Text c="blue">
-            {renderContentfulDocument(contactPageContent.facebook)}
-          </Text>
+          {renderContentfulDocument(contactPageContent.facebook)}
           <Space h="lg" />
         </>
       )}
