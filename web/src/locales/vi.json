@@ -1,4 +1,9 @@
 {
+  "blogCategories": {
+    "event": "Sự kiện",
+    "news": "Tin tức",
+    "scholarship": "Học bổng"
+  },
   "contactPage": {
     "actions": {
       "submit": "Gửi"
@@ -26,6 +31,22 @@
       "news": "Tin tức",
       "scholarships": "Học bổng",
       "search": "Tìm kiếm"
+    }
+  },
+  "home": {
+    "actions": {
+      "read": "Xem"
+    },
+    "hero": {
+      "actions": {
+        "signUp": "Đăng ký ngay"
+      },
+      "title": "Tư vấn du học",
+      "description": "Nhận danh sách học bổng cùng bí kíp săn học bổng của các chuyên gia PSE"
+    },
+    "labels": {
+      "countries": "Các nước du học",
+      "news": "Tin tức"
     }
   }
 }

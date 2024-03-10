@@ -1,4 +1,9 @@
 {
+  "blogCategories": {
+    "event": "Event",
+    "news": "News",
+    "scholarship": "Scholarship"
+  },
   "contactPage": {
     "actions": {
       "submit": "Submit"
@@ -26,6 +31,22 @@
       "news": "News",
       "scholarships": "Scholarships",
       "search": "Search"
+    }
+  },
+  "home": {
+    "actions": {
+      "read": "Read"
+    },
+    "hero": {
+      "actions": {
+        "signUp": "Sign up now"
+      },
+      "title": "Study abroad consulting",
+      "description": "Receive a list of scholarships along with scholarship hunting tips from PSE experts"
+    },
+    "labels": {
+      "countries": "Countries",
+      "news": "News"
     }
   }
 }
