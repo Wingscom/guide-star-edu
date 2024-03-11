@@ -6,7 +6,8 @@
   },
   "blogDetail": {
     "labels": {
-      "newPosts": "Các bài viết mới"
+      "newPosts": "Các bài viết mới",
+      "search": "Tìm kiếm bài viết"
     }
   },
   "contactPage": {

@@ -1,7 +1,17 @@
 import { renderContentfulDocument } from "@/helpers/renderContentfulDocument";
 import { getAppLinks } from "@/links";
-import { Container, Divider, Grid, GridCol, Stack, Title } from "@mantine/core";
+import {
+  Container,
+  Divider,
+  Grid,
+  GridCol,
+  Stack,
+  TextInput,
+  Title,
+} from "@mantine/core";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { FormEvent } from "react";
 import { Language, getLocale } from "../../locales";
 import { getBlogDetailContent, getTopNewPosts } from "./action";
 
@@ -15,6 +25,10 @@ export default async function BlogDetailPage({
   const blogContent = await getBlogDetailContent(slug);
   const newPosts = await getTopNewPosts();
 
+  const handleSearchSubmit = (e: FormEvent<HTMLInputElement>) => {
+    redirect(links.blogs({ search: e.currentTarget.value }));
+  };
+
   return (
     <Container size="lg" p="xl">
       <Grid gutter="xl">
@@ -25,6 +39,12 @@ export default async function BlogDetailPage({
           </Stack>
         </GridCol>
         <GridCol span={{ base: 12, sm: 4 }}>
+          <Title order={3} mb="md">
+            {locale.blogDetail.labels.search}
+          </Title>
+          <Divider size="md" mb="xl" />
+          <TextInput onKeyDown={handleSearchSubmit} />
+          <Divider size="md" my="xl" />
           <Title order={3} mb="md">
             {locale.blogDetail.labels.newPosts}
           </Title>

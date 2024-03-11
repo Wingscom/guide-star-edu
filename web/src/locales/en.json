@@ -6,7 +6,8 @@
   },
   "blogDetail": {
     "labels": {
-      "newPosts": "New posts"
+      "newPosts": "New posts",
+      "search": "Search posts"
     }
   },
   "contactPage": {
