@@ -1,5 +1,6 @@
 "use client";
 
+import { useScopedI18n } from "@/locales/client";
 import {
   Button,
   Flex,
@@ -9,13 +10,11 @@ import {
   Textarea,
   Title,
 } from "@mantine/core";
-import { Locale } from "../../locales";
-import { ContactPageResponse } from "../action";
 import { useForm } from "react-hook-form";
+import { ContactPageResponse } from "../action";
 
 export type ContactFormProps = {
   contactPageContent: ContactPageResponse;
-  locale: Locale;
 };
 
 export type ContactFormType = {
@@ -25,17 +24,17 @@ export type ContactFormType = {
   contactMessage: string;
 };
 
-export function ContactForm({ contactPageContent, locale }: ContactFormProps) {
+export function ContactForm({ contactPageContent }: ContactFormProps) {
   const {
     register,
     handleSubmit: handleFormSubmit,
     formState: { errors },
   } = useForm<ContactFormType>({ mode: "onBlur" });
-  const pageLocale = locale.contactPage;
+  const pageT = useScopedI18n("contactPage");
   const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
 
   const handleSubmit = handleFormSubmit((formValues) => {
-    console.log("Submit form")
+    console.log("Submit form");
     // TODO: implement
   });
 
@@ -52,12 +51,12 @@ export function ContactForm({ contactPageContent, locale }: ContactFormProps) {
       <TextInput
         size="md"
         withAsterisk
-        label={pageLocale.labels.email}
+        label={pageT("labels.email")}
         {...register("email", {
-          required: pageLocale.messages.emailRequired,
+          required: pageT("messages.emailRequired"),
           pattern: {
             value: emailRegex,
-            message: pageLocale.messages.emailInvalid,
+            message: pageT("messages.emailInvalid"),
           },
         })}
         error={errors.email?.message}
@@ -66,28 +65,28 @@ export function ContactForm({ contactPageContent, locale }: ContactFormProps) {
       <Space h="md" />
       <TextInput
         size="md"
-        label={pageLocale.labels.fullName}
+        label={pageT("labels.fullName")}
         {...register("fullName")}
         className="w-full"
       />
       <Space h="md" />
       <TextInput
         size="md"
-        label={pageLocale.labels.phoneNumber}
+        label={pageT("labels.phoneNumber")}
         {...register("phoneNumber")}
         className="w-full"
       />
       <Space h="md" />
       <Textarea
         size="md"
-        label={pageLocale.labels.contactMessage}
+        label={pageT("labels.contactMessage")}
         autosize
         {...register("contactMessage")}
         className="w-full"
       />
       <Space h="lg" />
       <Button fullWidth onClick={handleSubmit}>
-        {pageLocale.actions.submit}
+        {pageT("actions.submit")}
       </Button>
     </Flex>
   );

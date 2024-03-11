@@ -5,7 +5,7 @@ import { cache } from "react";
 
 const contentfulClient = createContentfulClient();
 
-export type ContactPageResponse = {
+export type ContactPageEntry = {
   title: EntryFieldTypes.Text;
   contactFormTitle: EntryFieldTypes.Text;
   contactFormSubtitle?: EntryFieldTypes.Text;
@@ -18,9 +18,11 @@ export type ContactPageResponse = {
 
 export const getContactContent = cache(async () => {
   const contactPageEntries = await contentfulClient.getEntries<
-    EntrySkeletonType<ContactPageResponse>
+    EntrySkeletonType<ContactPageEntry>
   >({
     content_type: contentfulIds.contactPage,
   });
   return contactPageEntries.items[0].fields;
 });
+
+export type ContactPageResponse = Awaited<ReturnType<typeof getContactContent>>;

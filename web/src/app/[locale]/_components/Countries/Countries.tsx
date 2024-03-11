@@ -1,0 +1,21 @@
+import { getScopedI18n } from "@/locales/server";
+import { Stack, Title } from "@mantine/core";
+import { CountriesCarousel } from "./CountriesCarousel";
+
+export async function Countries() {
+  const pageT = await getScopedI18n("home");
+  return (
+    <Stack
+      bg="url(https://pse.edu.vn/wp-content/uploads/2019/05/bg1.jpg)"
+      pt="xl"
+      pb="lg"
+      h={380}
+      align="center"
+    >
+      <Title order={2} mb="xl">
+        {pageT("labels.countries")}
+      </Title>
+      <CountriesCarousel actionLabel={pageT("actions.read")} />
+    </Stack>
+  );
+}

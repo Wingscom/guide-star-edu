@@ -1,9 +1,9 @@
 "use client";
 
+import { useScopedI18n } from "@/locales/client";
 import { BlogCategory } from "@/types/BlogCategory";
 import { Badge, Card, Center, Group, Image, Text } from "@mantine/core";
 import Link from "next/link";
-import { Language, getLocale } from "../../locales";
 import classes from "./NewsCard.module.css";
 
 export type NewsCardProps = {
@@ -13,7 +13,6 @@ export type NewsCardProps = {
   description: string;
   date: string;
   category: BlogCategory;
-  lang: Language;
 };
 
 export async function NewsCard({
@@ -23,9 +22,8 @@ export async function NewsCard({
   description,
   date,
   category,
-  lang,
 }: NewsCardProps) {
-  const locale = await getLocale(lang);
+  const blogCategoriesT = useScopedI18n("blogCategories");
 
   const getBadgeColor = (cat: BlogCategory) => {
     if (cat === BlogCategory.Event) return "blue";
@@ -56,9 +54,9 @@ export async function NewsCard({
           </Text>
         </Center>
 
-        {locale.blogCategories[category] && (
+        {blogCategoriesT(category) && (
           <Badge className={classes.rating} color={getBadgeColor(category)}>
-            {locale.blogCategories[category]}
+            {blogCategoriesT(category)}
           </Badge>
         )}
       </Group>

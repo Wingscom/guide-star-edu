@@ -1,6 +1,6 @@
+import { getScopedI18n } from "@/locales/server";
 import { BlogCategory } from "@/types/BlogCategory";
-import { Language, getLocale } from "../../locales";
-import { Container, Group, SimpleGrid, Stack, Title } from "@mantine/core";
+import { Container, SimpleGrid, Stack, Title } from "@mantine/core";
 import { NewsCard } from "./NewsCard";
 
 const data = [
@@ -102,20 +102,17 @@ Cập nhật thông tin, chính sách định cư mở rộng của chính phủ
   },
 ];
 
-export async function News({ lang }: { lang: Language }) {
-  const locale = await getLocale(lang);
+export async function News() {
+  const pageT = await getScopedI18n("home");
   return (
     <Container size="xl" p="lg">
       <Stack align="center">
-        <Title order={2} mb="lg">{locale.home.labels.news}</Title>
+        <Title order={2} mb="lg">
+          {pageT("labels.news")}
+        </Title>
         <SimpleGrid cols={3}>
           {data.map((item) => (
-            <NewsCard
-              key={item.slug}
-              lang={lang}
-              {...item}
-              link={`/blogs/${item.slug}`}
-            />
+            <NewsCard key={item.slug} {...item} link={`/blogs/${item.slug}`} />
           ))}
         </SimpleGrid>
       </Stack>

@@ -1,21 +1,18 @@
 import { getAppLinks } from "@/links";
+import { getCurrentLocale, getScopedI18n } from "@/locales/server";
 import { Container, Divider, Grid, GridCol, Stack, Title } from "@mantine/core";
 import Link from "next/link";
-import { Language, getLocale } from "../locales";
 import BlogSearch from "./_components/BlogSearch";
 import { getTopNewPosts } from "./action";
 
 export default async function BlogsLayout({
   children,
-  params: { lang },
-  searchParams,
 }: Readonly<{
   children: React.ReactNode;
-  params: { lang: Language };
-  searchParams?: { search: string };
 }>) {
+  const lang = getCurrentLocale();
   const links = getAppLinks(lang);
-  const locale = await getLocale(lang);
+  const pageT = await getScopedI18n("blogDetail");
   const newPosts = await getTopNewPosts();
 
   return (
@@ -24,13 +21,13 @@ export default async function BlogsLayout({
         <GridCol span={{ base: 12, sm: 8 }}>{children}</GridCol>
         <GridCol span={{ base: 12, sm: 4 }}>
           <Title order={3} mb="md">
-            {locale.blogDetail.labels.search}
+            {pageT("labels.search")}
           </Title>
           <Divider size="sm" mb="xl" />
-          <BlogSearch lang={lang} value={searchParams?.search} />
+          <BlogSearch />
           <Divider size="xl" my="xl" />
           <Title order={3} mb="md">
-            {locale.blogDetail.labels.newPosts}
+            {pageT("labels.newPosts")}
           </Title>
           <Divider size="sm" mb="xl" />
           <Stack gap="lg">

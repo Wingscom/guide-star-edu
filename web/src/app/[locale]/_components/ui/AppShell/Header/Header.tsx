@@ -1,48 +1,47 @@
-import { Language, getLocale } from "@/app/[lang]/locales";
+"use client";
+
 import { getAppLinks } from "@/links";
+import { useCurrentLocale, useScopedI18n } from "@/locales/client";
 import { AppShell, Center, Container, Group, Menu } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
+import Image from "next/image";
 import Link from "next/link";
 import classes from "./Header.module.css";
-import Image from "next/image";
 
-export type HeaderProps = {
-  lang: Language;
-};
-
-export default async function Header({ lang }: HeaderProps) {
-  const locale = await getLocale(lang);
-  const links = getAppLinks(lang);
+export default function Header() {
+  const locale = useCurrentLocale();
+  const headerT = useScopedI18n("header");
+  const links = getAppLinks(locale);
   const items = [
     {
       link: links.home(),
-      label: locale.header.labels.home,
+      label: headerT("labels.home"),
     },
     {
       link: links.search(),
-      label: locale.header.labels.search,
+      label: headerT("labels.search"),
     },
     {
-      link: "#",
-      label: locale.header.labels.blogs,
+      link: links.blogs(),
+      label: headerT("labels.blogs"),
       menu: [
         {
           link: links.news(),
-          label: locale.header.labels.news,
+          label: headerT("labels.news"),
         },
         {
           link: links.events(),
-          label: locale.header.labels.events,
+          label: headerT("labels.events"),
         },
         {
           link: links.scholarships(),
-          label: locale.header.labels.scholarships,
+          label: headerT("labels.scholarships"),
         },
       ],
     },
     {
       link: links.contact(),
-      label: locale.header.labels.contact,
+      label: headerT("labels.contact"),
     },
   ];
 
@@ -62,10 +61,10 @@ export default async function Header({ lang }: HeaderProps) {
                     withinPortal
                   >
                     <Menu.Target>
-                      <Center className={classes.link}>
+                      <Link href={item.link} className={classes.link}>
                         <span className={classes.linkLabel}>{item.label}</span>
                         <IconChevronDown size="0.9rem" stroke={1.5} />
-                      </Center>
+                      </Link>
                     </Menu.Target>
                     <Menu.Dropdown>
                       {item.menu.map((menuItem) => (

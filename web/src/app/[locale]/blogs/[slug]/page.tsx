@@ -1,5 +1,6 @@
 import { renderContentfulDocument } from "@/helpers/renderContentfulDocument";
 import { getAppLinks } from "@/links";
+import { getCurrentLocale, getScopedI18n } from "@/locales/server";
 import {
   Container,
   Divider,
@@ -12,16 +13,16 @@ import {
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { FormEvent } from "react";
-import { Language, getLocale } from "../../locales";
 import { getBlogDetailContent, getTopNewPosts } from "./action";
 
 export default async function BlogDetailPage({
-  params: { lang, slug },
+  params: { slug },
 }: {
-  params: { lang: Language; slug: string };
+  params: { slug: string };
 }) {
+  const lang = getCurrentLocale();
   const links = getAppLinks(lang);
-  const locale = await getLocale(lang);
+  const pageT = await getScopedI18n("blogDetail");
   const blogContent = await getBlogDetailContent(slug);
   const newPosts = await getTopNewPosts();
 
@@ -40,13 +41,13 @@ export default async function BlogDetailPage({
         </GridCol>
         <GridCol span={{ base: 12, sm: 4 }}>
           <Title order={3} mb="md">
-            {locale.blogDetail.labels.search}
+            {pageT("labels.search")}
           </Title>
           <Divider size="md" mb="xl" />
           <TextInput onKeyDown={handleSearchSubmit} />
           <Divider size="md" my="xl" />
           <Title order={3} mb="md">
-            {locale.blogDetail.labels.newPosts}
+            {pageT("labels.newPosts")}
           </Title>
           <Divider size="md" mb="xl" />
           <Stack gap="lg">

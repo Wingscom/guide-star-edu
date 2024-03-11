@@ -1,13 +1,9 @@
-import { Overlay, Container, Title, Button, Text } from "@mantine/core";
+import { getScopedI18n } from "@/locales/server";
+import { Button, Container, Overlay, Text, Title } from "@mantine/core";
 import classes from "./Hero.module.css";
-import { Language, getLocale } from "../../locales";
 
-export type HeroProps = {
-  lang: Language;
-};
-
-export async function Hero({ lang }: HeroProps) {
-  const locale = await getLocale(lang);
+export async function Hero() {
+  const pageT = await getScopedI18n("home.hero");
   return (
     <div className={classes.hero}>
       <Overlay
@@ -16,9 +12,9 @@ export async function Hero({ lang }: HeroProps) {
         zIndex={0}
       />
       <Container className={classes.container} size="md">
-        <Title className={classes.title}>{locale.home.hero.title}</Title>
+        <Title className={classes.title}>{pageT("title")}</Title>
         <Text className={classes.description} size="xl" mt="xl">
-          {locale.home.hero.description}
+          {pageT("description")}
         </Text>
 
         <Button
@@ -27,7 +23,7 @@ export async function Hero({ lang }: HeroProps) {
           radius="xl"
           className={classes.control}
         >
-          {locale.home.hero.actions.signUp}
+          {pageT("actions.signUp")}
         </Button>
       </Container>
     </div>
