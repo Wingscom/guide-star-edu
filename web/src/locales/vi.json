@@ -4,6 +4,11 @@
     "news": "Tin tức",
     "scholarship": "Học bổng"
   },
+  "blogDetail": {
+    "labels": {
+      "newPosts": "Các bài viết mới"
+    }
+  },
   "contactPage": {
     "actions": {
       "submit": "Gửi"

@@ -4,6 +4,11 @@
     "news": "News",
     "scholarship": "Scholarship"
   },
+  "blogDetail": {
+    "labels": {
+      "newPosts": "New posts"
+    }
+  },
   "contactPage": {
     "actions": {
       "submit": "Submit"

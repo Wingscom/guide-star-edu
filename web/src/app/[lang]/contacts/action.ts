@@ -1,28 +1,26 @@
 import { contentfulIds } from "@/constants/contentfulIds";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
-import { EntryFields, EntrySkeletonType } from "contentful";
+import { EntryFieldTypes, EntrySkeletonType } from "contentful";
 import { cache } from "react";
 
 const contentfulClient = createContentfulClient();
 
 export type ContactPageResponse = {
-  title: EntryFields.Text;
-  contactFormTitle: EntryFields.Text;
-  contactFormSubtitle?: EntryFields.Text;
-  address?: EntryFields.RichText;
-  phoneNumber?: EntryFields.RichText
-  email?: EntryFields.RichText
-  facebook?: EntryFields.RichText
-  googleIframe?: EntryFields.Text;
+  title: EntryFieldTypes.Text;
+  contactFormTitle: EntryFieldTypes.Text;
+  contactFormSubtitle?: EntryFieldTypes.Text;
+  address?: EntryFieldTypes.RichText;
+  phoneNumber?: EntryFieldTypes.RichText;
+  email?: EntryFieldTypes.RichText;
+  facebook?: EntryFieldTypes.RichText;
+  googleIframe?: EntryFieldTypes.Text;
 };
 
-export const getContactContent = cache(
-  async (): Promise<ContactPageResponse> => {
-    const contactPageEntries = await contentfulClient.getEntries<
-      EntrySkeletonType<ContactPageResponse>
-    >({
-      content_type: contentfulIds.contactPage,
-    });
-    return contactPageEntries.items[0].fields;
-  }
-);
+export const getContactContent = cache(async () => {
+  const contactPageEntries = await contentfulClient.getEntries<
+    EntrySkeletonType<ContactPageResponse>
+  >({
+    content_type: contentfulIds.contactPage,
+  });
+  return contactPageEntries.items[0].fields;
+});

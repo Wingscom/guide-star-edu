@@ -1,0 +1,41 @@
+import { contentfulIds } from "@/constants/contentfulIds";
+import { createContentfulClient } from "@/helpers/createContentfulClient";
+import { EntryFieldTypes } from "contentful";
+import { cache } from "react";
+
+const contentfulClient = createContentfulClient();
+
+export type BlogFields = {
+  title: EntryFieldTypes.Text;
+  slug: EntryFieldTypes.Text;
+  category: EntryFieldTypes.Text;
+  date?: EntryFieldTypes.Date;
+  thumbnail?: EntryFieldTypes.AssetLink;
+  content: EntryFieldTypes.RichText;
+};
+
+export type BlogEntrySkeleton = {
+  contentTypeId: typeof contentfulIds.blog;
+  fields: BlogFields;
+};
+
+export const getBlogDetailContent = cache(async (slug: string) => {
+  const blogDetailEntries =
+    await contentfulClient.getEntries<BlogEntrySkeleton>({
+      content_type: contentfulIds.blog,
+      limit: 1,
+      "fields.slug": slug,
+    });
+  return blogDetailEntries.items[0].fields;
+});
+
+export const getTopNewPosts = cache(async () => {
+  const blogDetailEntries =
+    await contentfulClient.getEntries<BlogEntrySkeleton>({
+      content_type: contentfulIds.blog,
+      limit: 5,
+      select: ["fields.slug", "fields.title"],
+      order: ["-fields.date"],
+    });
+  return blogDetailEntries.items.map((item) => item.fields);
+});
