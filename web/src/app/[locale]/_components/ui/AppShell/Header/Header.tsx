@@ -8,6 +8,7 @@ import Link from "next/link";
 import { AppLogo } from "../AppLogo";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 import classes from "./Header.module.css";
+import { LangToggler } from "../LangToggler/LangToggler";
 
 export default function Header() {
   const locale = useCurrentLocale();
@@ -84,6 +85,7 @@ export default function Header() {
               );
             })}
             <ThemeToggler />
+            <LangToggler />
           </Group>
         </div>
       </Container>
