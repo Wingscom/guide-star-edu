@@ -4,8 +4,9 @@ import { getAppLinks } from "@/links";
 import { useCurrentLocale, useScopedI18n } from "@/locales/client";
 import { AppShell, Container, Group, Menu } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
-import Image from "next/image";
 import Link from "next/link";
+import { AppLogo } from "../AppLogo";
+import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 import classes from "./Header.module.css";
 
 export default function Header() {
@@ -49,7 +50,7 @@ export default function Header() {
     <AppShell.Header>
       <Container size="lg">
         <div className={classes.inner}>
-          <Image src="/logo-white.png" alt="logo" width={83} height={50} />
+          <AppLogo />
           <Group gap={5} visibleFrom="sm">
             {items.map((item) => {
               if (item.menu) {
@@ -82,6 +83,7 @@ export default function Header() {
                 </Link>
               );
             })}
+            <ThemeToggler />
           </Group>
         </div>
       </Container>
