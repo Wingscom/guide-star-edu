@@ -18,7 +18,7 @@ export default function Footer() {
     <AppShell.Footer>
       <Container className={classes.inner}>
         <Text>
-          © {new Date().getFullYear()} PSE. All rights reserved.
+          © {new Date().getFullYear()} GuidestarEdu. All rights reserved.
         </Text>
         <Group
           gap={0}

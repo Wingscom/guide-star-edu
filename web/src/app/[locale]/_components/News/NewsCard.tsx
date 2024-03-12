@@ -8,7 +8,7 @@ import classes from "./NewsCard.module.css";
 
 export type NewsCardProps = {
   link: string;
-  image: string;
+  image?: string;
   title: string;
   description: string;
   date: string;
@@ -35,7 +35,12 @@ export async function NewsCard({
     <Card withBorder radius="md" className={classes.card}>
       <Card.Section>
         <Link href={link}>
-          <Image src={image} height={180} />
+          <Image
+            src={image}
+            height={180}
+            alt="news-thumbnail"
+            fallbackSrc="https://placehold.co/300x200?text=Empty"
+          />
         </Link>
       </Card.Section>
 
@@ -47,7 +52,7 @@ export async function NewsCard({
         {description.substring(0, 200)}...
       </Text>
 
-      <Group justify="space-between" className={classes.footer}>
+      <Group justify="space-between" className={classes.footer} mt="auto">
         <Center>
           <Text fz="sm" inline>
             {date}

@@ -2,7 +2,7 @@
 
 import { getAppLinks } from "@/links";
 import { useCurrentLocale, useScopedI18n } from "@/locales/client";
-import { AppShell, Center, Container, Group, Menu } from "@mantine/core";
+import { AppShell, Container, Group, Menu } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
