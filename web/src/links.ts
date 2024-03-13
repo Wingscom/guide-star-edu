@@ -8,8 +8,17 @@ export const getAppLinks = (lang: string) => {
         queryParams?.search ? `?search=${queryParams.search}` : ""
       }`,
     blogDetails: (slug: string) => `/${lang}/blogs/${slug}`,
-    news: () => `/${lang}/blogs/news`,
-    events: () => `/${lang}/blogs/events`,
-    scholarships: () => `/${lang}/blogs/scholarships`,
+    news: (queryParams?: { search: string }) =>
+      `/${lang}/blogs/news${
+        queryParams?.search ? `?search=${queryParams.search}` : ""
+      }`,
+    events: (queryParams?: { search: string }) =>
+      `/${lang}/blogs/events${
+        queryParams?.search ? `?search=${queryParams.search}` : ""
+      }`,
+    scholarships: (queryParams?: { search: string }) =>
+      `/${lang}/blogs/scholarships${
+        queryParams?.search ? `?search=${queryParams.search}` : ""
+      }`,
   };
 };

@@ -1,5 +1,6 @@
 import { contentfulIds } from "@/constants/contentfulIds";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
+import { BlogCategory } from "@/types/BlogCategory";
 import { EntryFieldTypes } from "contentful";
 import { cache } from "react";
 
@@ -38,20 +39,57 @@ export type SearchPostsArgs = {
 export const searchPosts = cache(async (args: SearchPostsArgs = {}) => {
   const { search, page = 1 } = args;
   const blogDetailEntries = search
-    ? await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>({
-        content_type: contentfulIds.blog,
-        limit: 10,
-        skip: 10 * (page - 1),
-        order: ["-fields.date"],
-        "fields.slug[match]": search,
-        "fields.content[match]": search,
-        "fields.title[match]": search,
-      })
-    : await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>({
-        content_type: contentfulIds.blog,
-        limit: 10,
-        skip: 10 * (page - 1),
-        order: ["-fields.date"],
-      });
+    ? await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
+        {
+          content_type: contentfulIds.blog,
+          limit: 10,
+          skip: 10 * (page - 1),
+          order: ["-fields.date"],
+          "fields.slug[match]": search,
+          "fields.content[match]": search,
+          "fields.title[match]": search,
+        }
+      )
+    : await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
+        {
+          content_type: contentfulIds.blog,
+          limit: 10,
+          skip: 10 * (page - 1),
+          order: ["-fields.date"],
+        }
+      );
   return blogDetailEntries.items.map((item) => item.fields);
 });
+
+export type SearchPostsWithCategoryArgs = SearchPostsArgs & {
+  category?: BlogCategory;
+};
+
+export const searchPostsWithCategory = cache(
+  async (args: SearchPostsWithCategoryArgs = {}) => {
+    const { search, page = 1, category } = args;
+    const blogDetailEntries = search
+      ? await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
+          {
+            content_type: contentfulIds.blog,
+            limit: 10,
+            skip: 10 * (page - 1),
+            order: ["-fields.date"],
+            "fields.slug[match]": search,
+            "fields.content[match]": search,
+            "fields.title[match]": search,
+            "fields.category": category,
+          }
+        )
+      : await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
+          {
+            content_type: contentfulIds.blog,
+            limit: 10,
+            skip: 10 * (page - 1),
+            order: ["-fields.date"],
+            "fields.category": category,
+          }
+        );
+    return blogDetailEntries.items.map((item) => item.fields);
+  }
+);
