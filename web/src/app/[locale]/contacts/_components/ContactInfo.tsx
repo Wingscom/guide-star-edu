@@ -12,7 +12,7 @@ export async function ContactInfo({ contactPageContent }: ContactInfoProps) {
   const pageT = await getScopedI18n("contactPage");
 
   return (
-    <Flex h="80vh" direction="column" justify="center" p="lg">
+    <Flex className={classes.root} h="80vh" direction="column" justify="center" p="lg">
       {contactPageContent.address && (
         <>
           <Text c="dimmed">{pageT("labels.address")}</Text>

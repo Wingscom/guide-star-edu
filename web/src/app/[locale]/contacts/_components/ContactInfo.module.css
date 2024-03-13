@@ -1,3 +1,7 @@
+.root p {
+  margin: 0;
+}
+
 .mapWrapper iframe {
   max-height: 270px;
 }
