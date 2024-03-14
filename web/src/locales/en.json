@@ -10,6 +10,13 @@
       "search": "Search posts"
     }
   },
+  "comingSoonPage": {
+    "actions": {
+      "back": "Take me back to home page"
+    },
+    "description": "Please be patient, we are going to work on this page soon.",
+    "title": "This page is not implemented yet"
+  },
   "contactPage": {
     "actions": {
       "submit": "Submit"
