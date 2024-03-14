@@ -16,14 +16,3 @@ export const getBlogDetailContent = cache(async (slug: string) => {
 });
 
 export type Blog = Awaited<ReturnType<typeof getBlogDetailContent>>
-
-export const getTopNewPosts = cache(async () => {
-  const blogDetailEntries =
-    await contentfulClient.getEntries<BlogEntrySkeleton>({
-      content_type: contentfulIds.blog,
-      limit: 5,
-      select: ["fields.slug", "fields.title"],
-      order: ["-fields.date"],
-    });
-  return blogDetailEntries.items.map((item) => item.fields);
-});

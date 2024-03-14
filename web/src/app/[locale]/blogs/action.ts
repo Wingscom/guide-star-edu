@@ -22,7 +22,7 @@ const contentfulClient = createContentfulClient();
 
 export const getTopNewPosts = cache(async () => {
   const blogDetailEntries =
-    await contentfulClient.getEntries<BlogEntrySkeleton>({
+    await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>({
       content_type: contentfulIds.blog,
       limit: 5,
       select: ["fields.slug", "fields.title"],
