@@ -37,11 +37,13 @@
   },
   "header": {
     "labels": {
+      "about": "Về chúng tôi",
       "blogs": "Tin tức - sự kiện",
       "contact": "Liên lạc",
       "events": "Sự kiện",
       "home": "Trang chủ",
       "news": "Tin tức",
+      "overviews": "Tổng quan du học",
       "scholarships": "Học bổng",
       "search": "Tìm kiếm"
     }

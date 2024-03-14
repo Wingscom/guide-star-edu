@@ -37,11 +37,13 @@
   },
   "header": {
     "labels": {
+      "about": "About us",
       "blogs": "Blogs",
       "contact": "Contact us",
       "events": "Events",
       "home": "Home",
       "news": "News",
+      "overviews": "Overviews",
       "scholarships": "Scholarships",
       "search": "Search"
     }

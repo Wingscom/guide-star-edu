@@ -20,5 +20,6 @@ export const getAppLinks = (lang: string) => {
       `/${lang}/blogs/scholarships${
         queryParams?.search ? `?search=${queryParams.search}` : ""
       }`,
+    overviewDetails: (slug: string) => `/${lang}/overviews/${slug}`,
   };
 };
