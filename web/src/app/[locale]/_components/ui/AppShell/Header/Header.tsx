@@ -70,7 +70,11 @@ export default function Header() {
                     </Menu.Target>
                     <Menu.Dropdown>
                       {item.menu.map((menuItem) => (
-                        <Link key={menuItem.link} href={menuItem.link}>
+                        <Link
+                          key={menuItem.link}
+                          href={menuItem.link}
+                          className={classes.linkItem}
+                        >
                           <Menu.Item>{menuItem.label}</Menu.Item>
                         </Link>
                       ))}

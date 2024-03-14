@@ -13,7 +13,7 @@ export function AppLogo() {
 
   return (
     <Link href={links.home()}>
-      <Image src="/logo-light.png" alt="logo" width={250} height={150} />
+      <Image priority src="/logo-light.png" alt="logo" width={250} height={150} />
     </Link>
   );
 }

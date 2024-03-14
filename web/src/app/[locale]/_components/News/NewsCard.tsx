@@ -15,7 +15,7 @@ export type NewsCardProps = {
   category: BlogCategory;
 };
 
-export async function NewsCard({
+export function NewsCard({
   link,
   image,
   title,

@@ -23,6 +23,10 @@
   }
 }
 
+.linkItem {
+  text-decoration: none;
+}
+
 .linkLabel {
   margin-right: 5px;
 }
