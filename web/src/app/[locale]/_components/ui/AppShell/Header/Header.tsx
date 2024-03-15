@@ -32,7 +32,8 @@ export default function Header() {
   const links = getAppLinks(locale);
   const overviewMenu = useAsync(() => getOverviewsMenu(locale));
 
-  const [isBurgerOpen, { toggle: toggleBurger }] = useDisclosure(false);
+  const [isBurgerOpen, { toggle: toggleBurger, close: closeBurger }] =
+    useDisclosure(false);
 
   const items: HeaderMenu[] = [
     {
@@ -90,7 +91,7 @@ export default function Header() {
         </div>
       </Container>
       <Collapse in={isBurgerOpen} hiddenFrom="sm">
-        <HeaderMenuMobile items={items} />
+        <HeaderMenuMobile items={items} onClose={closeBurger} />
       </Collapse>
     </AppShell.Header>
   );

@@ -4,13 +4,11 @@ import {
   ActionIcon,
   Box,
   Collapse,
-  Divider,
   Group,
   Paper,
   ScrollArea,
   Stack,
   Text,
-  useComputedColorScheme,
 } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 import Link from "next/link";
@@ -18,39 +16,46 @@ import { useState } from "react";
 import { HeaderMenu } from "./Header";
 import classes from "./Header.module.css";
 
-export function HeaderMenuMobile({ items }: { items: HeaderMenu[] }) {
-  const computedColorScheme = useComputedColorScheme("light", {
-    getInitialValueInEffect: true,
-  });
+export type HeaderMenuMobileProps = {
+  items: HeaderMenu[];
+  onClose: () => void;
+};
+
+export function HeaderMenuMobile({ items, onClose }: HeaderMenuMobileProps) {
   const [menuExpanseState, setMenuExpanseState] = useState(
-    items.map((item) => false)
+    items.map(() => false)
   );
+
+  const toggleMenuExpanseState = (index: number) => {
+    setMenuExpanseState((prev) =>
+      Object.assign([], prev, {
+        [index]: !prev[index],
+      })
+    );
+  };
 
   return (
     <ScrollArea h={500}>
-      <Stack
-        gap={0}
-        align="stretch"
-        p="sm"
-        component={Paper}
-      >
+      <Stack gap={0} align="stretch" p="sm" component={Paper}>
         {items.map((item, itemIndex) => {
           return (
             <Stack key={itemIndex} gap={0}>
               <Group gap={0} justify="flex-end">
-                <Link href={item.link} className={classes.link}>
+                <Link
+                  href={item.link}
+                  className={classes.link}
+                  onClick={() =>
+                    item.link !== "#"
+                      ? onClose()
+                      : toggleMenuExpanseState(itemIndex)
+                  }
+                >
                   {item.label}
                 </Link>
                 {item.menu ? (
                   <ActionIcon
                     variant="transparent"
-                    onClick={() =>
-                      setMenuExpanseState((prev) =>
-                        Object.assign([], prev, {
-                          [itemIndex]: !prev[itemIndex],
-                        })
-                      )
-                    }
+                    onClick={() => toggleMenuExpanseState(itemIndex)}
                   >
                     <IconChevronDown size="0.9rem" stroke={1.5} />
                   </ActionIcon>
@@ -65,7 +70,13 @@ export function HeaderMenuMobile({ items }: { items: HeaderMenu[] }) {
                       <div key={menuItemIndex}>
                         <Stack gap={0} align="flex-end">
                           {menuItem.menu ? (
-                            <Text key={menuItemIndex} size="xs" py={0} px="sm" mt="md">
+                            <Text
+                              key={menuItemIndex}
+                              size="xs"
+                              py={0}
+                              px="sm"
+                              mt="md"
+                            >
                               {menuItem.label}
                             </Text>
                           ) : (
@@ -73,6 +84,7 @@ export function HeaderMenuMobile({ items }: { items: HeaderMenu[] }) {
                               key={menuItemIndex}
                               href={menuItem.link}
                               className={classes.link}
+                              onClick={onClose}
                             >
                               {menuItem.label}
                             </Link>
@@ -83,6 +95,7 @@ export function HeaderMenuMobile({ items }: { items: HeaderMenu[] }) {
                                 key={childMenuItemIndex}
                                 href={childMenuItem.link}
                                 className={classes.link}
+                                onClick={onClose}
                               >
                                 {childMenuItem.label}
                               </Link>
