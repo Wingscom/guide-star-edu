@@ -5,6 +5,7 @@ import { getAppLinks } from "@/links";
 import { useCurrentLocale } from "@/locales/client";
 import { BlogCategory } from "@/types/BlogCategory";
 import { Carousel } from "@mantine/carousel";
+import { rem } from "@mantine/core";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 import { NewsCard } from "../NewsCard";
@@ -17,8 +18,10 @@ export function NewsCarousel({ posts }: { posts: Blog[] }) {
   return (
     <Carousel
       withIndicators
-      slideSize="33.333333%"
-      slideGap="md"
+      slideSize={{ base: "100%", sm: "50%", lg: "33.333333%" }}
+      slideGap={{ base: rem(2), sm: "xl" }}
+      maw="100vw"
+      p="md"
       loop
       align="start"
       slidesToScroll={3}
