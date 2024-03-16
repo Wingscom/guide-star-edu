@@ -3,4 +3,6 @@ export const contentfulIds = {
   contactPage: "contact",
   countryMenu: "countryMenu",
   countryOverview: "country",
+  travel: "travel",
+  settlement: "settlement",
 } as const;
