@@ -1,5 +1,6 @@
 import { contentfulIds } from "@/constants/contentfulIds";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
+import { getCurrentLocale } from "@/locales/server";
 import { BlogCategory } from "@/types/BlogCategory";
 import { EntryFieldTypes } from "contentful";
 import { cache } from "react";
@@ -21,13 +22,17 @@ export type BlogEntrySkeleton = {
 const contentfulClient = createContentfulClient();
 
 export const getTopNewPosts = cache(async () => {
+  const locale = getCurrentLocale();
   const blogDetailEntries =
-    await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>({
-      content_type: contentfulIds.blog,
-      limit: 5,
-      select: ["fields.slug", "fields.title"],
-      order: ["-fields.date"],
-    });
+    await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
+      {
+        locale,
+        content_type: contentfulIds.blog,
+        limit: 5,
+        select: ["fields.slug", "fields.title"],
+        order: ["-fields.date"],
+      }
+    );
   return blogDetailEntries.items.map((item) => item.fields);
 });
 
@@ -38,9 +43,11 @@ export type SearchPostsArgs = {
 
 export const searchPosts = cache(async (args: SearchPostsArgs = {}) => {
   const { search, page = 1 } = args;
+  const locale = getCurrentLocale();
   const blogDetailEntries = search
     ? await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
         {
+          locale,
           content_type: contentfulIds.blog,
           limit: 10,
           skip: 10 * (page - 1),
@@ -52,6 +59,7 @@ export const searchPosts = cache(async (args: SearchPostsArgs = {}) => {
       )
     : await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
         {
+          locale,
           content_type: contentfulIds.blog,
           limit: 10,
           skip: 10 * (page - 1),
@@ -68,9 +76,11 @@ export type SearchPostsWithCategoryArgs = SearchPostsArgs & {
 export const searchPostsWithCategory = cache(
   async (args: SearchPostsWithCategoryArgs = {}) => {
     const { search, page = 1, category } = args;
+    const locale = getCurrentLocale();
     const blogDetailEntries = search
       ? await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
           {
+            locale,
             content_type: contentfulIds.blog,
             limit: 10,
             skip: 10 * (page - 1),
@@ -83,6 +93,7 @@ export const searchPostsWithCategory = cache(
         )
       : await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
           {
+            locale,
             content_type: contentfulIds.blog,
             limit: 10,
             skip: 10 * (page - 1),

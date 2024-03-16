@@ -46,7 +46,7 @@ export default function Header() {
     },
     {
       link: "#",
-      label: headerT("labels.overviews"),
+      label: headerT("labels.studyabroad"),
       menu: overviewMenu.result ?? [],
     },
     {

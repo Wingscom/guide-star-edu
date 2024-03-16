@@ -10,6 +10,7 @@ export async function getOverviewsMenu(locale: string) {
   const overviewMenuEntries =
     await contentfulClient.withoutUnresolvableLinks.getEntries<OverviewMenuSkeleton>(
       {
+        locale,
         content_type: contentfulIds.countryMenu,
       }
     );
