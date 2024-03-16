@@ -50,6 +50,10 @@ export default function Header() {
       menu: overviewMenu.result ?? [],
     },
     {
+      link: links.settlements(),
+      label: headerT("labels.settlements"),
+    },
+    {
       link: links.blogs(),
       label: headerT("labels.blogs"),
       menu: [

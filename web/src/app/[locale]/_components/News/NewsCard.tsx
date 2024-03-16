@@ -12,7 +12,7 @@ export type NewsCardProps = {
   title: string;
   description: string;
   date: string;
-  category: BlogCategory;
+  category?: BlogCategory;
 };
 
 export function NewsCard({
@@ -59,7 +59,7 @@ export function NewsCard({
           </Text>
         </Center>
 
-        {blogCategoriesT(category) && (
+        {category && blogCategoriesT(category) && (
           <Badge className={classes.rating} color={getBadgeColor(category)}>
             {blogCategoriesT(category)}
           </Badge>
