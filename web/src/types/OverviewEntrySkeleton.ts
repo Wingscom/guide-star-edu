@@ -4,7 +4,7 @@ import { EntryFieldTypes } from "contentful";
 export type OverviewFields = {
   title: EntryFieldTypes.Text;
   slug: EntryFieldTypes.Text;
-  bannerImage?: EntryFieldTypes.AssetLink;
+  thumbnail?: EntryFieldTypes.AssetLink;
   content: EntryFieldTypes.RichText;
 };
 

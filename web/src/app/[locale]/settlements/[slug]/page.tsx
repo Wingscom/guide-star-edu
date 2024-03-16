@@ -12,11 +12,8 @@ export default async function SettlementDetailPage({
   return (
     <Stack>
       <Title>{settlementContent.title}</Title>
-      {settlementContent.bannerImage?.fields.file?.url && (
-        <Image
-          alt="banner"
-          src={settlementContent.bannerImage.fields.file.url}
-        />
+      {settlementContent.thumbnail?.fields.file?.url && (
+        <Image alt="banner" src={settlementContent.thumbnail.fields.file.url} />
       )}
       {renderContentfulDocument(settlementContent.content)}
     </Stack>

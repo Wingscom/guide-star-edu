@@ -12,11 +12,8 @@ export default async function OverViewDetailPage({
   return (
     <Stack>
       <Title>{overviewContent.title}</Title>
-      {overviewContent.bannerImage?.fields.file?.url && (
-        <Image
-          alt="banner"
-          src={overviewContent.bannerImage.fields.file.url}
-        />
+      {overviewContent.thumbnail?.fields.file?.url && (
+        <Image alt="banner" src={overviewContent.thumbnail.fields.file.url} />
       )}
       {renderContentfulDocument(overviewContent.content)}
     </Stack>
