@@ -22,6 +22,7 @@ export const searchSettlements = cache(
             content_type: contentfulIds.settlement,
             limit: 10,
             skip: 10 * (page - 1),
+            order: ["-fields.date"],
             "fields.slug[match]": search,
             "fields.content[match]": search,
             "fields.title[match]": search,
@@ -33,6 +34,7 @@ export const searchSettlements = cache(
             content_type: contentfulIds.settlement,
             limit: 10,
             skip: 10 * (page - 1),
+            order: ["-fields.date"],
           }
         );
     return entries.items.map((item) => item.fields);

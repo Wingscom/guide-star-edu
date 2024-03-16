@@ -2,22 +2,8 @@ import { contentfulIds } from "@/constants/contentfulIds";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
 import { getCurrentLocale } from "@/locales/server";
 import { BlogCategory } from "@/types/BlogCategory";
-import { EntryFieldTypes } from "contentful";
+import { BlogEntrySkeleton } from "@/types/BlogEntrySkeleton";
 import { cache } from "react";
-
-export type BlogFields = {
-  title: EntryFieldTypes.Text;
-  slug: EntryFieldTypes.Text;
-  category: EntryFieldTypes.Text;
-  date?: EntryFieldTypes.Date;
-  thumbnail?: EntryFieldTypes.AssetLink;
-  content: EntryFieldTypes.RichText;
-};
-
-export type BlogEntrySkeleton = {
-  contentTypeId: typeof contentfulIds.blog;
-  fields: BlogFields;
-};
 
 const contentfulClient = createContentfulClient();
 

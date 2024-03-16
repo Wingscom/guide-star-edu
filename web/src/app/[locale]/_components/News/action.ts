@@ -1,8 +1,8 @@
 import { contentfulIds } from "@/constants/contentfulIds";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
 import { getCurrentLocale } from "@/locales/server";
+import { BlogEntrySkeleton } from "@/types/BlogEntrySkeleton";
 import { cache } from "react";
-import { BlogEntrySkeleton } from "../../blogs/action";
 
 const contentfulClient = createContentfulClient();
 
