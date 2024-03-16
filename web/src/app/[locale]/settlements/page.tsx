@@ -1,4 +1,4 @@
-import { BLogList } from "../blogs/_components/BlogList";
+import { BlogList } from "../blogs/_components/BlogList";
 import { searchSettlements } from "./action";
 
 export default async function BlogsPage({

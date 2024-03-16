@@ -1,6 +1,6 @@
 import { getAppLinks } from "@/links";
 import { getCurrentLocale } from "@/locales/server";
-import { BLogList } from "./_components/BlogList";
+import { BlogList } from "./_components/BlogList";
 import { searchPosts } from "./action";
 
 export default async function BlogsPage({
@@ -12,5 +12,5 @@ export default async function BlogsPage({
   const locale = getCurrentLocale();
   const links = getAppLinks(locale);
 
-  return <BLogList posts={posts} />;
+  return <BlogList posts={posts} />;
 }

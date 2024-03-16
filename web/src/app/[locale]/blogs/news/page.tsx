@@ -1,5 +1,5 @@
 import { BlogCategory } from "@/types/BlogCategory";
-import { BLogList } from "../_components/BlogList";
+import { BlogList } from "../_components/BlogList";
 import { searchPostsWithCategory } from "../action";
 
 export default async function NewsPage({
@@ -13,5 +13,5 @@ export default async function NewsPage({
     category: BlogCategory.News,
   });
 
-  return <BLogList posts={posts} />;
+  return <BlogList posts={posts} />;
 }
