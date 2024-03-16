@@ -18,7 +18,7 @@ export default async function BlogsPage({
       {posts.map((post) => (
         <NewsCard
           key={post.slug}
-          link={links.blogDetails(post.slug)}
+          link={links.settlementDetail(post.slug)}
           image={post.thumbnail?.fields.file?.url}
           title={post.title}
           date={post.date ?? ""}
