@@ -1,4 +1,6 @@
 import { BlogCategory } from "@/types/BlogCategory";
+import { Stack } from "@mantine/core";
+import { Pagination } from "../../_components/ui/Pagination/Pagination";
 import { BlogList } from "../_components/BlogList";
 import { searchPostsWithCategory } from "../action";
 
@@ -13,5 +15,10 @@ export default async function EventsPage({
     category: BlogCategory.Event,
   });
 
-  return <BlogList posts={posts} />;
+  return (
+    <Stack align="center">
+      <BlogList posts={posts.items} />
+      <Pagination totalItems={posts.total} />
+    </Stack>
+  );
 }

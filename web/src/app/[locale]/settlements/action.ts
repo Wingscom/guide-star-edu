@@ -1,4 +1,5 @@
 import { contentfulIds } from "@/constants/contentfulIds";
+import { paginationConfig } from "@/constants/paginationConfig";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
 import { getCurrentLocale } from "@/locales/server";
 import { SettlementEntrySkeleton } from "@/types/SettlementEntrySkeleton";
@@ -20,8 +21,8 @@ export const searchSettlements = cache(
           {
             locale,
             content_type: contentfulIds.settlement,
-            limit: 10,
-            skip: 10 * (page - 1),
+            limit: paginationConfig.perPage,
+            skip: paginationConfig.perPage * (page - 1),
             order: ["-fields.date"],
             "fields.slug[match]": search,
             "fields.content[match]": search,
@@ -32,11 +33,14 @@ export const searchSettlements = cache(
           {
             locale,
             content_type: contentfulIds.settlement,
-            limit: 10,
-            skip: 10 * (page - 1),
+            limit: paginationConfig.perPage,
+            skip: paginationConfig.perPage * (page - 1),
             order: ["-fields.date"],
           }
         );
-    return entries.items.map((item) => item.fields);
+    return {
+      total: entries.total,
+      items: entries.items.map((item) => item.fields),
+    };
   }
 );

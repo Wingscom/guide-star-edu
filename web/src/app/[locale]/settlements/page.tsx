@@ -1,7 +1,8 @@
 import { getAppLinks } from "@/links";
 import { getCurrentLocale } from "@/locales/server";
-import { SimpleGrid } from "@mantine/core";
+import { SimpleGrid, Stack } from "@mantine/core";
 import { NewsCard } from "../_components/News/NewsCard";
+import { Pagination } from "../_components/ui/Pagination/Pagination";
 import { searchSettlements } from "./action";
 
 export default async function BlogsPage({
@@ -14,17 +15,20 @@ export default async function BlogsPage({
   const posts = await searchSettlements({ search, page });
 
   return (
-    <SimpleGrid cols={{ base: 1, sm: 2 }}>
-      {posts.map((post) => (
-        <NewsCard
-          key={post.slug}
-          link={links.settlementDetail(post.slug)}
-          image={post.thumbnail?.fields.file?.url}
-          title={post.title}
-          date={post.date ?? ""}
-          description={""}
-        />
-      ))}
-    </SimpleGrid>
+    <Stack align="center">
+      <SimpleGrid cols={{ base: 1, sm: 2 }}>
+        {posts.items.map((post) => (
+          <NewsCard
+            key={post.slug}
+            link={links.settlementDetail(post.slug)}
+            image={post.thumbnail?.fields.file?.url}
+            title={post.title}
+            date={post.date ?? ""}
+            description={""}
+          />
+        ))}
+      </SimpleGrid>
+      <Pagination totalItems={posts.total} />
+    </Stack>
   );
 }

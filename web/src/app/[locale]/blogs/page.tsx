@@ -1,16 +1,19 @@
-import { getAppLinks } from "@/links";
-import { getCurrentLocale } from "@/locales/server";
+import { Stack } from "@mantine/core";
 import { BlogList } from "./_components/BlogList";
 import { searchPosts } from "./action";
+import { Pagination } from "../_components/ui/Pagination/Pagination";
 
 export default async function BlogsPage({
-  searchParams: { search, page },
+  searchParams: { search, page = 1 },
 }: {
   searchParams: { search?: string; page?: number };
 }) {
   const posts = await searchPosts({ search, page });
-  const locale = getCurrentLocale();
-  const links = getAppLinks(locale);
 
-  return <BlogList posts={posts} />;
+  return (
+    <Stack align="center">
+      <BlogList posts={posts.items} />
+      <Pagination totalItems={posts.total} />
+    </Stack>
+  );
 }

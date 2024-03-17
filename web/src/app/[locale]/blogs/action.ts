@@ -1,4 +1,5 @@
 import { contentfulIds } from "@/constants/contentfulIds";
+import { paginationConfig } from "@/constants/paginationConfig";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
 import { getCurrentLocale } from "@/locales/server";
 import { BlogCategory } from "@/types/BlogCategory";
@@ -35,8 +36,8 @@ export const searchPosts = cache(async (args: SearchPostsArgs = {}) => {
         {
           locale,
           content_type: contentfulIds.blog,
-          limit: 10,
-          skip: 10 * (page - 1),
+          limit: paginationConfig.perPage,
+          skip: paginationConfig.perPage * (page - 1),
           order: ["-fields.date"],
           "fields.slug[match]": search,
           "fields.content[match]": search,
@@ -47,12 +48,15 @@ export const searchPosts = cache(async (args: SearchPostsArgs = {}) => {
         {
           locale,
           content_type: contentfulIds.blog,
-          limit: 10,
-          skip: 10 * (page - 1),
+          limit: paginationConfig.perPage,
+          skip: paginationConfig.perPage * (page - 1),
           order: ["-fields.date"],
         }
       );
-  return blogDetailEntries.items.map((item) => item.fields);
+  return {
+    total: blogDetailEntries.total,
+    items: blogDetailEntries.items.map((item) => item.fields),
+  };
 });
 
 export type SearchPostsWithCategoryArgs = SearchPostsArgs & {
@@ -68,8 +72,8 @@ export const searchPostsWithCategory = cache(
           {
             locale,
             content_type: contentfulIds.blog,
-            limit: 10,
-            skip: 10 * (page - 1),
+            limit: paginationConfig.perPage,
+            skip: paginationConfig.perPage * (page - 1),
             order: ["-fields.date"],
             "fields.slug[match]": search,
             "fields.content[match]": search,
@@ -81,12 +85,15 @@ export const searchPostsWithCategory = cache(
           {
             locale,
             content_type: contentfulIds.blog,
-            limit: 10,
-            skip: 10 * (page - 1),
+            limit: paginationConfig.perPage,
+            skip: paginationConfig.perPage * (page - 1),
             order: ["-fields.date"],
             "fields.category": category,
           }
         );
-    return blogDetailEntries.items.map((item) => item.fields);
+    return {
+      total: blogDetailEntries.total,
+      items: blogDetailEntries.items.map((item) => item.fields),
+    };
   }
 );
