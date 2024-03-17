@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Poppins-Regular";
+  src: url(./app/fonts/Poppins-Regular) format("ttf");
+}
+
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url(./app/fonts/Poppins-Bold) format("ttf");
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

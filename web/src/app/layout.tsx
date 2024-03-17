@@ -1,11 +1,16 @@
 import { theme } from "@/theme";
+import "@mantine/carousel/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "@mantine/core/styles.css";
-import '@mantine/carousel/styles.css';
+import type { Metadata } from "next";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
+const regularFont = localFont({
+  src: [
+    { path: "./fonts/Poppins-Regular.ttf", weight: "400" },
+    { path: "./fonts/Poppins-Bold.ttf", weight: "700", style: "normal" },
+  ],
+});
 
 export const metadata: Metadata = {
   title: "Study abroad consultants",
@@ -17,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi">
+    <html lang="vi" className={regularFont.className}>
       <head>
         <ColorSchemeScript defaultColorScheme="dark" />
       </head>
