@@ -1,18 +1,18 @@
 import { contentfulIds } from "@/constants/contentfulIds";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
 import { getCurrentLocale } from "@/locales/server";
-import { SettlementEntrySkeleton } from "@/types/SettlementEntrySkeleton";
+import { ImmigrationEntrySkeleton } from "@/types/ImmigrationEntrySkeleton";
 import { cache } from "react";
 
 const contentfulClient = createContentfulClient();
 
-export const getSettlementDetailContent = cache(async (slug: string) => {
+export const getImmigrationDetailContent = cache(async (slug: string) => {
   const locale = getCurrentLocale();
   const detailEntries =
-    await contentfulClient.withoutUnresolvableLinks.getEntries<SettlementEntrySkeleton>(
+    await contentfulClient.withoutUnresolvableLinks.getEntries<ImmigrationEntrySkeleton>(
       {
         locale,
-        content_type: contentfulIds.settlement,
+        content_type: contentfulIds.immigration,
         limit: 1,
         "fields.slug": slug,
       }
@@ -20,6 +20,6 @@ export const getSettlementDetailContent = cache(async (slug: string) => {
   return detailEntries.items[0].fields;
 });
 
-export type SettlementContent = Awaited<
-  ReturnType<typeof getSettlementDetailContent>
+export type ImmigrationContent = Awaited<
+  ReturnType<typeof getImmigrationDetailContent>
 >;

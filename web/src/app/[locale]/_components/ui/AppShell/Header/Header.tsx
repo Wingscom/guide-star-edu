@@ -50,8 +50,8 @@ export default function Header() {
       menu: overviewMenu.result ?? [],
     },
     {
-      link: links.settlements(),
-      label: headerT("labels.settlements"),
+      link: links.immigrations(),
+      label: headerT("labels.immigrations"),
     },
     {
       link: links.blogs(),

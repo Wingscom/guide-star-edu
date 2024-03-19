@@ -6,9 +6,9 @@ import { Stack } from "@mantine/core";
 
 export default async function ScholarshipsPage({
   searchParams: { search, page },
-}: {
+}: Readonly<{
   searchParams: { search?: string; page?: number };
-}) {
+}>) {
   const posts = await searchPostsWithCategory({
     search,
     page,

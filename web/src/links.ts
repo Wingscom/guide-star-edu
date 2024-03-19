@@ -8,11 +8,11 @@ export const getAppLinks = (lang: string) => {
         queryParams?.search ? `?search=${queryParams.search}` : ""
       }`,
     blogDetails: (slug: string) => `/${lang}/blogs/${slug}`,
-    settlements: (queryParams?: { search: string }) =>
-      `/${lang}/settlements${
+    immigrations: (queryParams?: { search: string }) =>
+      `/${lang}/immigrations${
         queryParams?.search ? `?search=${queryParams.search}` : ""
       }`,
-    settlementDetail: (slug: string) => `/${lang}/settlements/${slug}`,
+    immigrationDetail: (slug: string) => `/${lang}/immigrations/${slug}`,
     travels: (queryParams?: { search: string }) =>
       `/${lang}/travels${
         queryParams?.search ? `?search=${queryParams.search}` : ""

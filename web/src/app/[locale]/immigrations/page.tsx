@@ -3,7 +3,7 @@ import { getCurrentLocale } from "@/locales/server";
 import { SimpleGrid, Stack } from "@mantine/core";
 import { NewsCard } from "../_components/News/NewsCard";
 import { Pagination } from "../_components/ui/Pagination/Pagination";
-import { searchSettlements } from "./action";
+import { searchImmigrations } from "./action";
 
 export default async function BlogsPage({
   searchParams: { search, page },
@@ -12,7 +12,7 @@ export default async function BlogsPage({
 }) {
   const locale = getCurrentLocale();
   const links = getAppLinks(locale);
-  const posts = await searchSettlements({ search, page });
+  const posts = await searchImmigrations({ search, page });
 
   return (
     <Stack align="center">
@@ -20,7 +20,7 @@ export default async function BlogsPage({
         {posts.items.map((post) => (
           <NewsCard
             key={post.slug}
-            link={links.settlementDetail(post.slug)}
+            link={links.immigrationDetail(post.slug)}
             image={post.thumbnail?.fields.file?.url}
             title={post.title}
             date={post.date ?? ""}

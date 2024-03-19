@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={regularFont.className}>
+    <html lang="en" className={regularFont.className}>
       <head>
         <ColorSchemeScript defaultColorScheme="dark" />
       </head>

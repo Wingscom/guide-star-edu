@@ -4,5 +4,5 @@ export const contentfulIds = {
   countryMenu: "countryMenu",
   countryOverview: "country",
   travel: "travel",
-  settlement: "settlement",
+  immigration: "settlement",
 } as const;

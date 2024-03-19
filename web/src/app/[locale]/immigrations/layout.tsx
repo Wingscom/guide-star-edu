@@ -1,6 +1,6 @@
 import { Container, Grid, GridCol } from "@mantine/core";
 
-export default async function SettlementsLayout({
+export default async function ImmigrationsLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

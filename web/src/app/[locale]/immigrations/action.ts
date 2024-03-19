@@ -2,25 +2,25 @@ import { contentfulIds } from "@/constants/contentfulIds";
 import { paginationConfig } from "@/constants/paginationConfig";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
 import { getCurrentLocale } from "@/locales/server";
-import { SettlementEntrySkeleton } from "@/types/SettlementEntrySkeleton";
+import { ImmigrationEntrySkeleton } from "@/types/ImmigrationEntrySkeleton";
 import { cache } from "react";
 
 const contentfulClient = createContentfulClient();
 
-export type SearchSettlementsArgs = {
+export type SearchImmigrationsArgs = {
   search?: string;
   page?: number;
 };
 
-export const searchSettlements = cache(
-  async (args: SearchSettlementsArgs = {}) => {
+export const searchImmigrations = cache(
+  async (args: SearchImmigrationsArgs = {}) => {
     const { search, page = 1 } = args;
     const locale = getCurrentLocale();
     const entries = search
-      ? await contentfulClient.withoutUnresolvableLinks.getEntries<SettlementEntrySkeleton>(
+      ? await contentfulClient.withoutUnresolvableLinks.getEntries<ImmigrationEntrySkeleton>(
           {
             locale,
-            content_type: contentfulIds.settlement,
+            content_type: contentfulIds.immigration,
             limit: paginationConfig.perPage,
             skip: paginationConfig.perPage * (page - 1),
             order: ["-fields.date"],
@@ -29,10 +29,10 @@ export const searchSettlements = cache(
             "fields.title[match]": search,
           }
         )
-      : await contentfulClient.withoutUnresolvableLinks.getEntries<SettlementEntrySkeleton>(
+      : await contentfulClient.withoutUnresolvableLinks.getEntries<ImmigrationEntrySkeleton>(
           {
             locale,
-            content_type: contentfulIds.settlement,
+            content_type: contentfulIds.immigration,
             limit: paginationConfig.perPage,
             skip: paginationConfig.perPage * (page - 1),
             order: ["-fields.date"],

@@ -1,7 +1,7 @@
 import { contentfulIds } from "@/constants/contentfulIds";
 import { EntryFieldTypes } from "contentful";
 
-export type SettlementFields = {
+export type ImmigrationFields = {
   title: EntryFieldTypes.Text;
   slug: EntryFieldTypes.Text;
   thumbnail?: EntryFieldTypes.AssetLink;
@@ -9,7 +9,7 @@ export type SettlementFields = {
   date?: EntryFieldTypes.Date
 };
 
-export type SettlementEntrySkeleton = {
-  contentTypeId: typeof contentfulIds.settlement;
-  fields: SettlementFields;
+export type ImmigrationEntrySkeleton = {
+  contentTypeId: typeof contentfulIds.immigration;
+  fields: ImmigrationFields;
 };
