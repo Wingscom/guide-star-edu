@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'backend',
+    'django_extensions',
     'schools.apps.SchoolsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
