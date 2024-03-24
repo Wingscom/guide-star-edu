@@ -10,9 +10,9 @@ services:
     volumes:
       - dbdata:/data/db
     environment:
-      MONGO_INITDB_DATABASE: studyabroad_db
-      MONGO_INITDB_ROOT_USERNAME: ${USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${PASSWORD}
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
 
 volumes:
   dbdata:

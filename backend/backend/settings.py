@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -35,6 +36,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'backend',
+    'schools.apps.SchoolsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,8 +83,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'studyaboard_db',
-        
+        'NAME': os.getenv('DB_NAME'),
+        'CLIENT': {
+            'host': 'localhost',
+            'port': 27071,
+            'username': os.getenv('DB_USERNAME'),
+            'password': os.getenv('DB_PASSWORD'),
+            'authMechanism': 'SCRAM-SHA-1'
+        },
     }
 }
 
