@@ -3,6 +3,8 @@ from django.core.paginator import Paginator
 
 from schools.models import School
 
+from schools.handlers.yes_edu_handler import crawl as crawl_yes_edu
+
 def search_schools(query: QueryDict):
   schools = School.objects.order_by("id").all()
   if query.get("search"):
@@ -18,3 +20,6 @@ def search_schools(query: QueryDict):
   per_page = query.get("per_page", 12)
   paginator = Paginator(schools, per_page)
   return paginator.get_page(page)
+
+def crawl_data():
+  crawl_yes_edu()
