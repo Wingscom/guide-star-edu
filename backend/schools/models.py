@@ -4,8 +4,8 @@ from django.db import models
 class School(models.Model):
   name = models.CharField(max_length=100,blank=False)
   country = models.CharField(max_length=3,blank=False)
-  state = models.CharField(max_length=20,blank=False)
-  city = models.CharField(max_length=20,blank=False)
+  state = models.CharField(max_length=50,blank=False)
+  city = models.CharField(max_length=50,blank=False)
   sources = models.JSONField(blank=False)
 
 class Course(models.Model):
