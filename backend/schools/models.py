@@ -8,7 +8,7 @@ class School(models.Model):
   sources = models.JSONField(blank=False)
 
 class Course(models.Model):
-  name = models.CharField(max_length=100,blank=False)
+  name = models.CharField(max_length=255,blank=False)
   school = models.ForeignKey(
     School,
     on_delete=models.CASCADE,
