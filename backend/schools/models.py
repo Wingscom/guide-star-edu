@@ -1,7 +1,8 @@
+from enum import Enum
 from django.db import models
 
 class School(models.Model):
-  name = models.CharField(max_length=30,blank=False)
+  name = models.CharField(max_length=100,blank=False)
   country = models.CharField(max_length=3,blank=False)
   state = models.CharField(max_length=20,blank=False)
   city = models.CharField(max_length=20,blank=False)
@@ -19,3 +20,10 @@ class Course(models.Model):
   duration = models.CharField(max_length=20)
   intake = models.CharField(max_length=20)
   sector = models.CharField(max_length=20,blank=False)
+
+class Sector(Enum):
+  HIGH_SCHOOL = "HIGH_SCHOOL"
+  UNDERGRADUATE = "UNDERGRADUATE"
+  POSTGRADUATE = "POSTGRADUATE"
+  LANGUAGE = "LANGUAGE"
+  VOCATIONAL = "VOCATIONAL"
