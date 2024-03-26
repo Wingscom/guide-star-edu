@@ -14,7 +14,7 @@ class Course(models.Model):
     School,
     on_delete=models.CASCADE,
   )
-  commission = models.CharField(max_length=20)
+  commission = models.CharField(max_length=1000)
   tuition_fee = models.CharField(max_length=20)
   application_fee = models.CharField(max_length=20)
   duration = models.CharField(max_length=20)
