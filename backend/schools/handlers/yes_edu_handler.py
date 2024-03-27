@@ -44,6 +44,8 @@ def create_or_update_school(school_data, state: str):
     if school_country in ["US", "CA", "NZ"]:
         if "," in state:
             state, school_city = state.split(", ", 1)
+        if "，" in state:
+            state, school_city = state.split("，", 1)
 
     if school_country == "CN" and "," in state:
         school_city, state = state.split(", ", 1)
