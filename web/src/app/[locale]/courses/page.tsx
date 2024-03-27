@@ -11,7 +11,6 @@ export default async function SearchPage() {
   // TODO: Implement
   return (
     <Container className={classes.root}>
-      <div className={classes.label}>Coming soon</div>
       <Title className={classes.title}>{pageT("title")}</Title>
       <Text c="dimmed" size="lg" ta="center" className={classes.description}>
         {pageT("description")}

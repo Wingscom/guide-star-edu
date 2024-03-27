@@ -2,7 +2,7 @@ export const getAppLinks = (lang: string) => {
   return {
     home: () => `/${lang}`,
     contact: () => `/${lang}/contacts`,
-    search: () => `/${lang}/search`,
+    courses: () => `/${lang}/courses`,
     blogs: (queryParams?: { search: string }) =>
       `/${lang}/blogs${
         queryParams?.search ? `?search=${queryParams.search}` : ""

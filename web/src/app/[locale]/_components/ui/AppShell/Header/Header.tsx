@@ -41,8 +41,8 @@ export default function Header() {
       label: headerT("labels.home"),
     },
     {
-      link: links.search(),
-      label: headerT("labels.search"),
+      link: links.courses(),
+      label: headerT("labels.courses"),
     },
     {
       link: "#",
