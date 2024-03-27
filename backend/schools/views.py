@@ -3,7 +3,7 @@ import json
 from django.http import HttpRequest, HttpResponse
 from django.http.response import JsonResponse
 
-from schools.services import search_courses, search_schools, crawl_data
+from schools.services import search_courses, search_schools, crawl_data, get_school_countries
 from schools.serializers import CourseSerializer, SchoolSerializer
 
 from rest_framework import status
@@ -46,6 +46,12 @@ def course_list(request: HttpRequest):
         },
         safe=False,
     )
+
+
+@api_view(["GET"])
+def country_list(request: HttpRequest):
+    result = list(get_school_countries())
+    return JsonResponse({"data": result}, safe=False)
 
 
 @api_view(["POST"])

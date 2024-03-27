@@ -44,3 +44,7 @@ def search_courses(query: dict):
 
 def crawl_data():
     crawl_yes_edu()
+
+
+def get_school_countries():
+    return School.objects.order_by("country").values_list("country", flat=True).distinct().order_by("country")
