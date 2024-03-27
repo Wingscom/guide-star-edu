@@ -47,4 +47,29 @@ def crawl_data():
 
 
 def get_school_countries():
-    return School.objects.order_by("country").values_list("country", flat=True).distinct().order_by("country")
+    return (
+        School.objects.order_by("country")
+        .values_list("country", flat=True)
+        .distinct()
+        .order_by("country")
+    )
+
+
+def get_school_states(country: str):
+    return (
+        School.objects.filter(country=country)
+        .order_by("state")
+        .values_list("state", flat=True)
+        .distinct()
+        .order_by("state")
+    )
+
+
+def get_school_cities(country: str, state: str):
+    return (
+        School.objects.filter(country=country, state=state)
+        .order_by("city")
+        .values_list("city", flat=True)
+        .distinct()
+        .order_by("city")
+    )
