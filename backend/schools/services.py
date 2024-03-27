@@ -1,7 +1,7 @@
 from django.http import QueryDict
 from django.core.paginator import Paginator
 
-from schools.models import School
+from schools.models import Course, School
 
 from schools.handlers.yes_edu_handler import crawl as crawl_yes_edu
 
@@ -13,13 +13,32 @@ def search_schools(query: QueryDict):
     if query.get("country"):
         schools = schools.filter(country__iexact=query.get("country"))
     if query.get("state"):
-        schools = schools.filter(state__contains=query.get("state"))
+        schools = schools.filter(state__iexact=query.get("state"))
     if query.get("city"):
-        schools = schools.filter(city__contains=query.get("city"))
+        schools = schools.filter(city__iexact=query.get("city"))
 
     page = query.get("page", 1)
     per_page = query.get("per_page", 12)
     paginator = Paginator(schools, per_page)
+    return paginator.get_page(page)
+
+
+def search_courses(query: dict):
+    courses = Course.objects.prefetch_related("school").order_by("id").all()
+    if query.get("search"):
+        courses = courses.filter(name__contains=query.get("search"))
+    if query.get("sector"):
+        courses = courses.filter(sector__iexact=query.get("sector"))
+    if query.get("country"):
+        courses = courses.filter(school__country__iexact=query.get("country"))
+    if query.get("state"):
+        courses = courses.filter(school__state__iexact=query.get("state"))
+    if query.get("city"):
+        courses = courses.filter(school__city__iexact=query.get("city"))
+
+    page = query.get("page", 1)
+    per_page = query.get("per_page", 12)
+    paginator = Paginator(courses, per_page)
     return paginator.get_page(page)
 
 
