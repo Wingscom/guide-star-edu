@@ -41,11 +41,12 @@ def create_or_update_school(school_data, state: str):
     if len(school_country) > 3:
         school_country = map_country_name_to_code(school_country)
 
-    if school_country == "US":
-        if state != "ALL":
+    if school_country in ["US", "CA", "NZ"]:
+        if "," in state:
             state, school_city = state.split(", ", 1)
-        else:
-            state = ""
+
+    if school_country == "CN" and "," in state:
+        school_city, state = state.split(", ", 1)
 
     school_record, school_created = School.objects.get_or_create(
         name=school_name,
