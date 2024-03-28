@@ -299,8 +299,9 @@
       "applicationFee": "Phí nộp đơn",
       "city": "Thành phố",
       "country": "Quốc gia",
-      "courseName": "Course name",
+      "courseName": "Tên khóa học",
       "duration": "Thời lượng",
+      "location": "Bang/Thành phố",
       "sector": "Cấp bậc",
       "state": "Bang",
       "tuitionFee": "Học phí"

@@ -21,6 +21,7 @@ export type CourseFilterProps = {
 
 export function CourseFilter({ countries, states, cities }: CourseFilterProps) {
   const countryT = useScopedI18n("countries");
+  const courseSectorT = useScopedI18n("courseSectors");
   const pageT = useScopedI18n("coursesPage");
   const CountryParam = createEnumParam(countries);
   const [query, setQuery] = useQueryParams({
@@ -99,6 +100,7 @@ export function CourseFilter({ countries, states, cities }: CourseFilterProps) {
         field="sector"
         value={query.sector ?? ""}
         options={Object.values(CourseSector)}
+        getValueLabel={(value) => courseSectorT(value as CourseSector)}
         placeholder={pageT("labels.sector")}
         onSubmit={handleSubmitCombobox}
       />
