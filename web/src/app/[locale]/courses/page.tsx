@@ -1,27 +1,46 @@
-import { Title, Group, Button, Container, Text } from "@mantine/core";
-import classes from "./page.module.css";
-import Link from "next/link";
-import { getCurrentLocale, getScopedI18n } from "@/locales/server";
-import { getAppLinks } from "@/links";
+import { Grid, GridCol } from "@mantine/core";
+import { CourseFilter } from "./_components/CourseFilter";
+import { CourseList } from "./_components/CourseList";
+import { CourseSector } from "./_types/CourseSector";
+import {
+  getAvailableCities,
+  getAvailableCountries,
+  getAvailableStates,
+  searchCourses,
+} from "./actions";
 
-export default async function SearchPage() {
-  const locale = getCurrentLocale();
-  const links = getAppLinks(locale);
-  const pageT = await getScopedI18n("comingSoonPage");
-  // TODO: Implement
+export default async function SearchPage({
+  searchParams: { search, country, state, city, sector, page = 1 },
+}: {
+  searchParams: {
+    search?: string;
+    country?: string;
+    state?: string;
+    city?: string;
+    sector?: CourseSector;
+    page?: number;
+  };
+}) {
+  const countries = await getAvailableCountries();
+  const states = await getAvailableStates(country);
+  const cities = await getAvailableCities(country, state);
+  const courses = await searchCourses({
+    search,
+    country,
+    state,
+    city,
+    sector,
+    page,
+  });
+
   return (
-    <Container className={classes.root}>
-      <Title className={classes.title}>{pageT("title")}</Title>
-      <Text c="dimmed" size="lg" ta="center" className={classes.description}>
-        {pageT("description")}
-      </Text>
-      <Group justify="center">
-        <Link href={links.home()}>
-          <Button variant="subtle" size="md">
-            {pageT("actions.back")}
-          </Button>
-        </Link>
-      </Group>
-    </Container>
+    <Grid gutter="xl">
+      <GridCol span={{ base: 12, sm: 4 }}>
+        <CourseFilter countries={countries} states={states} cities={cities} />
+      </GridCol>
+      <GridCol span={{ base: 12, sm: 8 }}>
+        <CourseList courses={courses} />
+      </GridCol>
+    </Grid>
   );
 }

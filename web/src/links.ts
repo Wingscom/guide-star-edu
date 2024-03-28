@@ -1,35 +1,32 @@
+import { CourseSector } from "./app/[locale]/courses/_types/CourseSector";
+import { getQueryString } from "./helpers/getQueryString";
+
 export const getAppLinks = (lang: string) => {
   return {
     home: () => `/${lang}`,
     contact: () => `/${lang}/contacts`,
-    courses: () => `/${lang}/courses`,
+    courses: (queryParams?: {
+      search?: string;
+      country?: string;
+      state?: string;
+      city?: string;
+      sector?: CourseSector;
+    }) => `/${lang}/courses${getQueryString(queryParams)}`,
     blogs: (queryParams?: { search: string }) =>
-      `/${lang}/blogs${
-        queryParams?.search ? `?search=${queryParams.search}` : ""
-      }`,
+      `/${lang}/blogs${getQueryString(queryParams)}`,
     blogDetails: (slug: string) => `/${lang}/blogs/${slug}`,
     immigrations: (queryParams?: { search: string }) =>
-      `/${lang}/immigrations${
-        queryParams?.search ? `?search=${queryParams.search}` : ""
-      }`,
+      `/${lang}/immigrations${getQueryString(queryParams)}`,
     immigrationDetail: (slug: string) => `/${lang}/immigrations/${slug}`,
     travels: (queryParams?: { search: string }) =>
-      `/${lang}/travels${
-        queryParams?.search ? `?search=${queryParams.search}` : ""
-      }`,
+      `/${lang}/travels${getQueryString(queryParams)}`,
     travelDetail: (slug: string) => `/${lang}/travels/${slug}`,
     news: (queryParams?: { search: string }) =>
-      `/${lang}/blogs/news${
-        queryParams?.search ? `?search=${queryParams.search}` : ""
-      }`,
+      `/${lang}/blogs/news${getQueryString(queryParams)}`,
     events: (queryParams?: { search: string }) =>
-      `/${lang}/blogs/events${
-        queryParams?.search ? `?search=${queryParams.search}` : ""
-      }`,
+      `/${lang}/blogs/events${getQueryString(queryParams)}`,
     scholarships: (queryParams?: { search: string }) =>
-      `/${lang}/blogs/scholarships${
-        queryParams?.search ? `?search=${queryParams.search}` : ""
-      }`,
+      `/${lang}/blogs/scholarships${getQueryString(queryParams)}`,
     overviewDetails: (slug: string) => `/${lang}/overviews/${slug}`,
   };
 };

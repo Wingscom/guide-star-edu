@@ -291,6 +291,30 @@
     "ZM": "Zambia",
     "ZW": "Zimbabwe"
   },
+  "coursesPage": {
+    "actions": {
+      "filter": "Filter"
+    },
+    "labels": {
+      "applicationFee": "Application fee",
+      "city": "City",
+      "country": "Country",
+      "courseName": "Course name",
+      "duration": "Duration",
+      "location": "Location",
+      "sector": "Sector",
+      "state": "State",
+      "tuitionFee": "Tuition fee"
+    },
+    "title": "Search for courses"
+  },
+  "courseSectors": {
+    "HIGH_SCHOOL": "High school",
+    "UNDERGRADUATE": "Undergraduate",
+    "POSTGRADUATE": "Postgraduate",
+    "LANGUAGE": "Language",
+    "VOCATIONAL": "Vocational"
+  },
   "header": {
     "labels": {
       "about": "About us",
@@ -320,8 +344,5 @@
       "countries": "Countries",
       "news": "News"
     }
-  },
-  "coursesPage": {
-
   }
 }

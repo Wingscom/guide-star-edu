@@ -291,6 +291,29 @@
     "ZM": "Zambia",
     "ZW": "Zimbabwe"
   },
+  "coursesPage": {
+    "actions": {
+      "filter": "Lọc khóa học"
+    },
+    "labels": {
+      "applicationFee": "Phí nộp đơn",
+      "city": "Thành phố",
+      "country": "Quốc gia",
+      "courseName": "Course name",
+      "duration": "Thời lượng",
+      "sector": "Cấp bậc",
+      "state": "Bang",
+      "tuitionFee": "Học phí"
+    },
+    "title": "Tìm kiếm khóa học"
+  },
+  "courseSectors": {
+    "HIGH_SCHOOL": "Trung học",
+    "UNDERGRADUATE": "Chưa tốt nghiệp cử nhân",
+    "POSTGRADUATE": "Cao học",
+    "LANGUAGE": "Ngôn ngữ",
+    "VOCATIONAL": "Học nghề"
+  },
   "header": {
     "labels": {
       "about": "Về chúng tôi",
