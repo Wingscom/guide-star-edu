@@ -36,7 +36,12 @@ export default async function SearchPage({
   return (
     <Grid gutter="xl">
       <GridCol span={{ base: 12, sm: 4 }}>
-        <CourseFilter countries={countries} states={states} cities={cities} />
+        <CourseFilter
+          countries={countries}
+          states={states}
+          cities={cities}
+          total={courses.total}
+        />
       </GridCol>
       <GridCol span={{ base: 12, sm: 8 }}>
         <CourseList courses={courses} />

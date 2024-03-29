@@ -299,11 +299,14 @@
       "applicationFee": "Phí nộp đơn",
       "city": "Thành phố",
       "country": "Quốc gia",
-      "courseName": "Tên khóa học",
+      "courseName": "Tên khóa học hoặc tên trường",
       "duration": "Thời lượng",
       "location": "Bang/Thành phố",
       "sector": "Cấp bậc",
       "state": "Bang",
+      "total#one": "Tổng cộng: 1 kết quả",
+      "total#other": "Tổng cộng: {count} kết quả",
+      "total#zero": "Không có kết quả",
       "tuitionFee": "Học phí"
     },
     "title": "Tìm kiếm khóa học"

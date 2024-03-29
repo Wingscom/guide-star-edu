@@ -299,11 +299,14 @@
       "applicationFee": "Application fee",
       "city": "City",
       "country": "Country",
-      "courseName": "Course name",
+      "courseName": "Course name or school name",
       "duration": "Duration",
       "location": "Location",
       "sector": "Sector",
       "state": "State",
+      "total#one": "Total: 1 result",
+      "total#other": "Total: {count} results",
+      "total#zero": "No results",
       "tuitionFee": "Tuition fee"
     },
     "title": "Search for courses"

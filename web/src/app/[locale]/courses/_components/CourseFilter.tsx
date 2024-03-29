@@ -2,7 +2,7 @@
 
 import { useScopedI18n } from "@/locales/client";
 import { CountryCode } from "@/types/CountryCode";
-import { Input, Stack, useCombobox } from "@mantine/core";
+import { Input, Stack, Text, useCombobox } from "@mantine/core";
 import { KeyboardEvent } from "react";
 import {
   NumberParam,
@@ -14,12 +14,18 @@ import { CourseFilterCombobox } from "./CourseFilterCombobox";
 import { CourseSector } from "../_types/CourseSector";
 
 export type CourseFilterProps = {
+  total: number;
   countries: CountryCode[];
   states: string[];
   cities: string[];
 };
 
-export function CourseFilter({ countries, states, cities }: CourseFilterProps) {
+export function CourseFilter({
+  total,
+  countries,
+  states,
+  cities,
+}: CourseFilterProps) {
   const countryT = useScopedI18n("countries");
   const courseSectorT = useScopedI18n("courseSectors");
   const pageT = useScopedI18n("coursesPage");
@@ -104,6 +110,7 @@ export function CourseFilter({ countries, states, cities }: CourseFilterProps) {
         placeholder={pageT("labels.sector")}
         onSubmit={handleSubmitCombobox}
       />
+      <Text>{pageT("labels.total", { count: total })}</Text>
     </Stack>
   );
 }
