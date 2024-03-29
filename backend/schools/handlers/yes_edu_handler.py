@@ -49,6 +49,9 @@ def create_or_update_school(school_data, state: str):
 
     if school_country == "CN" and "," in state:
         school_city, state = state.split(", ", 1)
+        
+    if state.lower().endswith(" State"):
+        state = state.replace(" State", "")
 
     school_record, school_created = School.objects.get_or_create(
         name=school_name,
