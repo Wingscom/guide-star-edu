@@ -178,7 +178,7 @@ Q_CLUSTER = {
     "name": "studyabroad_worker",
     "workers": 4,
     "recycle": 500,
-    "timeout": 600,
+    "timeout": 3000,
     "retry": 6000,
     "compress": True,
     "cpu_affinity": 1,

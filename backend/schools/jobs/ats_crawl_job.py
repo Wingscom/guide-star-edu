@@ -1,5 +1,8 @@
 import requests
 import logging
+import collections
+
+collections.Callable = collections.abc.Callable
 from bs4 import BeautifulSoup
 
 from schools.models import Course, School
@@ -70,6 +73,11 @@ def craw_courses(soup: BeautifulSoup, school_country: str, state: dict, city: di
                 state["name"],
                 city["name"],
             )
+        else:
+            logger.info(
+                "The school %s already exists",
+                city["name"],
+            )
 
         if "ats" not in school_record.sources:
             school_record.sources.append("ats")
@@ -92,6 +100,8 @@ def process_course(course_element: BeautifulSoup, school: School):
 
     if course_created:
         logger.info("Create a new course: %s", course_name)
+    else:
+        logger.info("This course %s already exists", course_name)
 
     if course_record.sector != course_sector:
         logger.info(
