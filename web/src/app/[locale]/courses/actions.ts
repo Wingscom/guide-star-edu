@@ -1,5 +1,6 @@
 import { CountryCode } from "@/types/CountryCode";
 import { Course } from "./_types/Course";
+import { noData } from "@/constants/commons";
 
 export async function getAvailableCountries() {
   const response = await fetch(
@@ -60,6 +61,10 @@ export type SearchCourseResponse = {
 };
 
 export async function searchCourses(request: SearchCourseRequest) {
+  const processedRequest = {
+    ...request,
+    city: request.city === noData ? "" : request.city,
+  };
   const response = await fetch(
     `${process.env.BACKEND_HOST}/schools/courses/search`,
     {
@@ -68,7 +73,7 @@ export async function searchCourses(request: SearchCourseRequest) {
         "Content-Type": "application/json",
         "X-Api-Key": process.env.BACKEND_API_KEY,
       },
-      body: JSON.stringify(request),
+      body: JSON.stringify(processedRequest),
     }
   );
 

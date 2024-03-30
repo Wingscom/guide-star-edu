@@ -1,6 +1,8 @@
 "use client";
 
-import { useCombobox, Combobox, InputBase, Input } from "@mantine/core";
+import { noData } from "@/constants/commons";
+import { useScopedI18n } from "@/locales/client";
+import { Combobox, Input, InputBase, useCombobox } from "@mantine/core";
 
 export type CourseFilterCombobox<TValue> = {
   field: "country" | "state" | "city" | "sector";
@@ -22,6 +24,7 @@ export function CourseFilterCombobox<TValue>({
   getValueLabel = (val: TValue) => String(val),
   onSubmit,
 }: CourseFilterCombobox<TValue>) {
+  const pageT = useScopedI18n("coursesPage");
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
@@ -43,7 +46,11 @@ export function CourseFilterCombobox<TValue>({
           onClick={() => combobox.toggleDropdown()}
         >
           {value ? (
-            getValueLabel(value)
+            value === noData ? (
+              pageT("labels.noData")
+            ) : (
+              getValueLabel(value)
+            )
           ) : (
             <Input.Placeholder>{placeholder}</Input.Placeholder>
           )}
@@ -54,8 +61,11 @@ export function CourseFilterCombobox<TValue>({
         <Combobox.Options>
           <Combobox.Option value={""}>-</Combobox.Option>
           {options.map((item) => (
-            <Combobox.Option value={item as string} key={item as string}>
-              {getValueLabel(item)}
+            <Combobox.Option
+              value={item === "" ? noData : (item as string)}
+              key={item as string}
+            >
+              {item === "" ? pageT("labels.noData") : getValueLabel(item)}
             </Combobox.Option>
           ))}
         </Combobox.Options>

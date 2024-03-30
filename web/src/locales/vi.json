@@ -302,6 +302,7 @@
       "courseName": "Tên khóa học hoặc tên trường",
       "duration": "Thời lượng",
       "location": "Bang/Thành phố",
+      "noData": "Không có thông tin",
       "sector": "Cấp bậc",
       "state": "Bang",
       "total#one": "Tổng cộng: 1 kết quả",

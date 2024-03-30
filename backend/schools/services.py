@@ -39,7 +39,7 @@ def search_courses(query: dict):
         courses = courses.filter(school__country__iexact=query.get("country"))
     if query.get("state"):
         courses = courses.filter(school__state__iexact=query.get("state"))
-    if query.get("city"):
+    if query.get("city") != None:
         courses = courses.filter(school__city__iexact=query.get("city"))
 
     page = query.get("page", 1)

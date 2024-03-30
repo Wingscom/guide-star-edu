@@ -302,6 +302,7 @@
       "courseName": "Course name or school name",
       "duration": "Duration",
       "location": "Location",
+      "noData": "No data",
       "sector": "Sector",
       "state": "State",
       "total#one": "Total: 1 result",
