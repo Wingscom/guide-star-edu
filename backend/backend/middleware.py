@@ -13,6 +13,9 @@ class ApiKeyMiddleware:
     def __call__(self, request: HttpRequest) -> Any:
         # Code to be executed for each request before
         # the view (and later middleware) are called.
+        if ("api" not in request.path):
+            return self.get_response(request)
+
         if (not "X-Api-Key" in request.headers) or (
             request.headers["X-Api-Key"] != os.getenv("API_KEY")
         ):

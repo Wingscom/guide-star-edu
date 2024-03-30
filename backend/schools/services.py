@@ -1,11 +1,12 @@
 from django.http import QueryDict
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django_q.tasks import async_task
 
 from schools.models import Course, School
 
-from schools.handlers.yes_edu_handler import crawl as crawl_yes_edu
-from schools.handlers.ats_handler import crawl as crawl_ats
+from schools.jobs.yes_edu_crawl_job import crawl as crawl_yes_edu
+from schools.jobs.ats_crawl_job import crawl as crawl_ats
 
 
 def search_schools(query: QueryDict):
@@ -48,7 +49,8 @@ def search_courses(query: dict):
 
 
 def crawl_data():
-    crawl_yes_edu()
+    async_task(crawl_yes_edu)
+    async_task(crawl_ats)
 
 
 def get_school_countries():

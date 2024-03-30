@@ -3,10 +3,9 @@ import requests
 import logging
 import json
 
-logger = logging.getLogger()
-
 from schools.models import School, Course, Sector
 
+logger = logging.getLogger()
 
 def crawl() -> None:
     auth_response = requests.post(
@@ -49,7 +48,7 @@ def create_or_update_school(school_data, state: str):
 
     if school_country == "CN" and "," in state:
         school_city, state = state.split(", ", 1)
-        
+
     if state.lower().endswith(" State"):
         state = state.replace(" State", "")
 

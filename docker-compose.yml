@@ -13,11 +13,41 @@ services:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
 
+  redis:
+    image: redis:7.2.4
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel notice --requirepass ${REDIS_PASSWORD}
+    volumes: 
+      - redisdata:/data
+
+  worker:
+    env_file: ./backend/.env
+    environment:
+      DB_HOST: postgres
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    build: "./backend"
+    command: >
+      bash -c "./backend/manage.py qcluster"
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./:/backend
+    depends_on:
+      - postgres
+      - redis
+
   backend:
     restart: always
     env_file: ./backend/.env
     environment:
       DB_HOST: postgres
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
     build: "./backend"
     command: >
       bash -c "./backend/manage.py migrate &&
@@ -28,6 +58,8 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
+      - redis
 
 volumes:
   dbdata:
+  redisdata:

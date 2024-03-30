@@ -27,11 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG") == "true"
 
 ALLOWED_HOSTS = [
-    'api.guidestaredu.com',
-    'localhost',
+    "api.guidestaredu.com",
+    "localhost",
 ]
 
 
@@ -40,6 +40,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     "backend",
     "django_extensions",
+    "django_q",
     "schools.apps.SchoolsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -170,5 +171,24 @@ LOGGING = {
             "handlers": ["console", "file"],
             "propagate": True,
         },
+    },
+}
+
+Q_CLUSTER = {
+    "name": "studyabroad_worker",
+    "workers": 4,
+    "recycle": 500,
+    "timeout": 600,
+    "retry": 6000,
+    "compress": True,
+    "cpu_affinity": 1,
+    "save_limit": 250,
+    "queue_limit": 500,
+    "label": "Django Q",
+    "redis": {
+        "host": os.getenv("REDIS_HOST"),
+        "port": os.getenv("REDIS_PORT"),
+        "db": 0,
+        "password": os.getenv("REDIS_PASSWORD"),
     },
 }

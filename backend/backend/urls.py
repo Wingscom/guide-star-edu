@@ -17,4 +17,6 @@ Including another URLconf
 
 from django.urls import re_path, include
 
-urlpatterns = [re_path(r"^api/schools/", include("schools.urls"))]
+urlpatterns = [
+    re_path(r"^api/schools/", include("schools.urls")),
+]
