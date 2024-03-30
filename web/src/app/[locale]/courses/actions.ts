@@ -1,6 +1,7 @@
 import { CountryCode } from "@/types/CountryCode";
 import { Course } from "./_types/Course";
 import { noData } from "@/constants/commons";
+import { cache } from "react";
 
 export async function getAvailableCountries() {
   const response = await fetch(
@@ -15,7 +16,7 @@ export async function getAvailableCountries() {
   return result.data;
 }
 
-export async function getAvailableStates(country?: string) {
+export const getAvailableStates = cache(async (country?: string) => {
   if (!country) return [];
   const response = await fetch(
     `${process.env.BACKEND_HOST}/schools/countries/${country}/states`,
@@ -27,21 +28,23 @@ export async function getAvailableStates(country?: string) {
   );
   const result = (await response.json()) as { data: string[] };
   return result.data;
-}
+});
 
-export async function getAvailableCities(country?: string, state?: string) {
-  if (!country || !state) return [];
-  const response = await fetch(
-    `${process.env.BACKEND_HOST}/schools/countries/${country}/states/${state}/cities`,
-    {
-      headers: {
-        "X-Api-Key": process.env.BACKEND_API_KEY,
-      },
-    }
-  );
-  const result = (await response.json()) as { data: string[] };
-  return result.data;
-}
+export const getAvailableCities = cache(
+  async (country?: string, state?: string) => {
+    if (!country || !state) return [];
+    const response = await fetch(
+      `${process.env.BACKEND_HOST}/schools/countries/${country}/states/${state}/cities`,
+      {
+        headers: {
+          "X-Api-Key": process.env.BACKEND_API_KEY,
+        },
+      }
+    );
+    const result = (await response.json()) as { data: string[] };
+    return result.data;
+  }
+);
 
 export type SearchCourseRequest = {
   search?: string;
@@ -60,7 +63,7 @@ export type SearchCourseResponse = {
   has_more: boolean;
 };
 
-export async function searchCourses(request: SearchCourseRequest) {
+export const searchCourses = cache(async (request: SearchCourseRequest) => {
   const processedRequest = {
     ...request,
     city: request.city === noData ? "" : request.city,
@@ -79,4 +82,4 @@ export async function searchCourses(request: SearchCourseRequest) {
 
   const responseData = await response.json();
   return responseData as SearchCourseResponse;
-}
+});
