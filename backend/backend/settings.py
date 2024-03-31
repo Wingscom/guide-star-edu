@@ -30,6 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG") == "true"
 
 ALLOWED_HOSTS = [
+    "77.37.45.243",
     "api.guidestaredu.com",
     "localhost",
 ]

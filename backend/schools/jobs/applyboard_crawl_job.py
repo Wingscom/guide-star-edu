@@ -1,6 +1,7 @@
 import logging
 import os
 import requests
+import time
 
 from schools.models import Course, School, Sector
 
@@ -138,7 +139,9 @@ def crawl() -> None:
                 page = page + 1
             except requests.JSONDecodeError:
                 logger.error(f"Failed to parse json for response: {response.text}")
+            time.sleep(1)
         page = 1
+        time.sleep(5)
 
 
 def resolve_course_sector(level: str):
