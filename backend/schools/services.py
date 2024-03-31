@@ -55,7 +55,7 @@ def crawl_data(source: str):
             async_task(crawl_ats)
         case "yes_edu":
             async_task(crawl_yes_edu)
-        case "studyboard":
+        case "applyboard":
             async_task(crawl_applyboard)
 
 
