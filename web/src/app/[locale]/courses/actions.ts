@@ -77,6 +77,10 @@ export const searchCourses = cache(async (request: SearchCourseRequest) => {
         "X-Api-Key": process.env.BACKEND_API_KEY,
       },
       body: JSON.stringify(processedRequest),
+      next: {
+        revalidate: 3600,
+        tags: ["courses"],
+      },
     }
   );
 

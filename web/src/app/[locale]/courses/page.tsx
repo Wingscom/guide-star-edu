@@ -21,17 +21,19 @@ export default async function SearchPage({
     page?: number;
   };
 }) {
-  const countries = await getAvailableCountries();
-  const states = await getAvailableStates(country);
-  const cities = await getAvailableCities(country, state);
-  const courses = await searchCourses({
-    search,
-    country,
-    state,
-    city,
-    sector,
-    page,
-  });
+  const [countries, states, cities, courses] = await Promise.all([
+    getAvailableCountries(),
+    getAvailableStates(country),
+    getAvailableCities(country, state),
+    searchCourses({
+      search,
+      country,
+      state,
+      city,
+      sector,
+      page,
+    }),
+  ]);
 
   return (
     <Grid gutter="xl">
