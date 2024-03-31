@@ -52,7 +52,7 @@ def crawl() -> None:
     ]
     for program_level in program_levels:
         while (page - 1) * page_size < total:
-            search_response = requests.get(
+            response = requests.get(
                 "https://www.applyboard.com/api/content/search/v2/search",
                 cookies=response_cookies,
                 params={
@@ -61,73 +61,83 @@ def crawl() -> None:
                     "page[size]": page_size,
                     "filter[levels]": program_level,
                 },
-            ).json()
-            total = search_response["meta"]["counts"]["total"]
-            courses = search_response["data"]
+            )
+            try:
+                search_response = response.json()
+                total = search_response["meta"]["counts"]["total"]
+                courses = search_response["data"]
 
-            for course in courses:
-                course_attributes = course["attributes"]
-                school = course_attributes["school"]
-                school_record, school_created = School.objects.get_or_create(
-                    name=school["name"],
-                    country=school["countryCode"],
-                    state=school["province"],
-                    city=school["city"],
-                    defaults={"sources": ["applyboard"]},
-                )
-
-                if school_created:
-                    logger.info(
-                        "Create a new school %s in %s, %s",
-                        school_record.name,
-                        school_record.country,
-                        school_record.state,
+                for course in courses:
+                    course_attributes = course["attributes"]
+                    school = course_attributes["school"]
+                    school_record, school_created = School.objects.get_or_create(
+                        name=school["name"],
+                        country=school["countryCode"],
+                        state=school["province"],
+                        city=school["city"],
+                        defaults={"sources": ["applyboard"]},
                     )
 
-                if "applyboard" not in school_record.sources:
-                    logger.info(
-                        "Update school source with applyboard for school: %s",
-                        school_record.name,
+                    if school_created:
+                        logger.info(
+                            "Create a new school %s in %s, %s",
+                            school_record.name,
+                            school_record.country,
+                            school_record.state,
+                        )
+
+                    if "applyboard" not in school_record.sources:
+                        logger.info(
+                            "Update school source with applyboard for school: %s",
+                            school_record.name,
+                        )
+                        school_record.sources.append("applyboard")
+
+                    school_record.save()
+
+                    course_name: str = (
+                        course_attributes["name"].strip().replace("\n", "")
                     )
-                    school_record.sources.append("applyboard")
-
-                school_record.save()
-
-                course_name: str = course_attributes["name"].strip().replace("\n", "")
-                course_sector = resolve_course_sector(course_attributes["programLevel"])
-                course_record, course_created = Course.objects.get_or_create(
-                    name=course_name,
-                    school_id=school_record.id,
-                    sector=course_sector,
-                )
-
-                if course_created:
-                    logger.info("Create a new course: %s", course_name)
-
-                application_fee = "{:,}".format(course_attributes["applicationFee"])
-                application_fee = f"{course_attributes['currency']} {application_fee}"
-                tuition_fee = "{:,}".format(course_attributes["tuition"])
-                tuition_fee = f"{course_attributes['currency']} {tuition_fee}"
-
-                if course_record.application_fee != application_fee:
-                    logger.info(
-                        "Update course application_fee with %s for school: %s",
-                        application_fee,
-                        school_record.name,
+                    course_sector = resolve_course_sector(
+                        course_attributes["programLevel"]
                     )
-                    course_record.application_fee = application_fee
-
-                if course_record.tuition_fee != tuition_fee:
-                    logger.info(
-                        "Update course tuition_fee with %s for school: %s",
-                        tuition_fee,
-                        school_record.name,
+                    course_record, course_created = Course.objects.get_or_create(
+                        name=course_name,
+                        school_id=school_record.id,
+                        sector=course_sector,
                     )
-                    course_record.tuition_fee = tuition_fee
 
-                course_record.save()
+                    if course_created:
+                        logger.info("Create a new course: %s", course_name)
 
-            page = page + 1
+                    application_fee = "{:,}".format(course_attributes["applicationFee"])
+                    application_fee = (
+                        f"{course_attributes['currency']} {application_fee}"
+                    )
+                    tuition_fee = "{:,}".format(course_attributes["tuition"])
+                    tuition_fee = f"{course_attributes['currency']} {tuition_fee}"
+
+                    if course_record.application_fee != application_fee:
+                        logger.info(
+                            "Update course application_fee with %s for school: %s",
+                            application_fee,
+                            school_record.name,
+                        )
+                        course_record.application_fee = application_fee
+
+                    if course_record.tuition_fee != tuition_fee:
+                        logger.info(
+                            "Update course tuition_fee with %s for school: %s",
+                            tuition_fee,
+                            school_record.name,
+                        )
+                        course_record.tuition_fee = tuition_fee
+
+                    course_record.save()
+
+                page = page + 1
+            except requests.JSONDecodeError:
+                logger.error(f"Failed to parse json for response: {response.text}")
         page = 1
 
 

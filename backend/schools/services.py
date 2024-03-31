@@ -49,10 +49,14 @@ def search_courses(query: dict):
     return paginator.get_page(page)
 
 
-def crawl_data():
-    async_task(crawl_yes_edu)
-    async_task(crawl_ats)
-    async_task(crawl_applyboard)
+def crawl_data(source: str):
+    match source:
+        case "ats":
+            async_task(crawl_ats)
+        case "yes_edu":
+            async_task(crawl_yes_edu)
+        case "studyboard":
+            async_task(crawl_applyboard)
 
 
 def get_school_countries():

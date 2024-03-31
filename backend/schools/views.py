@@ -74,6 +74,6 @@ def city_list(request: HttpRequest, country: str, state: str):
 
 
 @api_view(["POST"])
-def crawl(request: HttpRequest):
-    crawl_data()
+def crawl(request: HttpRequest, source: str):
+    crawl_data(source)
     return HttpResponse(status=status.HTTP_204_NO_CONTENT)
