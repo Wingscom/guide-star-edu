@@ -7,6 +7,7 @@ from schools.models import Course, School
 
 from schools.jobs.yes_edu_crawl_job import crawl as crawl_yes_edu
 from schools.jobs.ats_crawl_job import crawl as crawl_ats
+from schools.jobs.applyboard_crawl_job import crawl as crawl_applyboard
 
 
 def search_schools(query: QueryDict):
@@ -51,6 +52,7 @@ def search_courses(query: dict):
 def crawl_data():
     async_task(crawl_yes_edu)
     async_task(crawl_ats)
+    async_task(crawl_applyboard)
 
 
 def get_school_countries():
