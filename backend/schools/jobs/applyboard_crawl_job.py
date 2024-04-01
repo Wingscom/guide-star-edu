@@ -101,8 +101,14 @@ def crawl() -> None:
                     )
                     tuition_fee = "{:,}".format(course_attributes["tuition"])
                     tuition_fee = f"{course_attributes['currency']} {tuition_fee}"
-                    commission = "{:,}".format(course_attributes["commissionAmount"])
-                    commission = f"{course_attributes['currency']} {commission}"
+                    commission = ""
+
+                    if "commissionAmount" in course_attributes:
+                        commission = "{:,}".format(
+                            course_attributes["commissionAmount"]
+                        )
+                        commission = f"{course_attributes['currency']} {commission}"
+
                     duration = (
                         course_attributes["minLength"]
                         if course_attributes["minLength"]
