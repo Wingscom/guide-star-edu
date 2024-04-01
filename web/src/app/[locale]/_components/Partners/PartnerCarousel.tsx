@@ -1,7 +1,7 @@
 "use client";
 
 import { Carousel } from "@mantine/carousel";
-import { rem, useMantineTheme } from "@mantine/core";
+import { useMantineTheme } from "@mantine/core";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 import { PartnerLogo } from "./action";
@@ -14,8 +14,8 @@ export function PartnerCarousel({ partners }: { partners: PartnerLogo[] }) {
   return (
     <Carousel
       withIndicators
-      slideSize={{ base: "100%", sm: "50%", lg: "33.333333%" }}
-      slideGap={{ base: rem(2), sm: "xl" }}
+      slideSize={{ base: "100%", xs: "50%", md: "33.33%", lg: "25%" }}
+      slideGap="sm"
       maw="100vw"
       p="md"
       loop

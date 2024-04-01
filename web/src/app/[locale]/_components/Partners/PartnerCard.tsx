@@ -1,4 +1,12 @@
-import { Card, Center, Image, MantineTheme } from "@mantine/core";
+"use client";
+
+import {
+  Card,
+  Center,
+  Image,
+  MantineTheme,
+  useComputedColorScheme,
+} from "@mantine/core";
 import { PartnerLogo } from "./action";
 
 export type PartnerCardProps = {
@@ -7,12 +15,18 @@ export type PartnerCardProps = {
 };
 
 export function PartnerCard({ theme, partner }: PartnerCardProps) {
+  const computedColorScheme = useComputedColorScheme("dark", {
+    getInitialValueInEffect: true,
+  });
+
   const getBackground = (bg: typeof partner.background) => {
     if (bg === "Dark") {
+      if (computedColorScheme === "dark") return undefined;
       return theme.colors.dark[5];
     }
     if (bg === "Light") {
-      return theme.colors.light[5];
+      if (computedColorScheme === "light") return undefined;
+      return "white";
     }
     return undefined;
   };
@@ -21,14 +35,14 @@ export function PartnerCard({ theme, partner }: PartnerCardProps) {
     <Card
       withBorder
       radius="md"
-      maw="min-content"
+      h="100%"
       component="a"
       href={partner.url}
       target="_blank"
       px="xl"
       bg={getBackground(partner.background)}
     >
-      <Center>
+      <Center h="100%">
         <Image
           src={partner.image?.fields.file?.url}
           height="auto"
