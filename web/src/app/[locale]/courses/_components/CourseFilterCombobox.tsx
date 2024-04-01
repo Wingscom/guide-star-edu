@@ -2,7 +2,7 @@
 
 import { noData } from "@/constants/commons";
 import { useScopedI18n } from "@/locales/client";
-import { Combobox, Input, InputBase, useCombobox } from "@mantine/core";
+import { Combobox, Input, InputBase, ScrollAreaAutosize, useCombobox } from "@mantine/core";
 
 export type CourseFilterCombobox<TValue> = {
   field: "country" | "state" | "city" | "sector";
@@ -58,17 +58,19 @@ export function CourseFilterCombobox<TValue>({
       </Combobox.Target>
 
       <Combobox.Dropdown>
-        <Combobox.Options>
-          <Combobox.Option value={""}>-</Combobox.Option>
-          {options.map((item) => (
-            <Combobox.Option
-              value={item === "" ? noData : (item as string)}
-              key={item as string}
-            >
-              {item === "" ? pageT("labels.noData") : getValueLabel(item)}
-            </Combobox.Option>
-          ))}
-        </Combobox.Options>
+        <ScrollAreaAutosize type="scroll" mah={200}>
+          <Combobox.Options>
+            <Combobox.Option value={""}>-</Combobox.Option>
+            {options.map((item) => (
+              <Combobox.Option
+                value={item === "" ? noData : (item as string)}
+                key={item as string}
+              >
+                {item === "" ? pageT("labels.noData") : getValueLabel(item)}
+              </Combobox.Option>
+            ))}
+          </Combobox.Options>
+        </ScrollAreaAutosize>
       </Combobox.Dropdown>
     </Combobox>
   );
