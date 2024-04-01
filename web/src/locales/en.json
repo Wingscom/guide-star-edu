@@ -17,6 +17,9 @@
     "description": "Please be patient, we are going to work on this page soon.",
     "title": "This page is not implemented yet"
   },
+  "commons": {
+    "months": "months"
+  },
   "contactPage": {
     "actions": {
       "submit": "Submit"

@@ -17,6 +17,9 @@
     "description": "Xin hãy kiên nhẫn, chúng tôi sẽ xây dựng trang này sớm thôi.",
     "title": "Trang này chưa được phát triêt"
   },
+  "commons": {
+    "month": "tháng"
+  },
   "contactPage": {
     "actions": {
       "submit": "Gửi"

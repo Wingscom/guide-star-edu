@@ -7,9 +7,19 @@ export type CourseCardProps = {
 };
 
 export async function CourseCard({ course }: CourseCardProps) {
+  const commonT = await getScopedI18n("commons");
   const countryT = await getScopedI18n("countries");
   const sectorT = await getScopedI18n("courseSectors");
   const pageT = await getScopedI18n("coursesPage");
+
+  // Sample duration: 12, 12-24
+  const calculateCourseDuration = (duration?: string) => {
+    if (!duration) return "";
+
+    return duration
+      .replace("-", " - ")
+      .replaceAll(/(\d+)/g, `$1 ${commonT("months")}`);
+  };
 
   return (
     <Card withBorder radius="md">
@@ -40,7 +50,7 @@ export async function CourseCard({ course }: CourseCardProps) {
         </Group>
         <Group justify="space-between">
           <Text fw={500}>{pageT("labels.duration")}</Text>
-          <Text>{course.duration}</Text>
+          <Text>{calculateCourseDuration(course.duration)}</Text>
         </Group>
       </Stack>
     </Card>
