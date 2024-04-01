@@ -101,6 +101,9 @@ def crawl() -> None:
                     )
                     tuition_fee = "{:,}".format(course_attributes["tuition"])
                     tuition_fee = f"{course_attributes['currency']} {tuition_fee}"
+                    commission = "{:,}".format(course_attributes["commissionAmount"])
+                    commission = f"{course_attributes['currency']} {commission}"
+                    duration = course_attributes["minLength"] if course_attributes["minLength"] == course_attributes["maxLength"] else f"{course_attributes["minLength"]}-{course_attributes["maxLength"]}"
 
                     if course_record.application_fee != application_fee:
                         logger.info(
@@ -117,6 +120,22 @@ def crawl() -> None:
                             school_record.name,
                         )
                         course_record.tuition_fee = tuition_fee
+
+                    if course_record.commission != commission:
+                        logger.info(
+                            "Update course commission with %s for school: %s",
+                            commission,
+                            school_record.name,
+                        )
+                        course_record.commission = commission
+
+                    if course_record.duration != duration:
+                        logger.info(
+                            "Update course duration with %s for school: %s",
+                            duration,
+                            school_record.name,
+                        )
+                        course_record.duration = duration
 
                     course_record.save()
 
