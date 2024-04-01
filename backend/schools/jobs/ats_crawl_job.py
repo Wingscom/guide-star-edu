@@ -153,7 +153,7 @@ def translate_states(states: list):
     return list(
         map(
             lambda state: {
-                "name": state["name"]
+                "name": correct_state_typo(state["name"])
                 .replace("Bắc", "North")
                 .replace("Name", "South")
                 .replace("Đông", "East")
@@ -163,6 +163,16 @@ def translate_states(states: list):
             states,
         )
     )
+
+
+def correct_state_typo(state: str):
+    match state:
+        case "Northern Teritory":
+            return "Northern Territory"
+        case "Australian Capital Territory (ACT)":
+            return "Australian Capital Territory"
+        case _:
+            return state
 
 
 def get_code_from_name(name: str):

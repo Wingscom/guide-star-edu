@@ -25,31 +25,15 @@ def crawl() -> None:
     page_size = 100
     total = 10000
     program_levels = [
-        "english",
-        "grade_1",
-        "grade_2",
-        "grade_3",
-        "grade_4",
-        "grade_5",
-        "grade_6",
-        "grade_7",
-        "grade_8",
-        "grade_9",
-        "grade_10",
-        "grade_11",
-        "grade_12",
         "certificate",
         "diploma",
-        "advanced_diploma",
         "3_year_bachelors",
-        "topup_degree",
         "bachelors",
-        "integrated_masters",
-        "post_graduate_certificate",
-        "post_graduate_diploma",
         "masters_degree",
-        "doctoral_phd",
-        "non_credential",
+        "post_graduate_certificate,post_graduate_diploma,doctoral_phd,non_credential",
+        "advanced_diploma,topup_degree,integrated_masters",
+        "english",
+        "grade_1,grade_2,grade_3,grade_4,grade_5,grade_6,grade_7,grade_8,grade_9,grade_10,grade_11,grade_12",
     ]
     for program_level in program_levels:
         while (page - 1) * page_size < total:
@@ -72,10 +56,10 @@ def crawl() -> None:
                     course_attributes = course["attributes"]
                     school = course_attributes["school"]
                     school_record, school_created = School.objects.get_or_create(
-                        name=school["name"],
+                        name=school["name"].strip(),
                         country=school["countryCode"],
-                        state=school["province"],
-                        city=school["city"],
+                        state=school["province"].strip(),
+                        city=school["city"].strip(),
                         defaults={"sources": ["applyboard"]},
                     )
 
