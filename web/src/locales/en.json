@@ -346,7 +346,8 @@
     },
     "labels": {
       "countries": "Countries",
-      "news": "News"
+      "news": "News",
+      "ourPartners": "Our partners"
     }
   }
 }

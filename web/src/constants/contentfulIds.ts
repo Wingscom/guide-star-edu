@@ -5,4 +5,5 @@ export const contentfulIds = {
   countryOverview: "country",
   travel: "travel",
   immigration: "settlement",
+  partnerLogo: "partnerLogo",
 } as const;
