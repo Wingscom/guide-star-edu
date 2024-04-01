@@ -1,7 +1,8 @@
-import { CountryCode } from "@/types/CountryCode";
-import { Course } from "./_types/Course";
+import { cacheTags } from "@/constants/cacheTags";
 import { noData } from "@/constants/commons";
+import { CountryCode } from "@/types/CountryCode";
 import { cache } from "react";
+import { Course } from "./_types/Course";
 
 export async function getAvailableCountries() {
   const response = await fetch(
@@ -9,6 +10,10 @@ export async function getAvailableCountries() {
     {
       headers: {
         "X-Api-Key": process.env.BACKEND_API_KEY,
+      },
+      next: {
+        revalidate: 3600,
+        tags: [cacheTags.countries],
       },
     }
   );
@@ -24,6 +29,10 @@ export const getAvailableStates = cache(async (country?: string) => {
       headers: {
         "X-Api-Key": process.env.BACKEND_API_KEY,
       },
+      next: {
+        revalidate: 3600,
+        tags: [cacheTags.states],
+      },
     }
   );
   const result = (await response.json()) as { data: string[] };
@@ -38,6 +47,10 @@ export const getAvailableCities = cache(
       {
         headers: {
           "X-Api-Key": process.env.BACKEND_API_KEY,
+        },
+        next: {
+          revalidate: 3600,
+          tags: [cacheTags.cities],
         },
       }
     );
@@ -79,7 +92,7 @@ export const searchCourses = cache(async (request: SearchCourseRequest) => {
       body: JSON.stringify(processedRequest),
       next: {
         revalidate: 3600,
-        tags: ["courses"],
+        tags: [cacheTags.courses],
       },
     }
   );
