@@ -9,18 +9,6 @@ logger = logging.getLogger()
 
 
 def crawl() -> None:
-    auth_response = requests.post(
-        "https://accounts.applyboard.com/api/v1/authn",
-        data={
-            "username": os.getenv("APPLYBOARD_USERNAME"),
-            "password": os.getenv("APPLYBOARD_PASSWORD"),
-            "options": {
-                "warnBeforePasswordExpired": True,
-                "multiOptionalFactorEnroll": True,
-            },
-        },
-    )
-    response_cookies = auth_response.cookies
     page = 1
     page_size = 100
     total = 10000
@@ -39,7 +27,6 @@ def crawl() -> None:
         while (page - 1) * page_size < total:
             response = requests.get(
                 "https://www.applyboard.com/api/content/search/v2/search",
-                cookies=response_cookies,
                 params={
                     "sort": "relevance",
                     "page[number]": page,
