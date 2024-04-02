@@ -13,14 +13,13 @@ export function PartnerCarousel({ partners }: { partners: PartnerLogo[] }) {
 
   return (
     <Carousel
-      withIndicators
       slideSize={{ base: "100%", xs: "50%", md: "33.33%", lg: "25%" }}
       slideGap="sm"
       maw="100vw"
       p="md"
       loop
       align="start"
-      slidesToScroll={3}
+      slidesToScroll={1}
       plugins={[autoplay.current]}
       onMouseEnter={autoplay.current.stop}
       onMouseLeave={autoplay.current.reset}
