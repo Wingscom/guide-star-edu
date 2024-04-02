@@ -2,7 +2,7 @@
 
 import { useScopedI18n } from "@/locales/client";
 import { CountryCode } from "@/types/CountryCode";
-import { Input, Stack, Text, useCombobox } from "@mantine/core";
+import { Button, Input, Stack, Text, useCombobox } from "@mantine/core";
 import { KeyboardEvent } from "react";
 import {
   NumberParam,
@@ -25,7 +25,7 @@ export function CourseFilter({
   countries,
   states,
   cities,
-}: CourseFilterProps) {
+}: Readonly<CourseFilterProps>) {
   const countryT = useScopedI18n("countries");
   const courseSectorT = useScopedI18n("courseSectors");
   const pageT = useScopedI18n("coursesPage");
@@ -38,6 +38,8 @@ export function CourseFilter({
     sector: StringParam,
     page: NumberParam,
   });
+  const hasActiveFilter =
+    query.search || query.country || query.state || query.city || query.sector;
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -72,6 +74,17 @@ export function CourseFilter({
     }
     setQuery({ [field]: valueToUpdate, page: 1 }, "pushIn");
   };
+
+  const resetFilter = () => {
+    setQuery({
+      search: undefined,
+      country: undefined,
+      state: undefined,
+      city: undefined,
+      sector: undefined,
+      page: undefined,
+    })
+  }
 
   return (
     <Stack>
@@ -110,6 +123,7 @@ export function CourseFilter({
         placeholder={pageT("labels.sector")}
         onSubmit={handleSubmitCombobox}
       />
+      {hasActiveFilter && <Button onClick={resetFilter}>{pageT("actions.resetFilter")}</Button>}
       <Text>{pageT("labels.total", { count: total })}</Text>
     </Stack>
   );

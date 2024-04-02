@@ -296,7 +296,8 @@
   },
   "coursesPage": {
     "actions": {
-      "filter": "Filter"
+      "filter": "Filter",
+      "resetFilter": "Reset filter"
     },
     "labels": {
       "applicationFee": "Application fee",

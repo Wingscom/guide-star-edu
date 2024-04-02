@@ -296,7 +296,8 @@
   },
   "coursesPage": {
     "actions": {
-      "filter": "Lọc khóa học"
+      "filter": "Lọc khóa học",
+      "resetFilter": "Bỏ lọc"
     },
     "labels": {
       "applicationFee": "Phí nộp đơn",

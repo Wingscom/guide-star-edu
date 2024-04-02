@@ -7,7 +7,9 @@ import { useRef } from "react";
 import { PartnerLogo } from "./action";
 import { PartnerCard } from "./PartnerCard";
 
-export function PartnerCarousel({ partners }: { partners: PartnerLogo[] }) {
+export function PartnerCarousel({
+  partners,
+}: Readonly<{ partners: PartnerLogo[] }>) {
   const autoplay = useRef(Autoplay({ delay: 2000 }));
   const theme = useMantineTheme();
 
