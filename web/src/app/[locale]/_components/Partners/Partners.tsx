@@ -8,7 +8,7 @@ export async function Partners() {
   const partners = await getPartners();
 
   return (
-    <Container size="xl" p="lg">
+    <Container size="xl" p={{ base: 2, sm: "xl"}}>
       <Stack align="center">
         <Title order={2} mb="lg">
           {pageT("labels.ourPartners")}

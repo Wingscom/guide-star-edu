@@ -17,7 +17,7 @@ export default function Footer() {
   return (
     <AppShell.Footer>
       <Container className={classes.inner}>
-        <Text>
+        <Text mt={{ base: "sm", sm: 0 }}>
           © {new Date().getFullYear()} GuidestarEdu. All rights reserved.
         </Text>
         <Group

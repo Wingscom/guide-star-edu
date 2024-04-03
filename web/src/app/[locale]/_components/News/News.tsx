@@ -8,7 +8,7 @@ export async function News() {
   const topPosts = await getHomeNewPosts();
 
   return (
-    <Container size="xl" p="lg">
+    <Container size="xl" p={{ base: 2, md: "xl" }}>
       <Stack align="center">
         <Title order={2} mb="lg">
           {pageT("labels.news")}
