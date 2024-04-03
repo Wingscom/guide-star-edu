@@ -1,4 +1,4 @@
-import { Grid, GridCol } from "@mantine/core";
+import { Box, Space } from "@mantine/core";
 import { CourseFilter } from "./_components/CourseFilter";
 import { CourseList } from "./_components/CourseList";
 import { CourseSector } from "./_types/CourseSector";
@@ -11,7 +11,7 @@ import {
 
 export default async function SearchPage({
   searchParams: { search, country, state, city, sector, page = 1 },
-}: {
+}: Readonly<{
   searchParams: {
     search?: string;
     country?: string;
@@ -20,7 +20,7 @@ export default async function SearchPage({
     sector?: CourseSector;
     page?: number;
   };
-}) {
+}>) {
   const [countries, states, cities, courses] = await Promise.all([
     getAvailableCountries(),
     getAvailableStates(country),
@@ -36,18 +36,19 @@ export default async function SearchPage({
   ]);
 
   return (
-    <Grid gutter="xl">
-      <GridCol span={{ base: 12, sm: 4 }}>
+    <Box pos="relative" display="flex">
+      <Box pos="sticky" top={76} miw={300} h="fit-content">
         <CourseFilter
           countries={countries}
           states={states}
           cities={cities}
           total={courses.total}
         />
-      </GridCol>
-      <GridCol span={{ base: 12, sm: 8 }}>
+      </Box>
+      <Space w="xl" />
+      <Box w="100%">
         <CourseList courses={courses} />
-      </GridCol>
-    </Grid>
+      </Box>
+    </Box>
   );
 }
