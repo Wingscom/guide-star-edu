@@ -1,5 +1,6 @@
 import { Box, Space } from "@mantine/core";
 import { CourseFilter } from "./_components/CourseFilter";
+import { CourseFilterMobile } from "./_components/CourseFilterMobile";
 import { CourseList } from "./_components/CourseList";
 import { CourseSector } from "./_types/CourseSector";
 import {
@@ -37,7 +38,7 @@ export default async function SearchPage({
 
   return (
     <Box pos="relative" display="flex">
-      <Box pos="sticky" top={76} miw={300} h="fit-content">
+      <Box pos="sticky" top={76} miw={300} h="fit-content" visibleFrom="sm">
         <CourseFilter
           countries={countries}
           states={states}
@@ -45,10 +46,16 @@ export default async function SearchPage({
           total={courses.total}
         />
       </Box>
-      <Space w="xl" />
+      <Space w="xl" visibleFrom="sm" />
       <Box w="100%">
         <CourseList courses={courses} />
       </Box>
+      <CourseFilterMobile
+        countries={countries}
+        states={states}
+        cities={cities}
+        total={courses.total}
+      />
     </Box>
   );
 }
