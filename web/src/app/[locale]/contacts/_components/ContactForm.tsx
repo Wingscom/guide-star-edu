@@ -24,7 +24,9 @@ export type ContactFormType = {
   contactMessage: string;
 };
 
-export function ContactForm({ contactPageContent }: ContactFormProps) {
+export function ContactForm({
+  contactPageContent,
+}: Readonly<ContactFormProps>) {
   const {
     register,
     handleSubmit: handleFormSubmit,
@@ -60,21 +62,21 @@ export function ContactForm({ contactPageContent }: ContactFormProps) {
           },
         })}
         error={errors.email?.message}
-        className="w-full"
+        w="100%"
       />
       <Space h="md" />
       <TextInput
         size="md"
         label={pageT("labels.fullName")}
         {...register("fullName")}
-        className="w-full"
+        w="100%"
       />
       <Space h="md" />
       <TextInput
         size="md"
         label={pageT("labels.phoneNumber")}
         {...register("phoneNumber")}
-        className="w-full"
+        w="100%"
       />
       <Space h="md" />
       <Textarea
@@ -82,7 +84,7 @@ export function ContactForm({ contactPageContent }: ContactFormProps) {
         label={pageT("labels.contactMessage")}
         autosize
         {...register("contactMessage")}
-        className="w-full"
+        w="100%"
       />
       <Space h="lg" />
       <Button fullWidth onClick={handleSubmit}>
