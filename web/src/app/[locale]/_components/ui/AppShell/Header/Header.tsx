@@ -9,11 +9,11 @@ import { AppLogo } from "../AppLogo";
 import { LangToggler } from "../LangToggler/LangToggler";
 import { ThemeToggler } from "../ThemeToggler/ThemeToggler";
 import classes from "./Header.module.css";
-import { HeaderMenuDesktop } from "./HeaderMenuDesktop";
-import { HeaderMenuMobile } from "./HeaderMenuMobile";
+import { HeaderItemsDesktop } from "./HeaderItemsDesktop";
+import { HeaderItemsMobile } from "./HeaderItemsMobile";
 import { getOverviewsMenu } from "./helpers/getOverviewMenu";
 
-export type HeaderMenu = {
+export type HeaderItem = {
   link: string;
   label: string;
   menu?: {
@@ -35,7 +35,7 @@ export default function Header() {
   const [isBurgerOpen, { toggle: toggleBurger, close: closeBurger }] =
     useDisclosure(false);
 
-  const items: HeaderMenu[] = [
+  const items: HeaderItem[] = [
     {
       link: links.home(),
       label: headerT("labels.home"),
@@ -83,7 +83,7 @@ export default function Header() {
         <div className={classes.inner}>
           <AppLogo />
           <Group gap={5} wrap="nowrap">
-            <HeaderMenuDesktop items={items} />
+            <HeaderItemsDesktop items={items} />
             <ThemeToggler />
             <LangToggler />
             <Burger
@@ -95,7 +95,7 @@ export default function Header() {
         </div>
       </Container>
       <Collapse in={isBurgerOpen} hiddenFrom="sm">
-        <HeaderMenuMobile items={items} onClose={closeBurger} />
+        <HeaderItemsMobile items={items} onClose={closeBurger} />
       </Collapse>
     </AppShell.Header>
   );

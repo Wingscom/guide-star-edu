@@ -13,15 +13,15 @@ import {
 import { IconChevronDown } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
-import { HeaderMenu } from "./Header";
+import { HeaderItem } from "./Header";
 import classes from "./Header.module.css";
 
 export type HeaderMenuMobileProps = {
-  items: HeaderMenu[];
+  items: HeaderItem[];
   onClose: () => void;
 };
 
-export function HeaderMenuMobile({ items, onClose }: HeaderMenuMobileProps) {
+export function HeaderItemsMobile({ items, onClose }: Readonly<HeaderMenuMobileProps>) {
   const [menuExpanseState, setMenuExpanseState] = useState(
     items.map(() => false)
   );
