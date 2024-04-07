@@ -14,7 +14,7 @@ export type AppShellProps = {
 export function AppShell({ children }: AppShellProps) {
   return (
     <QueryParamProvider adapter={NextAdapterApp}>
-      <MantineAppShell header={{ height: 60 }} footer={{ height: 100 }}>
+      <MantineAppShell header={{ height: 60 }} footer={{ height: 60 }}>
         <Header />
         <MantineAppShell.Main>{children}</MantineAppShell.Main>
         <Footer />
