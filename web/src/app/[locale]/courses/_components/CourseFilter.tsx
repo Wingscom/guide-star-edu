@@ -3,15 +3,16 @@
 import { useScopedI18n } from "@/locales/client";
 import { CountryCode } from "@/types/CountryCode";
 import { Button, Input, Stack, Text, useCombobox } from "@mantine/core";
-import { KeyboardEvent } from "react";
+import { useDebouncedState } from "@mantine/hooks";
+import { useEffect } from "react";
 import {
   NumberParam,
   StringParam,
   createEnumParam,
   useQueryParams,
 } from "use-query-params";
-import { CourseFilterCombobox } from "./CourseFilterCombobox";
 import { CourseSector } from "../_types/CourseSector";
+import { CourseFilterCombobox } from "./CourseFilterCombobox";
 
 export type CourseFilterProps = {
   total: number;
@@ -38,18 +39,16 @@ export function CourseFilter({
     sector: StringParam,
     page: NumberParam,
   });
+  const [searchValue, setSearchValue] = useDebouncedState(
+    query.search ?? "",
+    500
+  );
   const hasActiveFilter =
     query.search || query.country || query.state || query.city || query.sector;
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
-
-  const handleSearchKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.code !== "Enter") return;
-
-    setQuery({ search: e.currentTarget.value }, "pushIn");
-  };
 
   const handleSubmitCombobox = (
     field: "country" | "state" | "city" | "sector",
@@ -83,14 +82,18 @@ export function CourseFilter({
       city: undefined,
       sector: undefined,
       page: undefined,
-    })
-  }
+    });
+  };
+
+  useEffect(() => {
+    setQuery({ search: searchValue }, "pushIn");
+  }, [searchValue]);
 
   return (
     <Stack>
       <Input
-        defaultValue={query.search ?? ""}
-        onKeyDown={handleSearchKeyDown}
+        defaultValue={searchValue}
+        onChange={(e) => setSearchValue(e.currentTarget.value)}
         placeholder={pageT("labels.courseName")}
       />
       <CourseFilterCombobox
@@ -123,7 +126,9 @@ export function CourseFilter({
         placeholder={pageT("labels.sector")}
         onSubmit={handleSubmitCombobox}
       />
-      {hasActiveFilter && <Button onClick={resetFilter}>{pageT("actions.resetFilter")}</Button>}
+      {hasActiveFilter && (
+        <Button onClick={resetFilter}>{pageT("actions.resetFilter")}</Button>
+      )}
       <Text>{pageT("labels.total", { count: total })}</Text>
     </Stack>
   );
