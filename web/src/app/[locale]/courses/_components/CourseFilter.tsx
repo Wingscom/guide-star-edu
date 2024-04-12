@@ -3,8 +3,8 @@
 import { useScopedI18n } from "@/locales/client";
 import { CountryCode } from "@/types/CountryCode";
 import { Button, Input, Stack, Text, useCombobox } from "@mantine/core";
-import { useDebouncedState } from "@mantine/hooks";
-import { useEffect } from "react";
+import { useDebouncedValue } from "@mantine/hooks";
+import { useEffect, useState } from "react";
 import {
   NumberParam,
   StringParam,
@@ -39,10 +39,8 @@ export function CourseFilter({
     sector: StringParam,
     page: NumberParam,
   });
-  const [searchValue, setSearchValue] = useDebouncedState(
-    query.search ?? "",
-    500
-  );
+  const [searchValue, setSearchValue] = useState(query.search ?? "");
+  const [debouncedSearchValue] = useDebouncedValue(searchValue, 500);
   const hasActiveFilter =
     query.search || query.country || query.state || query.city || query.sector;
 
@@ -75,6 +73,7 @@ export function CourseFilter({
   };
 
   const resetFilter = () => {
+    setSearchValue("");
     setQuery({
       search: undefined,
       country: undefined,
@@ -86,13 +85,13 @@ export function CourseFilter({
   };
 
   useEffect(() => {
-    setQuery({ search: searchValue }, "pushIn");
-  }, [searchValue]);
+    setQuery({ search: debouncedSearchValue }, "pushIn");
+  }, [debouncedSearchValue]);
 
   return (
     <Stack>
       <Input
-        defaultValue={searchValue}
+        value={searchValue}
         onChange={(e) => setSearchValue(e.currentTarget.value)}
         placeholder={pageT("labels.courseName")}
       />
