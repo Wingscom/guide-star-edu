@@ -12,7 +12,7 @@ export function ContactEmailTemplate({
   return (
     <Stack>
       <p>
-        Hi GuideStarEdu, you've just received a contact request with the
+        Hi GuideStarEdu, you have just received a contact request with the
         following information:
       </p>
       <p>Customer fullname: {fullName}</p>
