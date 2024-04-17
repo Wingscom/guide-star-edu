@@ -32,6 +32,7 @@ export const getContactContent = cache(async () => {
 export type ContactPageResponse = Awaited<ReturnType<typeof getContactContent>>;
 
 export const sendContactEmail = async (request: ContactFormType) => {
+  "use server"
   const data = await resend.emails.send({
     from: "GuideStarEdu <onboarding@resend.dev>",
     to: [process.env.RESEND_RECIPIENT_EMAIL],
