@@ -15,6 +15,7 @@ import { ContactPageResponse } from "../action";
 
 export type ContactFormProps = {
   contactPageContent: ContactPageResponse;
+  sendContactEmail: (request: ContactFormType) => void;
 };
 
 export type ContactFormType = {
@@ -26,6 +27,7 @@ export type ContactFormType = {
 
 export function ContactForm({
   contactPageContent,
+  sendContactEmail,
 }: Readonly<ContactFormProps>) {
   const {
     register,
@@ -36,8 +38,7 @@ export function ContactForm({
   const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
 
   const handleSubmit = handleFormSubmit((formValues) => {
-    console.log("Submit form");
-    // TODO: implement
+    sendContactEmail(formValues);
   });
 
   return (

@@ -1,3 +1,5 @@
+import { getAppLinks } from "@/links";
+import { getCurrentLocale } from "@/locales/server";
 import {
   BackgroundImage,
   Button,
@@ -6,11 +8,14 @@ import {
   Text,
   Title,
 } from "@mantine/core";
+import Link from "next/link";
 import classes from "./Hero.module.css";
 import { getHeroContent } from "./action";
 
 export async function Hero() {
   const content = await getHeroContent();
+  const locale = getCurrentLocale();
+  const links = getAppLinks(locale);
 
   return (
     <BackgroundImage
@@ -30,7 +35,13 @@ export async function Hero() {
           {content.description}
         </Text>
 
-        <Button size="xl" radius="xl" className={classes.control}>
+        <Button
+          size="xl"
+          radius="xl"
+          className={classes.control}
+          component={Link}
+          href={links.contact()}
+        >
           {content.actionText}
         </Button>
       </Container>
