@@ -2,7 +2,13 @@
 
 import { noData } from "@/constants/commons";
 import { useScopedI18n } from "@/locales/client";
-import { Combobox, Input, InputBase, ScrollAreaAutosize, useCombobox } from "@mantine/core";
+import {
+  Combobox,
+  Input,
+  InputBase,
+  ScrollAreaAutosize,
+  useCombobox,
+} from "@mantine/core";
 
 export type CourseFilterCombobox<TValue> = {
   field: "country" | "state" | "city" | "sector";
@@ -23,7 +29,7 @@ export function CourseFilterCombobox<TValue>({
   placeholder,
   getValueLabel = (val: TValue) => String(val),
   onSubmit,
-}: CourseFilterCombobox<TValue>) {
+}: Readonly<CourseFilterCombobox<TValue>>) {
   const pageT = useScopedI18n("coursesPage");
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),

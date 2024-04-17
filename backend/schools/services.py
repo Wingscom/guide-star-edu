@@ -29,11 +29,10 @@ def search_schools(query: QueryDict):
 
 def search_courses(query: dict):
     courses = Course.objects.prefetch_related("school").order_by("id").all()
-    if query.get("search"):
-        courses = courses.filter(
-            Q(name__icontains=query.get("search"))
-            | Q(school__name__icontains=query.get("search"))
-        )
+    if query.get("course_name"):
+        courses = courses.filter(name__icontains=query.get("course_name"))
+    if query.get("school_name"):
+        courses = courses.filter(school__name__icontains=query.get("school_name"))
     if query.get("sector"):
         courses = courses.filter(sector__iexact=query.get("sector"))
     if query.get("country"):

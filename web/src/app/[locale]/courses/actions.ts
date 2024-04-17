@@ -60,7 +60,8 @@ export const getAvailableCities = cache(
 );
 
 export type SearchCourseRequest = {
-  search?: string;
+  courseName?: string;
+  schoolName?: string;
   country?: string;
   state?: string;
   city?: string;
@@ -79,8 +80,12 @@ export type SearchCourseResponse = {
 export const searchCourses = cache(async (request: SearchCourseRequest) => {
   const processedRequest = {
     ...request,
+    school_name: request.schoolName,
+    course_name: request.courseName,
     city: request.city === noData ? "" : request.city,
   };
+  delete processedRequest.schoolName
+  delete processedRequest.courseName
   const response = await fetch(
     `${process.env.BACKEND_HOST}/schools/courses/search`,
     {

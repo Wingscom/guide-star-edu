@@ -32,17 +32,25 @@ export function CourseFilter({
   const pageT = useScopedI18n("coursesPage");
   const CountryParam = createEnumParam(countries);
   const [query, setQuery] = useQueryParams({
-    search: StringParam,
+    schoolName: StringParam,
+    courseName: StringParam,
     country: CountryParam,
     state: StringParam,
     city: StringParam,
     sector: StringParam,
     page: NumberParam,
   });
-  const [searchValue, setSearchValue] = useState(query.search ?? "");
-  const [debouncedSearchValue] = useDebouncedValue(searchValue, 500);
+  const [schoolSearchValue, setSchoolSearchValue] = useState(query.schoolName ?? "");
+  const [debouncedSchoolSearchValue] = useDebouncedValue(schoolSearchValue, 500);
+  const [courseSearchValue, setCourseSearchValue] = useState(query.courseName ?? "");
+  const [debouncedCourseSearchValue] = useDebouncedValue(courseSearchValue, 500);
   const hasActiveFilter =
-    query.search || query.country || query.state || query.city || query.sector;
+    query.schoolName ||
+    query.courseName ||
+    query.country ||
+    query.state ||
+    query.city ||
+    query.sector;
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -73,9 +81,10 @@ export function CourseFilter({
   };
 
   const resetFilter = () => {
-    setSearchValue("");
+    setSchoolSearchValue("");
     setQuery({
-      search: undefined,
+      schoolName: undefined,
+      courseName: undefined,
       country: undefined,
       state: undefined,
       city: undefined,
@@ -85,14 +94,23 @@ export function CourseFilter({
   };
 
   useEffect(() => {
-    setQuery({ search: debouncedSearchValue }, "pushIn");
-  }, [debouncedSearchValue]);
+    setQuery({ schoolName: debouncedSchoolSearchValue }, "pushIn");
+  }, [debouncedSchoolSearchValue]);
+
+  useEffect(() => {
+    setQuery({ courseName: debouncedCourseSearchValue }, "pushIn");
+  }, [debouncedCourseSearchValue]);
 
   return (
     <Stack>
       <Input
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.currentTarget.value)}
+        value={schoolSearchValue}
+        onChange={(e) => setSchoolSearchValue(e.currentTarget.value)}
+        placeholder={pageT("labels.schoolName")}
+      />
+      <Input
+        value={courseSearchValue}
+        onChange={(e) => setCourseSearchValue(e.currentTarget.value)}
         placeholder={pageT("labels.courseName")}
       />
       <CourseFilterCombobox

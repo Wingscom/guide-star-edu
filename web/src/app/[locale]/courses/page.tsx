@@ -11,10 +11,19 @@ import {
 } from "./actions";
 
 export default async function SearchPage({
-  searchParams: { search, country, state, city, sector, page = 1 },
+  searchParams: {
+    schoolName,
+    courseName,
+    country,
+    state,
+    city,
+    sector,
+    page = 1,
+  },
 }: Readonly<{
   searchParams: {
-    search?: string;
+    schoolName?: string;
+    courseName?: string;
     country?: string;
     state?: string;
     city?: string;
@@ -27,7 +36,8 @@ export default async function SearchPage({
     getAvailableStates(country),
     getAvailableCities(country, state),
     searchCourses({
-      search,
+      schoolName,
+      courseName,
       country,
       state,
       city,
