@@ -37,7 +37,7 @@ export function ContactForm({
   const {
     register,
     handleSubmit: handleFormSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ContactFormType>({ mode: "onBlur" });
   const router = useRouter();
   const pageT = useScopedI18n("contactPage");
@@ -114,7 +114,7 @@ export function ContactForm({
         error={errors.contactMessage?.message}
       />
       <Space h="lg" />
-      <Button fullWidth onClick={handleSubmit}>
+      <Button fullWidth onClick={handleSubmit} loading={isSubmitting}>
         {pageT("actions.submit")}
       </Button>
     </Flex>

@@ -2,12 +2,12 @@ import { contentfulIds } from "@/constants/contentfulIds";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
 import { EntryFieldTypes, EntrySkeletonType } from "contentful";
 import { cache } from "react";
-import { Resend } from "resend";
 import { ContactFormType } from "./_components/ContactForm";
+import { render } from "@react-email/render";
 import { ContactEmailTemplate } from "./_components/ContactEmailTemplate";
+import { sendEmail } from "@/helpers/sendEmail";
 
 const contentfulClient = createContentfulClient();
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export type ContactPageEntry = {
   title: EntryFieldTypes.Text;
@@ -33,18 +33,15 @@ export type ContactPageResponse = Awaited<ReturnType<typeof getContactContent>>;
 
 export const sendContactEmail = async (request: ContactFormType) => {
   "use server";
-  const data = await resend.emails.send({
-    from: "GuideStarEdu <onboarding@resend.dev>",
-    to: [process.env.RESEND_RECIPIENT_EMAIL],
-    subject: `[GuideStarEdu] Contact request from ${request.email}`,
-    react: ContactEmailTemplate(request),
-  });
-  if (data.error) {
-    console.error(
-      "Error sending a contact request email",
-      JSON.stringify(data.error)
-    );
+  try {
+    const data = await sendEmail({
+      to: process.env.RECIPIENT_EMAIL ?? "",
+      subject: `[GuideStarEdu] Contact request from ${request.email}`,
+      html: render(ContactEmailTemplate(request)),
+    });
+    return true;
+  } catch (_err) {
+    console.error(_err);
     return false;
   }
-  return true;
 };
