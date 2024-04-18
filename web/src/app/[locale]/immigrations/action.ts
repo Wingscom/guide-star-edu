@@ -7,6 +7,21 @@ import { cache } from "react";
 
 const contentfulClient = createContentfulClient();
 
+export const getTopNewImmigrationPosts = cache(async () => {
+  const locale = getCurrentLocale();
+  const result =
+    await contentfulClient.withoutUnresolvableLinks.getEntries<ImmigrationEntrySkeleton>(
+      {
+        locale,
+        content_type: contentfulIds.immigration,
+        limit: 5,
+        select: ["fields.slug", "fields.title"],
+        order: ["-fields.date"],
+      }
+    );
+  return result.items.map((item) => item.fields);
+});
+
 export type SearchImmigrationsArgs = {
   search?: string;
   page?: number;
@@ -24,9 +39,7 @@ export const searchImmigrations = cache(
             limit: paginationConfig.perPage,
             skip: paginationConfig.perPage * (page - 1),
             order: ["-fields.date"],
-            "fields.slug[match]": search,
-            "fields.content[match]": search,
-            "fields.title[match]": search,
+            query: search,
           }
         )
       : await contentfulClient.withoutUnresolvableLinks.getEntries<ImmigrationEntrySkeleton>(

@@ -356,5 +356,11 @@
       "news": "News",
       "ourPartners": "Our partners"
     }
+  },
+  "immigrationDetail": {
+    "labels": {
+      "newPosts": "New posts",
+      "search": "Search posts"
+    }
   }
 }

@@ -39,9 +39,7 @@ export const searchPosts = cache(async (args: SearchPostsArgs = {}) => {
           limit: paginationConfig.perPage,
           skip: paginationConfig.perPage * (page - 1),
           order: ["-fields.date"],
-          "fields.slug[match]": search,
-          "fields.content[match]": search,
-          "fields.title[match]": search,
+          "query": search,
         }
       )
     : await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
@@ -75,9 +73,7 @@ export const searchPostsWithCategory = cache(
             limit: paginationConfig.perPage,
             skip: paginationConfig.perPage * (page - 1),
             order: ["-fields.date"],
-            "fields.slug[match]": search,
-            "fields.content[match]": search,
-            "fields.title[match]": search,
+            "query": search,
             "fields.category": category,
           }
         )

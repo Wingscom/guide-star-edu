@@ -4,15 +4,14 @@ import { getAppLinks } from "@/links";
 import { useCurrentLocale } from "@/locales/client";
 import { TextInput } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 
-export default function BlogSearch() {
+export default function ImmigrationSearch() {
   const router = useRouter();
   const lang = useCurrentLocale();
   const searchParams = useSearchParams();
   const links = getAppLinks(lang);
-  const pathname = usePathname();
   const [value, setValue] = useState(searchParams.get("search") ?? "");
   const [debouncedValue] = useDebouncedValue(value, 500);
 
@@ -22,19 +21,8 @@ export default function BlogSearch() {
 
   useEffect(() => {
     const queryObj = { search: debouncedValue };
-    if (pathname === links.events()) {
-      router.push(links.events(queryObj));
-      return;
-    }
-    if (pathname === links.news()) {
-      router.push(links.news(queryObj));
-      return;
-    }
-    if (pathname === links.scholarships()) {
-      router.push(links.scholarships(queryObj));
-      return;
-    }
-    router.push(links.blogs(queryObj));
+
+    router.push(links.immigrations(queryObj));
   }, [debouncedValue]);
 
   return <TextInput value={value ?? ""} onChange={handleChangeInput} />;

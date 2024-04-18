@@ -356,5 +356,11 @@
       "news": "Tin tức",
       "ourPartners": "Đối tác của chúng tôi"
     }
+  },
+  "immigrationDetail": {
+    "labels": {
+      "newPosts": "Các bài viết mới",
+      "search": "Tìm kiếm bài viết"
+    }
   }
 }
