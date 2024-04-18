@@ -1,3 +1,5 @@
+"use server"
+
 import { contentfulIds } from "@/constants/contentfulIds";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
 import { getAppLinks } from "@/links";
