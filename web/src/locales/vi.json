@@ -34,7 +34,9 @@
     },
     "messages": {
       "emailInvalid": "Email không hợp lệ",
-      "emailRequired": "Vui lòng nhập email"
+      "required": "Bắt buộc",
+      "sendMailFailure": "Gửi biểu mẫu của bạn thất bại",
+      "sendMailSuccess": "Đã gửi biểu mẫu của bạn"
     },
     "title": "Thông tin liên lạc"
   },

@@ -34,7 +34,9 @@
     },
     "messages": {
       "emailInvalid": "Email is invalid",
-      "emailRequired": "Email is required"
+      "required": "Required",
+      "sendMailFailure": "Failed to send your contact request",
+      "sendMailSuccess": "Send your contact request successfully"
     },
     "title": "Contact info"
   },

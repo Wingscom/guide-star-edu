@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mantine/core";
+import * as React from "react";
 import { ContactFormType } from "./ContactForm";
 
 export type ContactEmailTemplateProps = ContactFormType;
@@ -10,7 +10,7 @@ export function ContactEmailTemplate({
   contactMessage,
 }: Readonly<ContactEmailTemplateProps>) {
   return (
-    <Stack>
+    <div>
       <p>
         Hi GuideStarEdu, you have just received a contact request with the
         following information:
@@ -19,7 +19,7 @@ export function ContactEmailTemplate({
       <p>Customer email: {email}</p>
       <p>Customer phone number: {phoneNumber}</p>
       <p>Customer message:</p>
-      <Box style={{ whiteSpace: "pre-line" }}>{contactMessage}</Box>
-    </Stack>
+      <p style={{ whiteSpace: "pre-line" }}>{contactMessage}</p>
+    </div>
   );
 }

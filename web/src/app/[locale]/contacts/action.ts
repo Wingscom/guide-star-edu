@@ -32,7 +32,7 @@ export const getContactContent = cache(async () => {
 export type ContactPageResponse = Awaited<ReturnType<typeof getContactContent>>;
 
 export const sendContactEmail = async (request: ContactFormType) => {
-  "use server"
+  "use server";
   const data = await resend.emails.send({
     from: "GuideStarEdu <onboarding@resend.dev>",
     to: [process.env.RESEND_RECIPIENT_EMAIL],
@@ -40,6 +40,11 @@ export const sendContactEmail = async (request: ContactFormType) => {
     react: ContactEmailTemplate(request),
   });
   if (data.error) {
-    console.error("Error sending a contact request email");
+    console.error(
+      "Error sending a contact request email",
+      JSON.stringify(data.error)
+    );
+    return false;
   }
+  return true;
 };
