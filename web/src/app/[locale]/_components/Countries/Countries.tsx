@@ -6,7 +6,7 @@ export async function Countries() {
   const pageT = await getScopedI18n("home");
   return (
     <Stack
-      bg="url(https://pse.edu.vn/wp-content/uploads/2019/05/bg1.jpg)"
+      bg="url(/countries-bg.avif)"
       pt="xl"
       pb="lg"
       h={380}
