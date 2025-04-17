@@ -339,6 +339,7 @@
       "courses": "Courses",
       "events": "Events",
       "home": "Home",
+      "info": "About us",
       "immigrations": "Immigrations",
       "news": "News",
       "scholarships": "Scholarships",
@@ -366,6 +367,18 @@
     "labels": {
       "newPosts": "New posts",
       "search": "Search posts"
+    }
+  },
+  "informationPage": {
+    "labels": {
+      "about":"About us",
+      "contactInformation": "Contact information",
+      "mainHeadquarter": "Main headquarter",
+      "hcmHeadquarter": "HCM City office",
+      "taxInformation": "Tax information",
+      "taxCode": "Tax code",
+      "businessSectors": "Business sectors",
+      "businessSectorsDescriptions": "Areas where we provide our expertise and services"
     }
   }
 }

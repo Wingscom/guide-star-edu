@@ -1,148 +1,62 @@
 import { renderContentfulDocument } from "@/helpers/renderContentfulDocument";
 import { getScopedI18n } from "@/locales/server";
-import {
-	Box,
-	Grid,
-	GridCol,
-	Group,
-	List,
-	ListItem,
-	Paper,
-	Stack,
-	Text,
-	ThemeIcon,
-} from "@mantine/core";
-import { getCompanyInfoContent, getContactContent } from "../action";
-import {
-	IconBuilding,
-	IconGlobe,
-	IconInfoSquare,
-	IconMail,
-	IconMapPin,
-} from "@tabler/icons-react";
+import { Box, Flex, Space, Text } from "@mantine/core";
+import { ContactPageResponse } from "../action";
 import classes from "./ContactInfo.module.css";
 
-export async function ContactInfo() {
-	const pageT = await getScopedI18n("contactPage");
-	const contactPageContent = await getContactContent();
-	const companyInfoContent = await getCompanyInfoContent();
+export type ContactInfoProps = {
+  contactPageContent: ContactPageResponse;
+};
 
-	return (
-		<Stack gap="md">
-			<Grid align="stretch">
-				<GridCol span={{ sm: 6 }}>
-					<Paper p="xl" shadow="md" h="100%" withBorder>
-						<Group mb="md">
-							<ThemeIcon className={classes.icon} size="lg" radius="md">
-								<IconMail size={18} />
-							</ThemeIcon>
-							<Text className={classes.sectionTitle}>
-								{pageT("labels.ourContacts")}
-							</Text>
-						</Group>
+export async function ContactInfo({
+  contactPageContent,
+}: Readonly<ContactInfoProps>) {
+  const pageT = await getScopedI18n("contactPage");
 
-						<Stack gap="md">
-							<div>
-								<Text className={classes.label} size="sm">
-									{pageT("labels.email")}
-								</Text>
-								<Text
-									component="a"
-									href={`mailto:${contactPageContent.email}`}
-									className={classes.link}
-								>
-									{contactPageContent.email}
-								</Text>
-							</div>
-
-							<div>
-								<Text className={classes.label} size="sm">
-									{pageT("labels.phoneNumber")}
-								</Text>
-								<Text
-									component="a"
-									href="tel:0982520148"
-									className={classes.link}
-								>
-									{contactPageContent.phoneNumber &&
-										renderContentfulDocument(contactPageContent.phoneNumber)}
-								</Text>
-							</div>
-
-							<div>
-								<Text className={classes.label} size="sm">
-									{pageT("labels.taxCode")}
-								</Text>
-								<Text>{companyInfoContent.taxCode}</Text>
-							</div>
-						</Stack>
-					</Paper>
-				</GridCol>
-
-				<GridCol span={{ sm: 6 }}>
-					<Paper p="xl" shadow="md" withBorder>
-						<Group mb="md">
-							<ThemeIcon className={classes.icon} size="lg" radius="md">
-								<IconBuilding size={18} />
-							</ThemeIcon>
-							<Text className={classes.sectionTitle}>
-								{pageT("labels.ourLocations")}
-							</Text>
-						</Group>
-
-						<Stack gap="md">
-							<div>
-								<Text className={classes.label} size="sm">
-									Headquarters (Da Nang)
-								</Text>
-								<Text>{companyInfoContent.companyAddress}</Text>
-							</div>
-
-							<div>
-								<Text className={classes.label} size="sm">
-									Ho Chi Minh City Office
-								</Text>
-								<Text>{companyInfoContent.HCMaddress}</Text>
-							</div>
-						</Stack>
-					</Paper>
-				</GridCol>
-			</Grid>
-
-			<Paper p="xl" shadow="md" withBorder>
-				<Group mb="md" align="center">
-					<ThemeIcon className={classes.icon} size="lg" radius="md">
-						<IconGlobe size={18} />
-					</ThemeIcon>
-					<Text className={classes.sectionTitle}>
-						{pageT("labels.areaOfOperations")}
-					</Text>
-				</Group>
-
-				<List spacing="xs">
-					{companyInfoContent.businessSectors?.map((sector) => (
-						<ListItem key={sector}>{sector}</ListItem>
-					))}
-				</List>
-			</Paper>
-
-			<Paper p="xl" shadow="md" withBorder>
-				<Group mb="md">
-					<ThemeIcon className={classes.icon} size="lg" radius="md">
-						<IconMapPin size={18} />
-					</ThemeIcon>
-					<Text className={classes.sectionTitle}>Find Us</Text>
-				</Group>
-
-				{contactPageContent.googleIframe && (
-					<Box
-						className={classes.map}
-						dangerouslySetInnerHTML={{
-							__html: contactPageContent.googleIframe,
-						}}
-					/>
-				)}
-			</Paper>
-		</Stack>
-	);
+  return (
+    <Flex
+      className={classes.root}
+      h="80vh"
+      direction="column"
+      justify="center"
+      p="lg"
+    >
+      {contactPageContent.address && (
+        <>
+          <Text c="dimmed">{pageT("labels.address")}</Text>
+          {renderContentfulDocument(contactPageContent.address)}
+          <Space h="lg" />
+        </>
+      )}
+      {contactPageContent.email && (
+        <>
+          <Text c="dimmed">{pageT("labels.email")}</Text>
+          {contactPageContent.email}
+          <Space h="lg" />
+        </>
+      )}
+      {contactPageContent.phoneNumber && (
+        <>
+          <Text c="dimmed">{pageT("labels.phoneNumber")}</Text>
+          {renderContentfulDocument(contactPageContent.phoneNumber)}
+          <Space h="lg" />
+        </>
+      )}
+      {contactPageContent.facebook && (
+        <>
+          <Text c="dimmed">{pageT("labels.facebook")}</Text>
+          {renderContentfulDocument(contactPageContent.facebook)}
+          <Space h="lg" />
+        </>
+      )}
+      {contactPageContent.googleIframe && (
+        <Box
+          className={classes.mapWrapper}
+          dangerouslySetInnerHTML={{
+            __html: contactPageContent.googleIframe,
+          }}
+        />
+      )}
+    </Flex>
+  );
 }

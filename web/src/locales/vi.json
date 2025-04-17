@@ -339,6 +339,7 @@
       "courses": "Khóa học",
       "events": "Sự kiện",
       "home": "Trang chủ",
+      "info": "Về chúng tôi",
       "immigrations": "Định cư",
       "news": "Tin tức",
       "scholarships": "Học bổng",
@@ -366,6 +367,18 @@
     "labels": {
       "newPosts": "Các bài viết mới",
       "search": "Tìm kiếm bài viết"
+    }
+  },
+  "informationPage": {
+    "labels": {
+      "about":"Về chúng tôi",
+      "contactInformation": "Thông tin liên lạc",
+      "mainHeadquarter": "Trụ sở chính",
+      "hcmHeadquarter": "Văn phòng Hồ Chí Minh",
+      "taxInformation": "Thông tin thuế",
+      "taxCode": "Mã số thuế",
+      "businessSectors": "Lĩnh vực hoạt động",
+      "businessSectorsDescriptions": "Các lĩnh vực chúng tôi chuyên cung cấp dịch vụ"
     }
   }
 }

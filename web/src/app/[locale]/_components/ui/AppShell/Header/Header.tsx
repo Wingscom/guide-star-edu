@@ -75,6 +75,10 @@ export default function Header() {
       link: links.contact(),
       label: headerT("labels.contact"),
     },
+    {
+      link: links.info(),
+      label: headerT("labels.info"),
+    },
   ];
 
   return (
