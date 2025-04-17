@@ -4,10 +4,11 @@ import { searchPosts } from "./action";
 import { Pagination } from "../_components/ui/Pagination/Pagination";
 
 export default async function BlogsPage({
-  searchParams: { search, page = 1 },
+  searchParams,
 }: {
-  searchParams: { search?: string; page?: number };
+  searchParams: Promise<{ search?: string; page?: number }>;
 }) {
+  const { search, page = 1 } = await searchParams;
   const posts = await searchPosts({ search, page });
 
   return (

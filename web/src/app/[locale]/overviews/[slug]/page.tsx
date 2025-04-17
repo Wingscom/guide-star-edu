@@ -3,10 +3,11 @@ import { Image, Stack, Title } from "@mantine/core";
 import { getOverviewDetailContent } from "./action";
 
 export default async function OverViewDetailPage({
-  params: { slug },
+  params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   const overviewContent = await getOverviewDetailContent(slug);
 
   return (

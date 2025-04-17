@@ -5,10 +5,11 @@ import { Pagination } from "../../_components/ui/Pagination/Pagination";
 import { Stack } from "@mantine/core";
 
 export default async function ScholarshipsPage({
-  searchParams: { search, page },
+  searchParams,
 }: Readonly<{
-  searchParams: { search?: string; page?: number };
+  searchParams: Promise<{ search?: string; page?: number }>;
 }>) {
+  const { search, page } = await searchParams;
   const posts = await searchPostsWithCategory({
     search,
     page,

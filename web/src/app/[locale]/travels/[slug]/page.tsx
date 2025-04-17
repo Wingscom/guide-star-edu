@@ -3,10 +3,11 @@ import { Image, Stack, Title } from "@mantine/core";
 import { getTravelDetailContent } from "./action";
 
 export default async function TravelDetailPage({
-  params: { slug },
+  params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   const travelContent = await getTravelDetailContent(slug);
 
   return (

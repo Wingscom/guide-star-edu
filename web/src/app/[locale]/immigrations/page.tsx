@@ -6,10 +6,11 @@ import { Pagination } from "../_components/ui/Pagination/Pagination";
 import { searchImmigrations } from "./action";
 
 export default async function BlogsPage({
-  searchParams: { search, page },
+  searchParams,
 }: {
-  searchParams: { search?: string; page?: number };
+  searchParams: Promise<{ search?: string; page?: number }>;
 }) {
+  const { search, page } = await searchParams;
   const locale = await getCurrentLocale();
   const links = getAppLinks(locale);
   const posts = await searchImmigrations({ search, page });

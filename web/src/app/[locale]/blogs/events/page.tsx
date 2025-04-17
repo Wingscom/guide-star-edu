@@ -5,10 +5,11 @@ import { BlogList } from "../_components/BlogList";
 import { searchPostsWithCategory } from "../action";
 
 export default async function EventsPage({
-  searchParams: { search, page },
+  searchParams,
 }: {
-  searchParams: { search?: string; page?: number };
+  searchParams: Promise<{ search?: string; page?: number }>;
 }) {
+  const { search, page } = await searchParams;
   const posts = await searchPostsWithCategory({
     search,
     page,

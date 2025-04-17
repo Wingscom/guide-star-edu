@@ -3,10 +3,11 @@ import { Image, Stack, Title } from "@mantine/core";
 import { getImmigrationDetailContent } from "./action";
 
 export default async function ImmigrationDetailPage({
-  params: { slug },
+  params,
 }: Readonly<{
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }>) {
+  const { slug } = await params;
   const immigrationContent = await getImmigrationDetailContent(slug);
 
   return (

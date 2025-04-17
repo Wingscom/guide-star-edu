@@ -11,17 +11,9 @@ import {
 } from "./actions";
 
 export default async function SearchPage({
-  searchParams: {
-    schoolName,
-    courseName,
-    country,
-    state,
-    city,
-    sector,
-    page = 1,
-  },
-}: Readonly<{
-  searchParams: {
+  searchParams,
+}: {
+  searchParams: Promise<{
     schoolName?: string;
     courseName?: string;
     country?: string;
@@ -29,8 +21,17 @@ export default async function SearchPage({
     city?: string;
     sector?: CourseSector;
     page?: number;
-  };
-}>) {
+  }>;
+}) {
+  const {
+    schoolName,
+    courseName,
+    country,
+    state,
+    city,
+    sector,
+    page = 1,
+  } = await searchParams;
   const [countries, states, cities, courses] = await Promise.all([
     getAvailableCountries(),
     getAvailableStates(country),
