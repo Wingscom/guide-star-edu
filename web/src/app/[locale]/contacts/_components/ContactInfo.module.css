@@ -5,3 +5,39 @@
 .mapWrapper iframe {
   max-height: 270px;
 }
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.125rem;
+  }
+}
+
+.subtitle {
+  color: #a1a1aa; /* zinc-400 */
+  max-width: 37.5rem;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.link p {
+  margin: 0;
+}
+
+.map {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}

@@ -10,7 +10,7 @@ export default async function BlogsPage({
 }: {
   searchParams: { search?: string; page?: number };
 }) {
-  const locale = getCurrentLocale();
+  const locale = await getCurrentLocale();
   const links = getAppLinks(locale);
   const posts = await searchImmigrations({ search, page });
 

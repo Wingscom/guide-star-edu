@@ -14,7 +14,7 @@ import { getHeroContent } from "./action";
 
 export async function Hero() {
   const content = await getHeroContent();
-  const locale = getCurrentLocale();
+  const locale = await getCurrentLocale();
   const links = getAppLinks(locale);
 
   return (

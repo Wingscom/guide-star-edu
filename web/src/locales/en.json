@@ -26,11 +26,16 @@
     },
     "labels": {
       "address": "Address",
+      "areaOfOperations": "Areas of operation",
+      "about": "About Guidestar Edu",
       "contactMessage": "Tell us about it",
       "email": "Email",
       "facebook": "Facebook",
       "fullName": "Full name",
-      "phoneNumber": "Phone number"
+      "phoneNumber": "Phone number",
+      "ourContacts": "Our contacts",
+      "ourLocations": "Our Locations",
+      "taxCode": "Tax code"
     },
     "messages": {
       "emailInvalid": "Email is invalid",

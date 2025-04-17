@@ -26,11 +26,16 @@
     },
     "labels": {
       "address": "Địa chỉ",
+      "areaOfOperations": "Lĩnh vực hoạt động",
+      "about": "Về Guidestar Edu",
       "contactMessage": "Lời nhắn",
       "email": "Email",
       "facebook": "Facebook",
       "fullName": "Họ và tên",
-      "phoneNumber": "Số điện thoại"
+      "phoneNumber": "Số điện thoại",
+      "ourContacts": "Liên lạc với chúng tôi",
+      "ourLocations": "Vị trí của chúng tôi",
+      "taxCode": "Mã số thuế"
     },
     "messages": {
       "emailInvalid": "Email không hợp lệ",

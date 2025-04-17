@@ -9,7 +9,7 @@ import { cache } from "react";
 const contentfulClient = createContentfulClient();
 
 export const getTopNewPosts = cache(async () => {
-  const locale = getCurrentLocale();
+  const locale = await getCurrentLocale();
   const blogDetailEntries =
     await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
       {
@@ -30,7 +30,7 @@ export type SearchPostsArgs = {
 
 export const searchPosts = cache(async (args: SearchPostsArgs = {}) => {
   const { search, page = 1 } = args;
-  const locale = getCurrentLocale();
+  const locale = await getCurrentLocale();
   const blogDetailEntries = search
     ? await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
         {
@@ -64,7 +64,7 @@ export type SearchPostsWithCategoryArgs = SearchPostsArgs & {
 export const searchPostsWithCategory = cache(
   async (args: SearchPostsWithCategoryArgs = {}) => {
     const { search, page = 1, category } = args;
-    const locale = getCurrentLocale();
+    const locale = await getCurrentLocale();
     const blogDetailEntries = search
       ? await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
           {

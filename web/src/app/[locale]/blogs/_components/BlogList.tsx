@@ -6,7 +6,7 @@ import { getAppLinks } from "@/links";
 import { getCurrentLocale } from "@/locales/server";
 
 export async function BlogList({ posts }: { posts: Blog[] }) {
-  const locale = getCurrentLocale();
+  const locale = await getCurrentLocale();
   const links = getAppLinks(locale);
 
   return (

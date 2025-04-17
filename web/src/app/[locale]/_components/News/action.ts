@@ -7,7 +7,7 @@ import { cache } from "react";
 const contentfulClient = createContentfulClient();
 
 export const getHomeNewPosts = cache(async () => {
-  const locale = getCurrentLocale();
+  const locale = await getCurrentLocale();
   const blogDetailEntries =
     await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
       {

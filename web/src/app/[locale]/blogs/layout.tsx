@@ -10,7 +10,7 @@ export default async function BlogsLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const lang = getCurrentLocale();
+  const lang = await getCurrentLocale();
   const links = getAppLinks(lang);
   const pageT = await getScopedI18n("blogDetail");
   const newPosts = await getTopNewPosts();

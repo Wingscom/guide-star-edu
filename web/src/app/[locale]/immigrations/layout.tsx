@@ -10,7 +10,7 @@ export default async function ImmigrationsLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const lang = getCurrentLocale();
+  const lang = await getCurrentLocale();
   const links = getAppLinks(lang);
   const pageT = await getScopedI18n("immigrationDetail");
   const newPosts = await getTopNewImmigrationPosts();

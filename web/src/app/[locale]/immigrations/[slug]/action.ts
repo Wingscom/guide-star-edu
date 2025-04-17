@@ -7,7 +7,7 @@ import { cache } from "react";
 const contentfulClient = createContentfulClient();
 
 export const getImmigrationDetailContent = cache(async (slug: string) => {
-  const locale = getCurrentLocale();
+  const locale = await getCurrentLocale();
   const detailEntries =
     await contentfulClient.withoutUnresolvableLinks.getEntries<ImmigrationEntrySkeleton>(
       {

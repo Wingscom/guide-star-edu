@@ -8,7 +8,7 @@ import { cache } from "react";
 const contentfulClient = createContentfulClient();
 
 export const getTopNewImmigrationPosts = cache(async () => {
-  const locale = getCurrentLocale();
+  const locale = await getCurrentLocale();
   const result =
     await contentfulClient.withoutUnresolvableLinks.getEntries<ImmigrationEntrySkeleton>(
       {
@@ -30,7 +30,7 @@ export type SearchImmigrationsArgs = {
 export const searchImmigrations = cache(
   async (args: SearchImmigrationsArgs = {}) => {
     const { search, page = 1 } = args;
-    const locale = getCurrentLocale();
+    const locale = await getCurrentLocale();
     const entries = search
       ? await contentfulClient.withoutUnresolvableLinks.getEntries<ImmigrationEntrySkeleton>(
           {

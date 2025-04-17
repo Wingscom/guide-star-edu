@@ -7,7 +7,7 @@ import { cache } from "react";
 const contentfulClient = createContentfulClient();
 
 export const getHeroContent = cache(async () => {
-  const locale = getCurrentLocale();
+  const locale = await getCurrentLocale();
   const response =
     await contentfulClient.withoutUnresolvableLinks.getEntries<HeroEntrySkeleton>(
       {
