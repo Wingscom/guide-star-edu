@@ -375,8 +375,8 @@
       "contactInformation": "Contact information",
       "mainHeadquarter": "Main headquarter",
       "hcmHeadquarter": "HCM City office",
-      "taxInformation": "Tax information",
       "taxCode": "Tax code",
+      "taxCodeHCM": "HCM Tax code",
       "businessSectors": "Business sectors",
       "businessSectorsDescriptions": "Areas where we provide our expertise and services"
     }

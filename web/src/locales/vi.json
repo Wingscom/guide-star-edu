@@ -375,8 +375,8 @@
       "contactInformation": "Thông tin liên lạc",
       "mainHeadquarter": "Trụ sở chính",
       "hcmHeadquarter": "Văn phòng Hồ Chí Minh",
-      "taxInformation": "Thông tin thuế",
       "taxCode": "Mã số thuế",
+      "taxCodeHCM": "Mã số thuế HCM",
       "businessSectors": "Lĩnh vực hoạt động",
       "businessSectorsDescriptions": "Các lĩnh vực chúng tôi chuyên cung cấp dịch vụ"
     }

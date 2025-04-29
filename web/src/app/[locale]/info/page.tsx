@@ -10,9 +10,11 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-
 import { getCompanyInfoContent } from "./action";
 import { getScopedI18n } from "@/locales/server";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default async function ContactsPage() {
   const pageT = await getScopedI18n("informationPage");
@@ -20,25 +22,23 @@ export default async function ContactsPage() {
 
   return (
     <Container size="lg" py="xl">
-      <Title order={1} ta="center" mb="xl">
+      <Title ff={inter.style.fontFamily} order={1} ta="center" mb="xl">
         {companyInfoContent.companyInfo}
       </Title>
 
       <Paper shadow="xs" p="md" radius="md" mb="lg" withBorder>
-        <Title order={3} mb="md">
+        <Title ff={inter.style.fontFamily} order={3} mb="md">
           {pageT("labels.about")}
         </Title>
-        <Text c="dimmed">
-          {companyInfoContent.companyDescription}
-        </Text>
+        <Text c="dimmed">{companyInfoContent.companyDescription}</Text>
       </Paper>
 
       <Paper shadow="xs" p="md" radius="md" mb="lg" withBorder>
-        <Title order={3} mb="md">
+        <Title ff={inter.style.fontFamily} order={3} mb="md">
           {pageT("labels.contactInformation")}
         </Title>
         <Grid mb="md">
-          <GridCol span={6}>
+          <GridCol span={{ base: 12, md: 6 }}>
             <Stack gap="xs">
               <Text fw={500} size="lg">
                 {pageT("labels.mainHeadquarter")}
@@ -48,7 +48,7 @@ export default async function ContactsPage() {
               </Text>
             </Stack>
           </GridCol>
-          <GridCol span={6}>
+          <GridCol span={{ base: 12, md: 6 }}>
             <Stack gap="xs">
               <Text fw={500} size="lg">
                 {pageT("labels.hcmHeadquarter")}
@@ -60,21 +60,28 @@ export default async function ContactsPage() {
           </GridCol>
         </Grid>
         <Divider my="md" />
-        <Stack gap="xs">
-          <Text fw={500} size="lg">
-            {pageT("labels.taxInformation")}
-          </Text>
-          <Text c="dimmed">
-            <Text span fw={500}>
-              {pageT("labels.taxCode")}:
-            </Text>{" "}
-            {companyInfoContent.taxCode}
-          </Text>
-        </Stack>
+        <Grid mb="md">
+          <GridCol span={{ base: 12, md: 6 }}>
+            <Stack gap="xs">
+              <Text fw={500} size="lg">
+                {pageT("labels.taxCode")}
+              </Text>
+              <Text c="dimmed">{companyInfoContent.taxCode}</Text>
+            </Stack>
+          </GridCol>
+          <GridCol span={{ base: 12, md: 6 }}>
+            <Stack gap="xs">
+              <Text fw={500} size="lg">
+                {pageT("labels.taxCodeHCM")}
+              </Text>
+              <Text c="dimmed">{companyInfoContent.taxCodeHCM}</Text>
+            </Stack>
+          </GridCol>
+        </Grid>
       </Paper>
 
       <Paper shadow="xs" p="md" radius="md" withBorder>
-        <Title order={3} mb="xs">
+        <Title ff={inter.style.fontFamily} order={3} mb="xs">
           {pageT("labels.businessSectors")}
         </Title>
         <Text c="dimmed" mb="md">

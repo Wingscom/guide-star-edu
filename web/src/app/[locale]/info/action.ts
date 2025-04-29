@@ -8,6 +8,7 @@ const contentfulClient = createContentfulClient();
 export type ContactPageCompanyInfoEntry = {
   companyInfo: EntryFieldTypes.Text;
   taxCode: EntryFieldTypes.Text;
+  taxCodeHCM: EntryFieldTypes.Text;
   companyAddress?: EntryFieldTypes.Text;
   HCMaddress?: EntryFieldTypes.Text;
   businessSectors?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
