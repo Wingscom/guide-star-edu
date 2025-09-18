@@ -3,12 +3,15 @@
 import { Carousel } from "@mantine/carousel";
 import { rem } from "@mantine/core";
 import EventCard from "./EventCard";
-import { Asset } from "contentful";
 import { getAppLinks } from "@/links";
 import { Blog } from "../../blogs/[slug]/action";
 import { BlogCategory } from "@/types/BlogCategory";
+import { useCurrentLocale } from "@/locales/client";
 
 export function EventCarousel({ events }: { events: Blog[] }) {
+  const locale = useCurrentLocale();
+  const links = getAppLinks(locale);
+
   return (
     <Carousel
       slideSize={{ base: "100%", sm: "50%", lg: "25%" }}
@@ -24,7 +27,7 @@ export function EventCarousel({ events }: { events: Blog[] }) {
           <Carousel.Slide key={post.title}>
             <EventCard
               key={post.slug}
-              link={post.slug}
+              link={links.blogDetails(post.slug)}
               image={post.thumbnail?.fields.file?.url}
               title={post.title}
               category={post.category as BlogCategory}

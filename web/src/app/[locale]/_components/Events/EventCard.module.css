@@ -4,14 +4,12 @@
     justify-content: space-between;
     align-items    : stretch;
     border-radius  : 12px;
-    /* Let Card.Section reach full width without inner padding */
     padding        : 0;
     overflow       : hidden;
     height         : 350px;
     background     : rgba(30, 30, 30, 0.85);
 }
 
-/* Image should fill card width and keep aspect */
 .media {
     width     : 100%;
     height    : 180px;
@@ -19,7 +17,6 @@
     display   : block;
 }
 
-/* Padded body for text content */
 .body {
     display       : flex;
     flex-direction: column;
@@ -33,7 +30,6 @@
     line-height    : 1.2;
     font-size      : 16px;
     margin-top     : 4px;
-    font-weight    : 600;
     text-shadow    : 0 2px 8px rgba(0, 0, 0, 0.4);
     text-decoration: none;
 }
