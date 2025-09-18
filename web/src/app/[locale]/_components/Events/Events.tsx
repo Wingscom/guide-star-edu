@@ -16,7 +16,7 @@ export async function Events() {
       <Title order={2} mb="xl">
         {pageT("labels.events")}
       </Title>
-      <EventCarousel events={posts.items} actionLabel={pageT("actions.read")} />
+      <EventCarousel events={posts.items} />
     </Stack>
   );
 }

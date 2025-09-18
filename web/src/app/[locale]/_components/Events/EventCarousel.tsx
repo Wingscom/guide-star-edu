@@ -3,14 +3,12 @@
 import { Carousel } from "@mantine/carousel";
 import { rem } from "@mantine/core";
 import EventCard from "./EventCard";
+import { Asset } from "contentful";
+import { getAppLinks } from "@/links";
+import { Blog } from "../../blogs/[slug]/action";
+import { BlogCategory } from "@/types/BlogCategory";
 
-export function EventCarousel({
-  actionLabel,
-  events,
-}: {
-  actionLabel: string;
-  events: any[];
-}) {
+export function EventCarousel({ events }: { events: Blog[] }) {
   return (
     <Carousel
       slideSize={{ base: "100%", sm: "50%", lg: "25%" }}
@@ -22,9 +20,17 @@ export function EventCarousel({
       loop
     >
       {events &&
-        events?.map((item) => (
-          <Carousel.Slide key={item.title}>
-            <EventCard {...item} action={actionLabel} />
+        events?.map((post) => (
+          <Carousel.Slide key={post.title}>
+            <EventCard
+              key={post.slug}
+              link={post.slug}
+              image={post.thumbnail?.fields.file?.url}
+              title={post.title}
+              category={post.category as BlogCategory}
+              date={post.date ?? ""}
+              description={""}
+            />
           </Carousel.Slide>
         ))}
     </Carousel>

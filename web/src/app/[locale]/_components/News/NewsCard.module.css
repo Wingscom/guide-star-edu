@@ -1,25 +1,23 @@
 .card {
-  position: relative;
+  position        : relative;
   background-color: var(--mantine-color-body);
+  height          : 350px;
+  overflow-y      : hidden;
 }
 
 .title {
-  display: block;
-  margin-top: var(--mantine-spacing-md);
+  display      : block;
+  margin-top   : var(--mantine-spacing-md);
   margin-bottom: rem(5px);
 }
 
 .action {
-  background-color: light-dark(
-    var(--mantine-color-gray-0),
-    var(--mantine-color-dark-5)
-  );
+  background-color: light-dark(var(--mantine-color-gray-0),
+      var(--mantine-color-dark-5));
 
   @mixin hover {
-    background-color: light-dark(
-      var(--mantine-color-gray-1),
-      var(--mantine-color-dark-6)
-    );
+    background-color: light-dark(var(--mantine-color-gray-1),
+        var(--mantine-color-dark-6));
   }
 }
 
