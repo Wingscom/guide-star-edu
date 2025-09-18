@@ -5,6 +5,7 @@ import { BlogCategory } from "@/types/BlogCategory";
 import { Badge, Card, Center, Group, Image, Text } from "@mantine/core";
 import Link from "next/link";
 import classes from "./EventCard.module.css";
+
 export type EventsCardProps = {
   link: string;
   image?: string;
@@ -37,42 +38,50 @@ export default function EventCard({
           <Link href={link}>
             <Image
               src={image}
-              height={180}
               alt="news-thumbnail"
-              fallbackSrc="https://placehold.co/300x200?text=Empty"
+              className={classes.media}
+              fallbackSrc="https://placehold.co/600x360?text=Empty"
             />
           </Link>
         ) : (
           <Image
             src={image}
-            height={180}
             alt="news-thumbnail"
-            fallbackSrc="https://placehold.co/300x200?text=Empty"
+            className={classes.media}
+            fallbackSrc="https://placehold.co/600x360?text=Empty"
           />
         )}
       </Card.Section>
 
-      <Text fw={500} component="a" href={link} className={classes.title}>
-        {title}
-      </Text>
-
-      <Text fz="sm" c="dimmed" lineClamp={4}>
-        {description?.substring(0, 200)}...
-      </Text>
-
-      <Group justify="space-between" mt="auto">
-        <Center>
-          <Text fz="sm" inline>
-            {date}
+      <div className={classes.body}>
+        {link ? (
+          <Link href={link} className={classes.title}>
+            {title}
+          </Link>
+        ) : (
+          <Text fw={500} className={classes.title}>
+            {title}
           </Text>
-        </Center>
-
-        {category && blogCategoriesT(category) && (
-          <Badge color={getBadgeColor(category)}>
-            {blogCategoriesT(category)}
-          </Badge>
         )}
-      </Group>
+
+        <Text fz="sm" c="dimmed" lineClamp={4}>
+          {description?.substring(0, 200)}...
+        </Text>
+
+        <Group justify="space-between" mt="auto">
+          <Center>
+            <Text fz="sm" inline>
+              {date}
+            </Text>
+          </Center>
+
+          {category && blogCategoriesT(category) && (
+            <Badge color={getBadgeColor(category)}>
+              {blogCategoriesT(category)}
+            </Badge>
+          )}
+        </Group>
+      </div>
     </Card>
   );
 }
