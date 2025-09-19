@@ -23,8 +23,8 @@ export function PartnerCarousel({
       align="start"
       slidesToScroll={1}
       plugins={[autoplay.current]}
-      onMouseEnter={autoplay.current.stop}
-      onMouseLeave={autoplay.current.reset}
+      onMouseEnter={() => autoplay.current.stop()}
+      onMouseLeave={() => autoplay.current.play()}
     >
       {partners.map((partner) => (
         <Carousel.Slide key={partner.name}>
