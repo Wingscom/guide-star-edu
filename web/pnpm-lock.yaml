@@ -80,6 +80,9 @@ importers:
       react-email:
         specifier: ^2.1.1
         version: 2.1.6(@swc/helpers@0.5.15)(eslint@8.57.1)
+      react-facebook:
+        specifier: ^10.0.1
+        version: 10.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-hook-form:
         specifier: ^7.51.0
         version: 7.55.0(react@18.3.1)
@@ -3093,6 +3096,12 @@ packages:
     resolution: {integrity: sha512-BtR9VI1CMq4953wfiBmzupKlWcRThaWG2dDgl1vWAllK3tNNmJNerwY4VlmASRDQZE3LpLXU3+lf8N/VAKdbZQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
+
+  react-facebook@10.0.1:
+    resolution: {integrity: sha512-NjxyjAMeOl9MRSMlEX2Q0fNglFJTVm/oHCB9KaVgNTm41ZhfnTzFJInMrtWZUeFHG4+bVI1cq4Ufagv66+DSZA==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
 
   react-hook-form@7.55.0:
     resolution: {integrity: sha512-XRnjsH3GVMQz1moZTW53MxfoWN7aDpUg/GpVNc4A3eXRVNdGXfbzJ4vM4aLQ8g6XCUh1nIbx70aaNCl7kxnjog==}
@@ -6847,6 +6856,11 @@ snapshots:
       - uglify-js
       - utf-8-validate
       - webpack-cli
+
+  react-facebook@10.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   react-hook-form@7.55.0(react@18.3.1):
     dependencies:

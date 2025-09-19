@@ -310,6 +310,7 @@
       "applicationFee": "Phí nộp đơn",
       "city": "Thành phố",
       "country": "Quốc gia",
+      "events": "Sự kiện",
       "courseName": "Tên khóa học",
       "duration": "Thời lượng",
       "location": "Bang/Thành phố",
@@ -360,6 +361,7 @@
     "labels": {
       "countries": "Các nước du học",
       "news": "Tin tức",
+      "events": "Sự kiện",
       "ourPartners": "Đối tác của chúng tôi"
     }
   },
@@ -371,7 +373,7 @@
   },
   "informationPage": {
     "labels": {
-      "about":"Về chúng tôi",
+      "about": "Về chúng tôi",
       "contactInformation": "Thông tin liên lạc",
       "mainHeadquarter": "Trụ sở chính",
       "hcmHeadquarter": "Văn phòng Hồ Chí Minh",

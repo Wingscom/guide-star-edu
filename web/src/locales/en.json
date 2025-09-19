@@ -310,6 +310,7 @@
       "applicationFee": "Application fee",
       "city": "City",
       "country": "Country",
+      "events": "Events",
       "courseName": "Course name",
       "duration": "Duration",
       "location": "Location",
@@ -360,6 +361,7 @@
     "labels": {
       "countries": "Countries",
       "news": "News",
+      "events": "Events",
       "ourPartners": "Our partners"
     }
   },
@@ -371,7 +373,7 @@
   },
   "informationPage": {
     "labels": {
-      "about":"About us",
+      "about": "About us",
       "contactInformation": "Contact information",
       "mainHeadquarter": "Main headquarter",
       "hcmHeadquarter": "HCM City office",
