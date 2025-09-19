@@ -26,8 +26,8 @@ export function NewsCarousel({ posts }: { posts: Blog[] }) {
       align="start"
       slidesToScroll={3}
       plugins={[autoplay.current]}
-      onMouseEnter={autoplay.current.stop}
-      onMouseLeave={autoplay.current.reset}
+      onMouseEnter={() => autoplay.current.stop()}
+      onMouseLeave={() => autoplay.current.play()}
     >
       {posts.map((post) => (
         <Carousel.Slide key={post.slug}>
