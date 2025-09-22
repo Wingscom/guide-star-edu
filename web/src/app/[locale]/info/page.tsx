@@ -11,7 +11,7 @@ import {
     Title,
 } from "@mantine/core";
 import { getCompanyInfoContent } from "./action";
-import { getScopedI18n } from "@/locales/server";
+import { getCurrentLocale, getScopedI18n } from "@/locales/server";
 import { Inter } from "next/font/google";
 import { ContactForm } from "./_components/ContactForm";
 import { getContactContent, sendContactEmail } from "./action";
@@ -21,7 +21,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default async function ContactsPage() {
     const pageT = await getScopedI18n("informationPage");
-    const companyInfoContent = await getCompanyInfoContent();
+    const locale = await getCurrentLocale();
+    const companyInfoContent = await getCompanyInfoContent({ locale });
     const contactPageContent = await getContactContent();
 
     return (
@@ -100,7 +101,12 @@ export default async function ContactsPage() {
                 </Group>
             </Paper>
 
-            <Grid justify="center" align="center" gutter={50} style={{ paddingTop: 40, paddingBottom: 40 }}>
+            <Grid
+                justify="center"
+                align="center"
+                gutter={50}
+                style={{ paddingTop: 40, paddingBottom: 40 }}
+            >
                 <GridCol span={{ base: 12, sm: 6 }}>
                     <ContactForm
                         contactPageContent={contactPageContent}
