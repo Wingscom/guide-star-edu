@@ -1,0 +1,98 @@
+.wrapper-fb-icon {
+    position       : fixed;
+    bottom         : 80px;
+    right          : 24px;
+    z-index        : 1000;
+    width          : 72px;
+    height         : 72px;
+    padding        : 8px;
+    border-radius  : 50%;
+    display        : inline-flex;
+    align-items    : center;
+    justify-content: center;
+    cursor         : pointer;
+    transition     : transform 0.25s ease, box-shadow 0.25s ease;
+    user-select    : none;
+}
+
+.wrapper-fb-icon:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 24px -6px rgba(36, 55, 83, 0.55),
+        0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.wrapper-fb-icon:active {
+    transform: scale(0.92);
+}
+
+.wrapper-fb-icon:focus-visible {
+    outline       : 3px solid #ffffff;
+    outline-offset: 3px;
+}
+
+.img-facebook-wrapper {
+    width         : 56px;
+    height        : 56px;
+    pointer-events: none;
+}
+
+@keyframes curiosity-pop {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    18% {
+        transform: scale(1.18) rotate(-10deg);
+    }
+
+    35% {
+        transform: scale(1.05) rotate(8deg);
+    }
+
+    52% {
+        transform: scale(1.12) rotate(-6deg);
+    }
+
+    70% {
+        transform: scale(1.03) rotate(4deg);
+    }
+
+    85% {
+        transform: scale(1.06) rotate(-2deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.wrapper-fb-icon.clicked {
+    animation: curiosity-pop 720ms cubic-bezier(.68, -0.55, .27, 1.55);
+}
+
+.wrapper-fb-icon::after {
+    content       : "";
+    position      : absolute;
+    inset         : 0;
+    border-radius : 50%;
+    background    : radial-gradient(circle at 65% 35%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 60%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.wrapper-fb-icon.pulse:not(.clicked) {
+    animation: idle-pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes idle-pulse {
+
+    0%,
+    60%,
+    100% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.06);
+    }
+}
