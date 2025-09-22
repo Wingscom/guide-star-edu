@@ -13,7 +13,11 @@ export async function Events() {
 
   return (
     <Stack bg="url(/countries-bg.avif)" pt="xl" pb="lg" align="center">
-      <Title order={2} mb="xl">
+      <Title
+        order={2}
+        mb="xl"
+        c="light-dark(var(--mantine-color-gray-0), var(--mantine-color-gray-0))"
+      >
         {pageT("labels.events")}
       </Title>
       <EventCarousel events={posts.items} />
