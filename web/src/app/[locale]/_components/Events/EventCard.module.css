@@ -7,7 +7,8 @@
     padding        : 0;
     overflow       : hidden;
     height         : 350px;
-    background     : rgba(30, 30, 30, 0.85);
+    background-color: light-dark(var(--mantine-color-gray-10),
+            var(--mantine-color-dark-2));
 }
 
 .media {
