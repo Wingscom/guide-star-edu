@@ -28,6 +28,8 @@ export const getAppLinks = (lang: string) => {
     scholarships: (queryParams?: { search: string }) =>
       `/${lang}/blogs/scholarships${getQueryString(queryParams)}`,
     overviewDetails: (slug: string) => `/${lang}/overviews/${slug}`,
-    info: () => `/${lang}/info`
+    info: () => `/${lang}/info`,
   };
 };
+
+export const LINK_PAGE_FACEBOOK = "https://www.facebook.com/guidestaredu";
