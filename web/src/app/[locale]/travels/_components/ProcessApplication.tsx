@@ -35,6 +35,7 @@ export function ProcessApplication({
                 variant="separated"
                 multiple={multiple}
                 defaultValue={multiple ? [defaultValue] : defaultValue}
+                transitionDuration={500}
             >
                 {sortedSteps.map((step) => (
                     <Accordion.Item key={step.index} value={String(step.index)}>
