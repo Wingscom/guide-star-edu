@@ -1,25 +1,26 @@
 import { renderContentfulDocument } from "@/helpers/renderContentfulDocument";
-import { Image, Stack, Title } from "@mantine/core";
+import { Stack, Title } from "@mantine/core";
 import { getTravelDetailContent } from "./action";
+import { getProcessingApplicationVisa } from "../action";
+import { ProcessApplication } from "../_components";
+import { richTextFromMarkdown } from "@contentful/rich-text-from-markdown";
 
-export default async function TravelDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const travelContent = await getTravelDetailContent(slug);
+export default async function TravelDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const travelContent = await getTravelDetailContent(slug);
 
-  return (
-    <Stack>
-      <Title>{travelContent.title}</Title>
-      {travelContent.bannerImage?.fields.file?.url && (
-        <Image
-          alt="banner"
-          src={travelContent.bannerImage.fields.file.url}
-        />
-      )}
-      {renderContentfulDocument(travelContent.content)}
-    </Stack>
-  );
+    const processingVisaContent = await getProcessingApplicationVisa();
+
+    const document = await richTextFromMarkdown(travelContent.description as unknown as string);
+
+    return (
+        <Stack>
+            <Title>{travelContent.title}</Title>
+            {renderContentfulDocument(document)}
+            <ProcessApplication
+                steps={processingVisaContent.steps}
+                title={processingVisaContent.title}
+            />
+        </Stack>
+    );
 }
