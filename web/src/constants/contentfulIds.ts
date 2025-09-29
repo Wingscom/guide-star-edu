@@ -8,4 +8,5 @@ export const contentfulIds = {
     travel: "duLch",
     immigration: "settlement",
     partnerLogo: "partnerLogo",
+    processApplicationVisa: "visa_application_process",
 } as const;
