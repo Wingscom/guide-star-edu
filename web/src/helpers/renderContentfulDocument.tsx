@@ -1,12 +1,13 @@
 import { documentToReactComponents, Options } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES, MARKS, Document } from "@contentful/rich-text-types";
-import { Anchor, Blockquote, Divider, List, Stack, Table, Text, Title } from "@mantine/core";
+import { Anchor, Blockquote, Divider, Stack, Text, Title } from "@mantine/core";
+import Image from "next/image";
 
 function isRichTextDocument(value: any): value is Document {
     return !!value && value.nodeType === "document" && Array.isArray(value.content);
 }
 
-export function renderContentfulDocument(doc: Document) {
+export function renderContentfulDocument(doc: Document | string | null | undefined) {
     if (!doc) return null;
 
     let richDoc: Document | null = null;
@@ -77,17 +78,14 @@ export function renderContentfulDocument(doc: Document) {
                 </Title>
             ),
 
+            // Use native lists to avoid SSR/client boundary issues with Mantine List
             [BLOCKS.UL_LIST]: (_n, c) => (
-                <List withPadding mb="sm">
-                    {c}
-                </List>
+                <ul style={{ paddingLeft: 24, marginBottom: "0.75rem" }}>{c}</ul>
             ),
             [BLOCKS.OL_LIST]: (_n, c) => (
-                <List type="ordered" withPadding mb="sm">
-                    {c}
-                </List>
+                <ol style={{ paddingLeft: 24, marginBottom: "0.75rem" }}>{c}</ol>
             ),
-            [BLOCKS.LIST_ITEM]: (_n, c) => <List.Item>{c}</List.Item>,
+            [BLOCKS.LIST_ITEM]: (_n, c) => <li style={{ marginBottom: 6 }}>{c}</li>,
 
             [BLOCKS.QUOTE]: (_n, c) => <Blockquote my="sm">{c}</Blockquote>,
             [BLOCKS.HR]: () => <Divider my="md" />,
@@ -102,16 +100,31 @@ export function renderContentfulDocument(doc: Document) {
             },
 
             [BLOCKS.TABLE]: (_n, c) => (
-                <Table withTableBorder withColumnBorders my="md">
-                    <Table.Tbody>{c}</Table.Tbody>
-                </Table>
+                <table style={{ width: "100%", borderCollapse: "collapse", margin: "1rem 0" }}>
+                    <tbody>{c}</tbody>
+                </table>
             ),
-            [BLOCKS.TABLE_ROW]: (_n, c) => <Table.Tr>{c}</Table.Tr>,
-            [BLOCKS.TABLE_HEADER_CELL]: (_n, c) => <Table.Th>{c}</Table.Th>,
-            [BLOCKS.TABLE_CELL]: (_n, c) => <Table.Td>{c}</Table.Td>,
+            [BLOCKS.TABLE_ROW]: (_n, c) => <tr>{c}</tr>,
+            [BLOCKS.TABLE_HEADER_CELL]: (_n, c) => (
+                <th
+                    style={{
+                        border: "1px solid var(--mantine-color-gray-3)",
+                        padding: 8,
+                        textAlign: "left",
+                    }}
+                >
+                    {c}
+                </th>
+            ),
+            [BLOCKS.TABLE_CELL]: (_n, c) => (
+                <td style={{ border: "1px solid var(--mantine-color-gray-3)", padding: 8 }}>{c}</td>
+            ),
 
             [BLOCKS.EMBEDDED_ASSET]: (node) => {
                 const file = node?.data?.target?.fields?.file;
+                const details = file?.details?.image;
+                const width: number | undefined = details?.width;
+                const height: number | undefined = details?.height;
                 const title = node?.data?.target?.fields?.title ?? "";
                 const description = node?.data?.target?.fields?.description ?? title;
                 const url = typeof file?.url === "string" ? `https:${file.url}` : undefined;
@@ -120,7 +133,25 @@ export function renderContentfulDocument(doc: Document) {
 
                 return (
                     <Stack align="center" gap="xs" my="sm">
-                        <img src={url} width="100%" alt={description} />
+                        {width && height ? (
+                            <Image
+                                src={url}
+                                alt={description}
+                                width={width}
+                                height={height}
+                                style={{ width: "100%", height: "auto" }}
+                            />
+                        ) : (
+                            <div style={{ position: "relative", width: "100%", minHeight: 200 }}>
+                                <Image
+                                    src={url}
+                                    alt={description}
+                                    fill
+                                    sizes="100vw"
+                                    style={{ objectFit: "contain" }}
+                                />
+                            </div>
+                        )}
                         {title ? (
                             <Text size="sm" c="dimmed">
                                 {title}
