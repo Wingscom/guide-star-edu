@@ -1,21 +1,11 @@
-"use client";
+import WrapperSignUpForm from "./_components/WrapperSignupForm";
+import { getTravels } from "./action";
 
-import { useState } from "react";
-import { VisaSignUpForm } from "./_components";
-
-
-export default function Travels() {
-    const [recordModal, setRecordModal] = useState(false);
-
+export default async function Travels() {
+    const travels = await getTravels();
     return (
         <main>
-            <div
-                onClick={() => setRecordModal(true)}
-                style={{ cursor: "pointer", color: "#0070f3", fontWeight: "bold" }}
-            >
-                Sign up for more!
-            </div>
-            <VisaSignUpForm isOpen={recordModal} onClose={() => setRecordModal(false)} />
+            <WrapperSignUpForm />
         </main>
     );
 }
