@@ -27,6 +27,7 @@ export default function WrapperSignUpForm() {
         >
             <div style={{ position: "relative" }}>
                 <div className="popup-trigger">{t("trigger")}</div>
+                <div style={{ width: "100%", height: 20, position: "absolute", bottom: 45, right: 0 }} />
 
                 <div className={`popup-box ${showPopup ? "show" : ""}`}>
                     <div dangerouslySetInnerHTML={{ __html: highlightBrand(t("content.intro")) }} />
