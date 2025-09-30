@@ -4,7 +4,6 @@ import { getQueryString } from "./helpers/getQueryString";
 export const getAppLinks = (lang: string) => {
   return {
     home: () => `/${lang}`,
-    contact: () => `/${lang}/contacts`,
     courses: (queryParams?: {
       search?: string;
       country?: string;

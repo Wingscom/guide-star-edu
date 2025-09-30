@@ -40,7 +40,7 @@ export async function Hero() {
           radius="xl"
           className={classes.control}
           component={Link}
-          href={links.contact()}
+          href={links.info()}
         >
           {content.actionText}
         </Button>
