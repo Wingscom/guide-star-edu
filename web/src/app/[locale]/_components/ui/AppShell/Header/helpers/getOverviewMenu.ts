@@ -28,14 +28,23 @@ export async function getOverviewsMenu(locale: string) {
 }
 
 export async function getListTravelCountry(locale: string) {
-    const overviewMenuCountryTravels =
-        await contentfulClient.withoutUnresolvableLinks.getEntries<TravelEntrySkeleton>({
+    const links = getAppLinks(locale);
+    
+    const overviewMenuEntries =
+        await contentfulClient.withoutUnresolvableLinks.getEntries<OverviewMenuSkeleton>({
             locale,
-            content_type: contentfulIds.travel,
+            content_type: contentfulIds.countryMenu,
         });
 
-    return overviewMenuCountryTravels.items?.map((item) => ({
-        link: getAppLinks(locale).travelDetail(item.fields?.slug),
-        label: item.fields.country,
+
+    return overviewMenuEntries.items?.filter((item) => !!item.fields.travels)?.map((menuItem) => ({
+        link: '#',
+        label: menuItem.fields.title,
+        menu: menuItem.fields.travels
+            ?.filter((item) => !!item)
+            ?.map((item) => ({
+                link: links.travelDetail(item!.fields.slug),
+                label: item!.fields.country,
+            })),
     }));
 }

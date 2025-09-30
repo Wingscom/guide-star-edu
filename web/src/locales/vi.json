@@ -383,5 +383,28 @@
             "businessSectors": "Lĩnh vực hoạt động",
             "businessSectorsDescriptions": "Các lĩnh vực chúng tôi chuyên cung cấp dịch vụ"
         }
+    },
+    "travels": {
+        "popup": {
+            "brand": "GUIDESTAR EDU",
+            "trigger": "Xem thêm thông tin",
+            "signup": "Đăng ký để nhận thông tin!",
+            "content": {
+                "intro": "Lãnh sự quán các nước sở tại sẽ xem xét rất nhiều yếu tố trước khi quyết định cấp visa. Nếu bạn chưa thật sự tự tin về hồ sơ, lo lắng nguy cơ bị từ chối visa ảnh hưởng đến kế hoạch chuyến đi, thì dịch vụ làm visa Canada trọn gói của GUIDESTAR EDU sẽ là lựa chọn đáng tin cậy và tối ưu dành cho bạn.",
+                "commitmentTitle": "GUIDESTAR EDU cam kết:",
+                "commitments": {
+                    "0": "Khai thác tối đa những điểm mạnh trong hồ sơ để nâng cao tỉ lệ đậu visa cao nhất.",
+                    "1": "Chi phí minh bạch, rõ ràng, không phát sinh.",
+                    "2": "Tiết kiệm thời gian và công sức cho khách hàng.",
+                    "3": "Hỗ trợ trong suốt quá trình làm hồ sơ visa."
+                },
+                "contact": "✨ Còn chần chờ gì nữa, hãy liên hệ ngay với GUIDESTAR EDU qua hotline:",
+                "hotlines": {
+                    "0": "0982.520.148 (Văn phòng Đà Nẵng)",
+                    "1": "0346.079.252 (Văn phòng Hồ Chí Minh)"
+                },
+                "leaveInfo": "Hoặc để lại thông tin, chuyên viên của GUIDESTAR EDU sẽ chủ động liên hệ và hỗ trợ bạn!"
+            }
+        }
     }
 }

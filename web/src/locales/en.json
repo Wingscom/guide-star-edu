@@ -383,5 +383,28 @@
             "businessSectors": "Business sectors",
             "businessSectorsDescriptions": "Areas where we provide our expertise and services"
         }
+    },
+    "travels": {
+        "popup": {
+            "brand": "GUIDESTAR EDU",
+            "trigger": "More Information",
+            "signup": "Sign up for more!",
+            "content": {
+                "intro": "Consulates of the host countries will consider many factors before deciding to grant a visa. If you are not really confident in your application, or worried that a visa refusal may affect your travel plans, the full-service Canada visa application by GUIDESTAR EDU will be a reliable and optimal choice for you.",
+                "commitmentTitle": "GUIDESTAR EDU commits:",
+                "commitments": {
+                    "0": "Maximize strengths in the application to achieve the highest visa approval rate.",
+                    "1": "Transparent, clear costs, with no hidden fees.",
+                    "2": "Save time and effort for customers.",
+                    "3": "Support throughout the visa application process."
+                },
+                "contact": "✨ Don’t wait any longer, contact GUIDESTAR EDU via hotline:",
+                "hotlines": {
+                    "0": "0982.520.148 (Da Nang Office)",
+                    "1": "0346.079.252 (Ho Chi Minh Office)"
+                },
+                "leaveInfo": "Or leave your information and GUIDESTAR EDU’s consultant will proactively contact and assist you!"
+            }
+        }
     }
 }

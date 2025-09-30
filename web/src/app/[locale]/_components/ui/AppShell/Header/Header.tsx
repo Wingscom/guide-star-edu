@@ -41,7 +41,7 @@ export default function Header() {
             label: headerT("labels.home"),
         },
         {
-            link: links.travels(),
+            link: '#',
             label: headerT("labels.travel"),
             menu: listCountryTravels.result ?? [],
         },
