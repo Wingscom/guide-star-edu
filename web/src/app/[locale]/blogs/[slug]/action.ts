@@ -7,17 +7,15 @@ import { cache } from "react";
 const contentfulClient = createContentfulClient();
 
 export const getBlogDetailContent = cache(async (slug: string) => {
-  const locale = await getCurrentLocale();
-  const blogDetailEntries =
-    await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>(
-      {
-        locale,
-        content_type: contentfulIds.blog,
-        limit: 1,
-        "fields.slug": slug,
-      }
-    );
-  return blogDetailEntries.items[0].fields;
+    const locale = await getCurrentLocale();
+    const blogDetailEntries =
+        await contentfulClient.withoutUnresolvableLinks.getEntries<BlogEntrySkeleton>({
+            locale,
+            content_type: contentfulIds.blog,
+            limit: 1,
+            "fields.slug": slug,
+        });
+    return blogDetailEntries?.items[0]?.fields;
 });
 
 export type Blog = Awaited<ReturnType<typeof getBlogDetailContent>>;
