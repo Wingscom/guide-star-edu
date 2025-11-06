@@ -9,6 +9,7 @@ import { rem } from "@mantine/core";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 import { NewsCard } from "../NewsCard";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 
 export function NewsCarousel({ posts }: { posts: Blog[] }) {
     const locale = useCurrentLocale();
@@ -28,6 +29,9 @@ export function NewsCarousel({ posts }: { posts: Blog[] }) {
             plugins={[autoplay.current]}
             onMouseEnter={() => autoplay.current.stop()}
             onMouseLeave={() => autoplay.current.play()}
+            controlSize={45}
+            nextControlIcon={<IconChevronRight size={40} stroke={2} />}
+            previousControlIcon={<IconChevronLeft size={40} stroke={2} />}
         >
             {posts.map((post) => (
                 <Carousel.Slide key={post.slug}>

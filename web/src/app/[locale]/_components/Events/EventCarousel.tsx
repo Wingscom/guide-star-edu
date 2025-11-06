@@ -7,6 +7,7 @@ import { getAppLinks } from "@/links";
 import type { Blog } from "../../blogs/[slug]/action";
 import { BlogCategory } from "@/types/BlogCategory";
 import { useCurrentLocale } from "@/locales/client";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 
 export function EventCarousel({ events }: { events: Blog[] }) {
     const locale = useCurrentLocale();
@@ -21,6 +22,8 @@ export function EventCarousel({ events }: { events: Blog[] }) {
             maw="100vw"
             p="md"
             loop
+            nextControlIcon={<IconChevronRight size={40} stroke={2} />}
+            previousControlIcon={<IconChevronLeft size={40} stroke={2} />}
         >
             {events &&
                 events?.map((post) => (
