@@ -1,16 +1,16 @@
 .card {
-  height: rem(220px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  background-size: cover;
+  height             : rem(220px);
+  display            : flex;
+  flex-direction     : column;
+  justify-content    : space-between;
+  align-items        : flex-start;
+  background-size    : cover;
   background-position: center;
 }
 
 .title {
-  color: var(--mantine-color-white);
+  color      : var(--mantine-color-white);
   line-height: 1.2;
-  font-size: rem(32px);
-  margin-top: var(--mantine-spacing-xs);
+  font-size  : rem(32px);
+  margin-top : var(--mantine-spacing-xs);
 }
