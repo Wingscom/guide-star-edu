@@ -42,11 +42,12 @@ export type ContactPageEntry = {
     googleIframe?: EntryFieldTypes.Text;
 };
 
-export const getContactContent = cache(async () => {
+export const getContactContent = cache(async ({ locale }: { locale: string }) => {
     const contactPageEntries = await contentfulClient.getEntries<
         EntrySkeletonType<ContactPageEntry>
     >({
         content_type: contentfulIds.contactPage,
+        locale,
     });
     return contactPageEntries.items[0].fields;
 });

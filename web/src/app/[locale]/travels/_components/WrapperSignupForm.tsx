@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import { useScopedI18n } from "@/locales/client";
-import { VisaSignUpForm } from "./VisaSignUpForm";
+import Link from "next/link";
 
 export default function WrapperSignUpForm() {
-    const [recordModal, setRecordModal] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
 
     const t = useScopedI18n("travels.popup");
@@ -28,6 +27,7 @@ export default function WrapperSignUpForm() {
             <div style={{ position: "relative" }}>
                 <div className="popup-trigger">{t("trigger")}</div>
                 <div style={{ width: "100%", height: 20, position: "absolute", bottom: 45, right: 0 }} />
+                <div style={{ width: 100, height: "120%", position: "absolute", bottom: 0, left: -100 }} />
 
                 <div className={`popup-box ${showPopup ? "show" : ""}`}>
                     <div dangerouslySetInnerHTML={{ __html: highlightBrand(t("content.intro")) }} />
@@ -45,19 +45,27 @@ export default function WrapperSignUpForm() {
                     </ul>
                     <div dangerouslySetInnerHTML={{ __html: highlightBrand(t("content.leaveInfo")) }} />
                     <div style={{ width: "100%", display: "flex", justifyContent: "center", marginTop: 10 }}>
-                        <div
+                        <Link
+                            href="/info?signup=true"
                             style={{
-                                backgroundColor: "#f08c00",
-                                width: "fit-content",
-                                padding: 8,
-                                borderRadius: 100,
-                                fontWeight: 600,
-                                cursor: "pointer",
+                                color: "white",
+                                textDecoration: "none",
+                                outline: "none",
                             }}
-                            onClick={() => setRecordModal(true)}
                         >
-                            {t("signup")}
-                        </div>
+                            <div
+                                style={{
+                                    backgroundColor: "#f08c00",
+                                    width: "fit-content",
+                                    padding: 8,
+                                    borderRadius: 100,
+                                    fontWeight: 600,
+                                    cursor: "pointer",
+                                }}
+                            >
+                                {t("signup")}
+                            </div>
+                        </Link>
                     </div>
                     <div
                         style={{
@@ -76,7 +84,6 @@ export default function WrapperSignUpForm() {
                 </div>
             </div>
 
-            <VisaSignUpForm isOpen={recordModal} onClose={() => setRecordModal(false)} />
 
             <style>
                 {`
