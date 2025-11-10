@@ -32,7 +32,8 @@ export default async function ContactsPage({ searchParams }: ContactsPageProps) 
     const pageT = await getScopedI18n("informationPage");
     const locale = await getCurrentLocale();
     const companyInfoContent = await getCompanyInfoContent({ locale });
-    const contactPageContent = await getContactContent();
+    const contactPageContent = await getContactContent({ locale });
+    console.log(contactPageContent);
 
     return (
         <>
@@ -125,7 +126,7 @@ export default async function ContactsPage({ searchParams }: ContactsPageProps) 
                         />
                     </GridCol>
                     <GridCol span={{ base: 12, sm: 6 }}>
-                        <ContactInfo contactPageContent={contactPageContent} />
+                        <ContactInfo contactPageContent={contactPageContent} locale={locale} />
                     </GridCol>
                 </Grid>
             </Container>

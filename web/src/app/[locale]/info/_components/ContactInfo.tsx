@@ -6,10 +6,12 @@ import classes from "./ContactInfo.module.css";
 
 export type ContactInfoProps = {
   contactPageContent: ContactPageResponse;
+  locale: string;
 };
 
 export async function ContactInfo({
   contactPageContent,
+  locale,
 }: Readonly<ContactInfoProps>) {
   const pageT = await getScopedI18n("contactPage");
 
