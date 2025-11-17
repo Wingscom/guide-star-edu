@@ -1,9 +1,8 @@
 {
-  "buildCommand": "pnpm build",
-  "outputDirectory": ".next",
-  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "cd web && pnpm build",
+  "outputDirectory": "web/.next",
+  "installCommand": "cd web && pnpm install --frozen-lockfile",
   "framework": "nextjs",
-  "rootDirectory": "web",
   "env": {
     "PNPM_VERSION": "10.8.1"
   },
