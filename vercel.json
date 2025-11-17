@@ -1,8 +1,12 @@
 {
-  "buildCommand": "cd web && corepack enable pnpm && pnpm build",
-  "outputDirectory": "web/.next",
-  "installCommand": "cd web && corepack enable pnpm && pnpm install",
+  "buildCommand": "pnpm build",
+  "outputDirectory": ".next",
+  "installCommand": "pnpm install --frozen-lockfile",
   "framework": "nextjs",
+  "rootDirectory": "web",
+  "env": {
+    "PNPM_VERSION": "10.8.1"
+  },
   "rewrites": [
     {
       "source": "/(.*)",
