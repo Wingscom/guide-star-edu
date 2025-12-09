@@ -29,7 +29,7 @@
         "clsx": "^2.1.1",
         "contentful": "^10.6.25",
         "embla-carousel-autoplay": "^8.0.0",
-        "next": "^15.3",
+        "next": "15.3.6",
         "next-international": "^1.2.4",
         "next-query-params": "^5.0.0",
         "nodemailer": "^6.9.13",
