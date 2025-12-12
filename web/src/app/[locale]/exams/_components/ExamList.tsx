@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { Badge, Box, Card, Group, Image, Modal, SimpleGrid, Stack, Text } from "@mantine/core";
 import { renderContentfulDocument } from "@/helpers/renderContentfulDocument";
-import { ExamFields } from "@/types/Exam";
 import { TypeListExams } from "../action";
+
+type ExamItem = NonNullable<TypeListExams>[number];
 
 type ExamListProps = {
     exams: TypeListExams;
@@ -13,19 +14,20 @@ type ExamListProps = {
 
 export function ExamList({ exams }: Readonly<ExamListProps>) {
     const [opened, { open, close }] = useDisclosure(false);
-    const [selectedExam, setSelectedExam] = useState<ExamFields | null>(null);
+    const [selectedExam, setSelectedExam] = useState<ExamItem | null>(null);
 
-    const handleCardClick = (exam: ExamFields) => {
+    const handleCardClick = (exam: ExamItem) => {
         setSelectedExam(exam);
         open();
     };
 
     return (
         <>
-            <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="lgs" py="xl">
+            <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="lg" py="xl">
                 {exams.map((exam, index) => {
-                    const iconUrl = exam.icon?.fields.file;
-                    console.log({ iconUrl });
+                    const iconFile = exam.icon?.fields?.file;
+                    const iconUrl = iconFile?.url;
+
                     return (
                         <Card
                             key={index}
@@ -40,52 +42,42 @@ export function ExamList({ exams }: Readonly<ExamListProps>) {
                                 {iconUrl && (
                                     <Image
                                         src={`https:${iconUrl}`}
-                                        h={160}
-                                        alt={exam?.title}
-                                        fit="contain"
-                                        p="md"
+                                        h={200}
+                                        w="100%"
+                                        alt={exam.title as string}
+                                        fit="cover"
+                                        style={{
+                                            boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+                                            filter: "blur(0.5px)",
+                                        }}
                                     />
                                 )}
                             </Card.Section>
 
                             <Group justify="space-between" mt="md" mb="xs">
-                                <Text fw={500}>{exam.title}</Text>
+                                <Text fw={500}>{exam.title as string}</Text>
                                 <Badge color="pink" variant="light">
-                                    {exam.title}
+                                    {exam.freeStr as string}
                                 </Badge>
                             </Group>
 
                             <Text size="sm" c="dimmed">
-                                Fee: {exam.fee}
+                                Fee: {exam.fee as number}
                             </Text>
                         </Card>
                     );
                 })}
             </SimpleGrid>
 
-            <Modal opened={opened} onClose={close} title={selectedExam?.title.values} size="lg">
+            <Modal opened={opened} onClose={close} title={selectedExam?.title as string} size="lg">
                 {selectedExam && (
                     <Stack>
-                        {(selectedExam.icon as any)?.fields?.file?.url && (
-                            <Box w={100} h={100} style={{ alignSelf: "center" }}>
-                                <Image
-                                    src={`https:${(selectedExam.icon as any)?.fields?.file?.url}`}
-                                    alt={selectedExam.title.values}
-                                    fit="contain"
-                                />
-                            </Box>
-                        )}
-                        <Group>
-                            <Text fw={700}>Fee:</Text>
-                            <Text>{selectedExam.fee.values}</Text>
-                        </Group>
-                        x
                         <Box>
                             <Text fw={700} mb="xs">
                                 Description:
                             </Text>
-                            {/* {selectedExam?.description &&
-                                renderContentfulDocument(selectedExam.description)} */}
+                            {selectedExam.description &&
+                                renderContentfulDocument(selectedExam.description)}
                         </Box>
                         {selectedExam.structure && (
                             <Box>
