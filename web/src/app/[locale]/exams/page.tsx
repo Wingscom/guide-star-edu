@@ -1,23 +1,33 @@
-import { getInformationRegisterForm } from "./action";
+import { getInformationRegisterForm, getListExamsAvailable } from "./action";
 import { RegistrationForm } from "./_components/RegistrationForm";
+import { ExamList } from "./_components/ExamList";
+import { Container, Space } from "@mantine/core";
 import { FieldDefinition } from "@/types/RegistrationFormExam";
-import { getScopedI18n } from "@/locales/server";
 
 export default async function RegistrationExam() {
-    const pageT = await getScopedI18n("contactPage");
     const formContent = await getInformationRegisterForm();
-
-    if (!formContent) {
-        return <div>No registration form found.</div>;
-    }
+    const exams = await getListExamsAvailable();
 
     return (
-        <RegistrationForm
-            title={formContent?.title}
-            description={formContent?.description}
-            fields={formContent?.fields as unknown as FieldDefinition[]}
-            submitContent={formContent?.submit_content}
-            exams={formContent?.exams}
-        />
+        <Container size="xl">
+            {exams && exams.length > 0 && (
+                <>
+                    <ExamList exams={exams} />
+                    <Space h="xl" />
+                </>
+            )}
+
+            {formContent ? (
+                <RegistrationForm
+                    title={formContent?.title}
+                    description={formContent?.description}
+                    fields={formContent?.fields as unknown as FieldDefinition[]}
+                    submitContent={formContent?.submit_content}
+                    exams={formContent?.exams}
+                />
+            ) : (
+                <div>No registration form found.</div>
+            )}
+        </Container>
     );
 }
