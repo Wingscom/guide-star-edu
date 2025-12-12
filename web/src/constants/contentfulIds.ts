@@ -9,4 +9,6 @@ export const contentfulIds = {
     immigration: "settlement",
     partnerLogo: "partnerLogo",
     processApplicationVisa: "visa_application_process",
+    registrationFormEnglishExam: "registrationFormEnglishExam",
+    listExams: "examQWKanC9iPM",
 } as const;

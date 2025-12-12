@@ -76,6 +76,10 @@ export default function Header() {
             link: links.info(),
             label: headerT("labels.info"),
         },
+        {
+            link: links.registrationExam(),
+            label: headerT("labels.exam"),
+        },
     ];
 
     return (

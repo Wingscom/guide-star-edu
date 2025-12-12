@@ -16,8 +16,6 @@ import { Inter } from "next/font/google";
 import { ContactForm } from "./_components/ContactForm";
 import { getContactContent, sendContactEmail } from "./action";
 import { ContactInfo } from "./_components/ContactInfo";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import ScrollOnLoad from "@/components/ScrollOnLoad";
 
 const inter = Inter({ subsets: ["latin"] });

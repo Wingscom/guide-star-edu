@@ -4,7 +4,6 @@ import { contentfulIds } from "@/constants/contentfulIds";
 import { createContentfulClient } from "@/helpers/createContentfulClient";
 import { getAppLinks } from "@/links";
 import { OverviewMenuSkeleton } from "@/types/OverviewMenuEntrySkeleton";
-import { TravelEntrySkeleton } from "@/types/TravelEntrySkeleton";
 
 const contentfulClient = createContentfulClient();
 
@@ -29,22 +28,23 @@ export async function getOverviewsMenu(locale: string) {
 
 export async function getListTravelCountry(locale: string) {
     const links = getAppLinks(locale);
-    
+
     const overviewMenuEntries =
         await contentfulClient.withoutUnresolvableLinks.getEntries<OverviewMenuSkeleton>({
             locale,
             content_type: contentfulIds.countryMenu,
         });
 
-
-    return overviewMenuEntries.items?.filter((item) => !!item.fields.travels)?.map((menuItem) => ({
-        link: '#',
-        label: menuItem.fields.title,
-        menu: menuItem.fields.travels
-            ?.filter((item) => !!item)
-            ?.map((item) => ({
-                link: links.travelDetail(item!.fields.slug),
-                label: item!.fields.country,
-            })),
-    }));
+    return overviewMenuEntries.items
+        ?.filter((item) => !!item.fields.travels)
+        ?.map((menuItem) => ({
+            link: "#",
+            label: menuItem.fields.title,
+            menu: menuItem.fields.travels
+                ?.filter((item) => !!item)
+                ?.map((item) => ({
+                    link: links.travelDetail(item!.fields.slug),
+                    label: item!.fields.country,
+                })),
+        }));
 }
