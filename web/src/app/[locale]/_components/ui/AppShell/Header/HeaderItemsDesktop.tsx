@@ -1,6 +1,6 @@
 "use client";
 
-import { Group, Menu, SimpleGrid, Stack } from "@mantine/core";
+import { Group, Menu, ScrollArea, SimpleGrid, Stack } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 import Link from "next/link";
 import { HeaderItem } from "./Header";
@@ -10,8 +10,13 @@ export function HeaderItemsDesktop({
   items,
 }: Readonly<{ items: HeaderItem[] }>) {
   return (
-    <Group gap={5} visibleFrom="sm">
-      {items.map((item, itemIndex) => {
+    <ScrollArea 
+      scrollbarSize={0} 
+      scrollHideDelay={0} 
+      style={{ width: "100%" }}
+    >
+      <Group gap={5} wrap="nowrap" style={{ minWidth: "max-content" }}>
+        {items.map((item, itemIndex) => {
         if (!item.menu)
           return (
             <HeaderItemDesktop
@@ -45,7 +50,8 @@ export function HeaderItemsDesktop({
           </Menu>
         );
       })}
-    </Group>
+      </Group>
+    </ScrollArea>
   );
 }
 

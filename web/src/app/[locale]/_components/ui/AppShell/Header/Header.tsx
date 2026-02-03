@@ -91,8 +91,10 @@ export default function Header() {
             <Container size="lg">
                 <div className={classes.inner}>
                     <AppLogo />
-                    <Group gap={5} wrap="nowrap">
+                    <div style={{ flex: 1, minWidth: 0 }}>
                         <HeaderItemsDesktop items={items} />
+                    </div>
+                    <Group gap={5} wrap="nowrap">
                         <ThemeToggler />
                         <LangToggler />
                         <Burger opened={isBurgerOpen} onClick={toggleBurger} hiddenFrom="sm" />
