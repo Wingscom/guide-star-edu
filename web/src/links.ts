@@ -25,6 +25,8 @@ export const getAppLinks = (lang: string) => {
             `/${lang}/blogs/events${getQueryString(queryParams)}`,
         scholarships: (queryParams?: { search: string }) =>
             `/${lang}/blogs/scholarships${getQueryString(queryParams)}`,
+        studyOnboard: (queryParams?: { search: string }) =>
+            `/${lang}/blogs/study-onboard${getQueryString(queryParams)}`,
         overviewDetails: (slug: string) => `/${lang}/overviews/${slug}`,
         info: () => `/${lang}/info`,
         registrationExam: () => `/${lang}/exams`,

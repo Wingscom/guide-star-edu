@@ -55,6 +55,10 @@ export default function Header() {
             label: headerT("labels.immigrations"),
         },
         {
+            link: links.studyOnboard(),
+            label: headerT("labels.blogStudyOnboard"),
+        },
+        {
             link: links.blogs(),
             label: headerT("labels.blogs"),
             menu: [
