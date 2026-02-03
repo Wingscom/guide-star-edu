@@ -32,3 +32,13 @@
 .linkLabel {
   margin-right: 5px;
 }
+
+.desktopNav {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .desktopNav {
+    display: none;
+  }
+}

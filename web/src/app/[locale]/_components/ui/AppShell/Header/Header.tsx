@@ -91,7 +91,7 @@ export default function Header() {
             <Container size="lg">
                 <div className={classes.inner}>
                     <AppLogo />
-                    <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className={classes.desktopNav} style={{ flex: 1, minWidth: 0 }}>
                         <HeaderItemsDesktop items={items} />
                     </div>
                     <Group gap={5} wrap="nowrap">
